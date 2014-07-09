@@ -1,0 +1,3 @@
+[submodule "Cerberus"]
+	path = Cerberus
+	url = git://github.com/tronsha/Cerberus.git
