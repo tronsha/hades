@@ -8,6 +8,11 @@ Hades
 * [GitHub][1]
 * [Homepage][2]
 
+## Recommended Browser
+
+* [Firefox][5]
+* [Chrome][6]
+
 ## Libraries
 * [jQuery][4]
 
@@ -18,3 +23,5 @@ Hades
 [2]: http://www.mpcx.net
 [3]: http://www.gnu.org/licenses/gpl-3.0
 [4]: http://jquery.com/
+[5]: https://www.mozilla.org/en-US/firefox/developer/
+[6]: https://www.google.com/chrome/
