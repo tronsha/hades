@@ -20,7 +20,7 @@
             background: #ffffff;
             border-radius: 10px;
             left: 50%;
-            max-width: 100%;
+            max-width: 90%;
             overflow: hidden;
             position: absolute;
             text-align: center;
