@@ -1,7 +1,7 @@
 <?php
 
 chdir(__DIR__);
-require_once('../Cerberus/vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 use \Cerberus\Cerberus;
 use \Cerberus\Db;
