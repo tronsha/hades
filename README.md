@@ -1,17 +1,17 @@
 Hades
 =====
 
+## Recommended Browser
+
+* [Firefox][5]
+* [Chrome][6]
+
 ## Creator
 
 **Stefan Hüsges**
 
 * [GitHub][1]
 * [Homepage][2]
-
-## Recommended Browser
-
-* [Firefox][5]
-* [Chrome][6]
 
 ## Libraries
 * [jQuery][4]
