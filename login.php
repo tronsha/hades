@@ -35,7 +35,7 @@
             color: #ffffff;
             font-size: 18px;
             margin: 0;
-            padding: 6px;
+            padding: 6px 0;
             width: 100%;
         }
 
