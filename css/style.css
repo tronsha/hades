@@ -48,5 +48,6 @@ html {
 .login input[type="submit"] {
     background: #cccccc linear-gradient(#cccccc, #888888, #cccccc);
     color: #000000;
+    font-weight: bolder;
     width: 100px;
 }
