@@ -1,0 +1,52 @@
+html {
+    background: #cccccc linear-gradient(#666666, #cccccc);
+    font-family: Calligraffitti;
+    height: 100%;
+    width: 100%;
+}
+
+.login {
+    background: #ffffff;
+    border-radius: 10px;
+    left: 50%;
+    max-width: 90%;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+
+.login > h1 {
+    background: #000000 linear-gradient(#630031, #000000);
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0;
+    padding: 6px 0;
+    width: 100%;
+}
+
+.login > div {
+    background: #000233 linear-gradient(#049a9b, #000233);
+    padding: 10px 0;
+}
+
+.login input {
+    border-radius: 6px;
+    line-height: 20px;
+    padding: 6px;
+}
+
+.login input[type="password"],
+.login input[type="text"] {
+    margin: 0 0 10px 0;
+    width: 90%;
+}
+
+.login input[type="submit"] {
+    background: #cccccc linear-gradient(#cccccc, #888888, #cccccc);
+    color: #000000;
+    width: 100px;
+}
