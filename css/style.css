@@ -7,7 +7,7 @@ html {
 
 .login {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 16px;
     left: 50%;
     max-width: 90%;
     overflow: hidden;
@@ -34,7 +34,7 @@ html {
 }
 
 .login input {
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 8px;
 }
 
