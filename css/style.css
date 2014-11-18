@@ -35,8 +35,7 @@ html {
 
 .login input {
     border-radius: 6px;
-    line-height: 20px;
-    padding: 6px;
+    padding: 8px;
 }
 
 .login input[type="password"],
