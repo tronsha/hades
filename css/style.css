@@ -19,7 +19,8 @@ html {
     width: 400px;
 }
 
-.login > h1 {
+.chat h1,
+.login h1 {
     background: #000000 linear-gradient(#630031, #000000);
     color: #ffffff;
     font-size: 18px;
@@ -28,7 +29,7 @@ html {
     width: 100%;
 }
 
-.login > div {
+.login div {
     background: #000233 linear-gradient(#049a9b, #000233);
     padding: 10px 0;
 }
@@ -49,4 +50,95 @@ html {
     color: #000000;
     font-weight: bolder;
     width: 100px;
+}
+
+.chat {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+.chat h1 {
+    height: 24px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.chat .title {
+    background: #000000;
+    color: #cccccc;
+    height: 36px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 36px;
+}
+
+.chat .output {
+    background: #000000;
+    bottom: 36px;
+    color: #cccccc;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    top: 72px;
+}
+
+.chat .input {
+    background: #cccccc;
+    color: #000000;
+    height: 36px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.chat #input {
+    border: 0;
+    bottom: 0;
+    left: 0;
+    line-height: 36px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-indent: 0.5em;
+    top: 0;
+    width: 100%;
+}
+
+.chat .buttons {
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+
+.chat .submit {
+    bottom: 0;
+    color: #000000;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+}
+
+.chat .submit span,
+.chat .buttons span {
+    cursor: pointer;
+}
+
+.chat .channels {
+    display: none;
+}
+
+.chat .users {
+    display: none;
 }
