@@ -1,5 +1,5 @@
 html {
-    background: #cccccc linear-gradient(#666666, #cccccc);
+    background: #cccccc linear-gradient(#666666, #cccccc) fixed;
     font-family: Calligraffitti;
     height: 100%;
     width: 100%;
