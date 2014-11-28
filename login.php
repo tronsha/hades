@@ -16,9 +16,11 @@
 <div class="login">
     <h1>Login</h1>
     <div>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <input type="submit" value="Submit">
+        <form action="./login.php" method="post">
+            <input name="username" placeholder="Username" type="text">
+            <input name="password" placeholder="Password" type="password">
+            <input type="submit" value="Submit">
+        </form>
     </div>
 </div>
 </body>
