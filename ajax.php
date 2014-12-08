@@ -4,7 +4,7 @@ chdir(__DIR__);
 require_once('../vendor/autoload.php');
 
 use \Cerberus\Cerberus;
-use \Cerberus\Db;
+use \Hades\Db;
 
 $path = Cerberus::getPath();
 $config = parse_ini_file($path . '/config.ini', true);
