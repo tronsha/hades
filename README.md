@@ -3,8 +3,8 @@ Hades
 
 ## Recommended Browser
 
-* [Firefox][5]
-* [Chrome][6]
+* [Firefox][8]
+* [Chrome][9]
 
 ## Creator
 
@@ -23,5 +23,8 @@ Hades
 [2]: http://www.mpcx.net
 [3]: http://www.gnu.org/licenses/gpl-3.0
 [4]: http://jquery.com/
-[5]: https://www.mozilla.org/en-US/firefox/developer/
-[6]: https://www.google.com/chrome/
+[5]: http://necolas.github.io/normalize.css/
+[6]: http://fortawesome.github.io/Font-Awesome/
+[7]: https://www.google.com/fonts
+[8]: https://www.mozilla.org/en-US/firefox/developer/
+[9]: https://www.google.com/chrome/
