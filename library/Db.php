@@ -2,6 +2,8 @@
 
 namespace Hades;
 
-class Db extends \Cerberus\Db
+use Cerberus\Db as BaseDb;
+
+class Db extends BaseDb
 {
 }
