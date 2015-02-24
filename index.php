@@ -16,22 +16,30 @@
 <div class="chat">
     <h1>Hades</h1>
     <div class="title"></div>
-    <div class="output"></div>
+    <div class="output">
+        <div id="output"></div>
+        <div class="scrollto"></div>
+    </div>
     <div class="input">
         <input id="input" placeholder="$">
     </div>
-    <div class="channels list"></div>
-    <div class="users list"></div>
+    <div id="channels" class="channels list"></div>
+    <div id="users" class="users list"></div>
     <div class="buttons">
-        <span class="fa fa-comment"></span>
+        <span id="channels" class="fa fa-comment" title="channels"></span>
         &nbsp;
-        <span class="fa fa-users"></span>
+        <span id="users" class="fa fa-users" title="users"></span>
         &nbsp;
-        <span class="fa fa-sign-out"></span>
+        <span id="options" class="fa fa-cogs" title="options"></span>
+        &nbsp;
+        <span id="info" class="fa fa-info" title="info"></span>
+        &nbsp;
+        <span id="logout" class="fa fa-sign-out" title="logout"></span>
     </div>
     <div class="submit">
-        <span class="fa fa-send"></span>
+        <span id="send" class="fa fa-send"></span>
     </div>
 </div>
+<script src="js/chat.js"></script>
 </body>
 </html>
