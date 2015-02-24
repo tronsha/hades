@@ -1,6 +1,8 @@
 jQuery(document).ready(function () {
 
     var $ = jQuery;
+    var $channel = $('#channel');
+    var $title = $('#title');
     var $output = $('#output');
     var $input = $('#input');
     var $send = $('#send');
@@ -56,7 +58,7 @@ jQuery(document).ready(function () {
     }
 
     function output(text) {
-        $output.append(text + '<br>');
+        $output.append('<p>' + text + '</p>');
         scroll();
     }
 

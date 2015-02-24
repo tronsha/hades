@@ -9,13 +9,16 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" rel="stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Calligraffitti|Ubuntu+Mono" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="chat">
     <h1>Hades</h1>
-    <div class="title"></div>
+    <div class="title">
+        <span id="channel"></span>
+        <span id="title"></span>
+    </div>
     <div class="output">
         <div id="output"></div>
         <div class="scrollto"></div>
@@ -23,8 +26,12 @@
     <div class="input">
         <input id="input" placeholder="$">
     </div>
-    <div id="channels" class="channels list"></div>
-    <div id="users" class="users list"></div>
+    <div class="channels list">
+        <div id="channels"></div>
+    </div>
+    <div class="users list">
+        <div id="users"></div>
+    </div>
     <div class="buttons">
         <span id="channels" class="fa fa-comment" title="channels"></span>
         &nbsp;

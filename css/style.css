@@ -73,8 +73,11 @@ h1 {
 }
 
 .chat h1 {
+    font-weight: lighter;
+    text-shadow: 1px 1px #052B2D;
     height: 36px;
     left: 0;
+    letter-spacing: 1px;
     position: absolute;
     right: 0;
     top: 0;
@@ -84,7 +87,7 @@ h1 {
     background: #000000;
     border-bottom: 1px dotted #333333;
     color: #CCCCCC;
-    font-family: Courier;
+    font-family: "Ubuntu Mono";
     height: 24px;
     left: 0;
     overflow-y: auto;
@@ -96,10 +99,8 @@ h1 {
 }
 
 .chat .output {
-    background: #000000;
+    background: linear-gradient(#000000, #052B2D) repeat fixed 0% 0% #000000;
     bottom: 36px;
-    color: #CCCCCC;
-    font-family: Courier;
     left: 0;
     overflow-y: auto;
     padding: 4px 10px;
@@ -107,6 +108,13 @@ h1 {
     right: 0;
     text-align: left;
     top: 60px;
+}
+
+.chat .output > #output > p {
+    color: #CCCCCC;
+    font-family: "Ubuntu Mono";
+    font-size: 14px;
+    margin: 0;
 }
 
 .chat .input {
@@ -119,7 +127,7 @@ h1 {
     right: 0;
 }
 
-.chat #input {
+.chat .input > #input {
     border: 0;
     bottom: 0;
     left: 0;
@@ -141,6 +149,15 @@ h1 {
     top: 6px;
 }
 
+.chat .title > #channel {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.chat .title > #title {
+
+}
+
 .chat .submit {
     bottom: 6px;
     color: #000000;
@@ -149,8 +166,8 @@ h1 {
     right: 10px;
 }
 
-.chat .submit span,
-.chat .buttons span {
+.chat .submit > span,
+.chat .buttons > span {
     cursor: pointer;
 }
 
@@ -160,4 +177,16 @@ h1 {
 
 .chat .users {
     display: none;
+}
+
+@media (max-width: 480px) {
+
+    .chat {
+        text-align: left;
+    }
+
+    .chat h1 {
+        padding-left: 10px;
+    }
+
 }
