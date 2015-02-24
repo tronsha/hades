@@ -15,32 +15,49 @@ jQuery(document).ready(function () {
     $input.keyup(function (event) {
         if (event.which == 13) {
             event.preventDefault();
-            send();
+            input();
         }
     });
 
     $send.click(function () {
-        send();
+        input();
     });
 
     $logout.click(function () {
-        logout();
+        // TODO
     });
 
-    function send() {
+    $options.click(function () {
+        // TODO
+    });
+
+    $info.click(function () {
+        // TODO
+    });
+
+    $channels.click(function () {
+        // TODO
+    });
+
+    $users.click(function () {
+        // TODO
+    });
+
+    function input() {
         var input = $input.val();
         if (input == '') {
             return false;
         }
 
+        // TODO
 
         $input.val('');
-        $output.append(input + '<br>');
-        scroll();
+        output(input);
     }
 
-    function logout() {
-
+    function output(text) {
+        $output.append(text + '<br>');
+        scroll();
     }
 
     function scroll() {
