@@ -1,14 +1,17 @@
 <?php
 
 chdir(__DIR__);
+
 require_once('../vendor/autoload.php');
 
-use \Cerberus\Cerberus;
-use \Hades\Db;
+use Hades\Hades;
 
-$path = Cerberus::getPath();
-$config = parse_ini_file($path . '/config.ini', true);
+$hades = new Hades;
 
-$db = new Db($config['db']);
-$db->connect();
-
+if (isset($_POST['action']) && $_POST['action'] == 'pull') {
+    echo $hades->pull();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'push') {
+    echo $hades->push();
+} else {
+    json_encode(NULL);
+}

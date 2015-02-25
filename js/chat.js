@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
 
     var $ = jQuery;
+
     var $channel = $('#channel');
     var $title = $('#title');
     var $output = $('#output');
@@ -11,6 +12,10 @@ jQuery(document).ready(function () {
     var $options = $('#options');
     var $info = $('#info');
     var $logout = $('#logout');
+
+    var bot = 0;
+    var last = 0;
+    var channel = '';
 
     $input.focus();
 
@@ -51,7 +56,16 @@ jQuery(document).ready(function () {
             return false;
         }
 
-        // TODO
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'push',
+                channel: channel,
+                text: input
+            }
+        });
 
         $input.val('');
         output(input);
@@ -68,8 +82,24 @@ jQuery(document).ready(function () {
         }, 1000);
     }
 
-    setInterval(function() {
-        scroll();
+    setInterval(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'pull',
+                bot: bot,
+                last: last
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $.each(json, function (index, data) {
+                    output('[' + data.time + '] ' + data.name + ': ' + data.text);
+                    scroll();
+                });
+            }
+        });
     }, 1000);
 
 });
