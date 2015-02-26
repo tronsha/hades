@@ -42,4 +42,35 @@ class Db extends BaseDb
             $this->error($e->getMessage());
         }
     }
+
+    /**
+     * @param int $last
+     * @param string $channel
+     * @param int $bot
+     * @return array;
+     */
+    public function getChannelOutput($last, $channel, $bot)
+    {
+        try {
+            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id ASC' . ($last != 0 ? ' LIMIT 100' : '');
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastBot()
+    {
+        try {
+            $sql = 'SELECT * FROM `bot` WHERE `stop` IS NULL ORDER BY id DESC';
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
 }

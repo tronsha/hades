@@ -8,6 +8,10 @@ use Hades\Hades;
 
 $hades = new Hades;
 
+$_SESSION['bot'] = $hades->getBotId();
+$_SESSION['channel'] = '#cerberbot';
+$_SESSION['last'] = 0;
+
 if ($hades->isLoggedin() === false) {
     header('Location: login.php');
 }

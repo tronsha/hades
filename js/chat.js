@@ -13,10 +13,6 @@ jQuery(document).ready(function () {
     var $info = $('#info');
     var $logout = $('#logout');
 
-    var bot = 0;
-    var last = 0;
-    var channel = '';
-
     $input.focus();
 
     $input.keyup(function (event) {
@@ -73,7 +69,7 @@ jQuery(document).ready(function () {
             }
         });
         $input.val('');
-        output(input);
+        //output(input);
     }
 
     function output(text) {
@@ -93,9 +89,7 @@ jQuery(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             data: {
-                action: 'pull',
-                bot: bot,
-                last: last
+                action: 'pull'
             }
         }).done(function (json) {
             if (json !== null) {
@@ -103,12 +97,16 @@ jQuery(document).ready(function () {
                     location.href = 'login.php';
                 } else {
                     $.each(json, function (index, data) {
-                        output('[' + data.time + '] ' + data.name + ': ' + data.text);
+                        output('[' + data.time + '] &lt;' + data.name + '&gt; ' + data.text);
                         scroll();
                     });
                 }
             }
         });
     }, 1000);
+
+    $(window).resize(function () {
+        scroll();
+    });
 
 });

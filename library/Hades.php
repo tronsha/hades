@@ -77,15 +77,18 @@ class Hades
      */
     public function pull()
     {
-        return json_encode(
-            array(
-                array(
-                    'time' => date("H:i:s"),
-                    'name' => 'Neo',
-                    'text' => 'follow the white rabbit'
-                )
-            )
-        );
+        if (isset($_SESSION['last']) === false) {
+            $_SESSION['last'] = 0;
+        }
+        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel'], $_SESSION['bot']);
+        if (count($data) > 0) {
+            $_SESSION['last'] = $data[count($data) - 1]['id'];
+        }
+        foreach($data as &$value) {
+            $value['text'] = htmlentities($value['text']);
+        }
+
+        return json_encode($data);
     }
 
     /**
@@ -94,5 +97,14 @@ class Hades
     public function push()
     {
 
+    }
+
+    /**
+     * @return int
+     */
+    public function getBotId()
+    {
+        $bot = $this->db->getLastBot();
+        return $bot['id'];
     }
 }
