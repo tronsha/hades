@@ -1,4 +1,21 @@
-<!doctype html>
+<?php
+
+chdir(__DIR__);
+
+require_once('../vendor/autoload.php');
+
+use Hades\Hades;
+
+$hades = new Hades;
+
+if ($hades->isLoggedin() === true) {
+    header('Location: index.php');
+}
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $hades->login($_POST['username'], $_POST['password']);
+}
+?><!doctype html>
 <html>
 <head>
     <meta charset="utf-8">

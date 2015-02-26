@@ -8,10 +8,14 @@ use Hades\Hades;
 
 $hades = new Hades;
 
-if (isset($_POST['action']) && $_POST['action'] == 'pull') {
+if ($hades->isLoggedin() === false) {
+    echo json_encode(array('loggedin' => false));
+} elseif (isset($_POST['action']) && $_POST['action'] == 'pull') {
     echo $hades->pull();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'push') {
     echo $hades->push();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
+    echo $hades->logout();
 } else {
-    json_encode(NULL);
+    echo json_encode(NULL);
 }

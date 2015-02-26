@@ -31,7 +31,14 @@ jQuery(document).ready(function () {
     });
 
     $logout.click(function () {
-        // TODO
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'logout'
+            }
+        });
     });
 
     $options.click(function () {
@@ -55,7 +62,6 @@ jQuery(document).ready(function () {
         if (input == '') {
             return false;
         }
-
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -66,7 +72,6 @@ jQuery(document).ready(function () {
                 text: input
             }
         });
-
         $input.val('');
         output(input);
     }
@@ -94,10 +99,14 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
-                $.each(json, function (index, data) {
-                    output('[' + data.time + '] ' + data.name + ': ' + data.text);
-                    scroll();
-                });
+                if (json.loggedin === false) {
+                    location.href = 'login.php';
+                } else {
+                    $.each(json, function (index, data) {
+                        output('[' + data.time + '] ' + data.name + ': ' + data.text);
+                        scroll();
+                    });
+                }
             }
         });
     }, 1000);

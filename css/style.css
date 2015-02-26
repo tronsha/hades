@@ -102,7 +102,7 @@ h1 {
     background: linear-gradient(#000000, #052B2D) repeat fixed 0% 0% #000000;
     bottom: 36px;
     left: 0;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 4px 10px;
     position: absolute;
     right: 0;
