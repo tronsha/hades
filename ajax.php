@@ -10,11 +10,13 @@ $hades = new Hades;
 
 if ($hades->isLoggedin() === false) {
     echo json_encode(array('loggedin' => false));
-} elseif (isset($_POST['action']) && $_POST['action'] == 'pull') {
-    echo $hades->pull();
-} elseif (isset($_POST['action']) && $_POST['action'] == 'push') {
-    echo $hades->push();
-} elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getoutput') {
+    echo $hades->getOutput();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'setinput') {
+    echo $hades->setInput();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'setchannel') {
+    $hades->setChannel($_POST['channel']);
+}elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
     echo $hades->logout();
 } else {
     echo json_encode(NULL);

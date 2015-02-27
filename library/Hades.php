@@ -56,6 +56,15 @@ class Hades
     }
 
     /**
+     * @param string $channel
+     */
+    public function setChannel($channel)
+    {
+        $_SESSION['channel'] = $channel;
+        $_SESSION['last'] = 0;
+    }
+
+    /**
      * @return bool
      */
     public function isLoggedin()
@@ -75,7 +84,7 @@ class Hades
     /**
      * @return string
      */
-    public function pull()
+    public function getOutput()
     {
         if (isset($_SESSION['last']) === false) {
             $_SESSION['last'] = 0;
@@ -94,7 +103,7 @@ class Hades
     /**
      *
      */
-    public function push()
+    public function setInput()
     {
 
     }

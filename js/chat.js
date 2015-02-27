@@ -2,31 +2,50 @@ jQuery(document).ready(function () {
 
     var $ = jQuery;
 
+    var $input = $('#input');
+    var $output = $('#output');
     var $channel = $('#channel');
     var $title = $('#title');
-    var $output = $('#output');
-    var $input = $('#input');
-    var $send = $('#send');
-    var $channels = $('#channels');
-    var $users = $('#users');
-    var $options = $('#options');
-    var $info = $('#info');
-    var $logout = $('#logout');
+    var $channel_list = $('#channel-list');
+    var $user_list = $('#user-list');
+    var $send_button = $('#send-button');
+    var $channel_button = $('#channel-button');
+    var $user_button = $('#user-button');
+    var $option_button = $('#option-button');
+    var $info_button = $('#info-button');
+    var $logout_button = $('#logout-button');
 
     $input.focus();
 
     $input.keyup(function (event) {
         if (event.which == 13) {
             event.preventDefault();
-            input();
+            read();
         }
     });
 
-    $send.click(function () {
-        input();
+    $send_button.click(function () {
+        read();
     });
 
-    $logout.click(function () {
+    $channel_button.click(function () {
+        setChannel('#cerberbot');
+        // TODO
+    });
+
+    $user_button.click(function () {
+        // TODO
+    });
+
+    $option_button.click(function () {
+        // TODO
+    });
+
+    $info_button.click(function () {
+        // TODO
+    });
+
+    $logout_button.click(function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -37,23 +56,7 @@ jQuery(document).ready(function () {
         });
     });
 
-    $options.click(function () {
-        // TODO
-    });
-
-    $info.click(function () {
-        // TODO
-    });
-
-    $channels.click(function () {
-        // TODO
-    });
-
-    $users.click(function () {
-        // TODO
-    });
-
-    function input() {
+    function read() {
         var input = $input.val();
         if (input == '') {
             return false;
@@ -63,16 +66,14 @@ jQuery(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             data: {
-                action: 'push',
-                channel: channel,
+                action: 'read',
                 text: input
             }
         });
         $input.val('');
-        //output(input);
     }
 
-    function output(text) {
+    function write(text) {
         $output.append('<p>' + text + '</p>');
         scroll();
     }
@@ -83,13 +84,26 @@ jQuery(document).ready(function () {
         }, 1000);
     }
 
+    function setChannel(channel) {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'setchannel',
+                channel: channel
+            }
+        });
+        $output.find('p').remove();
+    }
+
     setInterval(function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
             dataType: 'json',
             data: {
-                action: 'pull'
+                action: 'getoutput'
             }
         }).done(function (json) {
             if (json !== null) {
@@ -97,7 +111,7 @@ jQuery(document).ready(function () {
                     location.href = 'login.php';
                 } else {
                     $.each(json, function (index, data) {
-                        output('[' + data.time + '] &lt;' + data.name + '&gt; ' + data.text);
+                        write('[' + data.time + '] &lt;' + data.name + '&gt; ' + data.text);
                         scroll();
                     });
                 }

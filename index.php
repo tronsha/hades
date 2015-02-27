@@ -14,7 +14,6 @@ if ($hades->isLoggedin() === false) {
 }
 
 $_SESSION['bot'] = $hades->getBotId();
-$_SESSION['channel'] = '#cerberbot';
 $_SESSION['last'] = 0;
 ?><!doctype html>
 <html>
@@ -45,24 +44,24 @@ $_SESSION['last'] = 0;
         <input id="input" placeholder="$">
     </div>
     <div class="channels list">
-        <div id="channels"></div>
+        <div id="channel-list"></div>
     </div>
     <div class="users list">
-        <div id="users"></div>
+        <div id="user-list"></div>
     </div>
     <div class="buttons">
-        <span id="channels" class="fa fa-comment" title="channels"></span>
+        <span id="channel-button" class="fa fa-comment" title="channels"></span>
         &nbsp;
-        <span id="users" class="fa fa-users" title="users"></span>
+        <span id="user-button" class="fa fa-users" title="users"></span>
         &nbsp;
-        <span id="options" class="fa fa-cogs" title="options"></span>
+        <span id="option-button" class="fa fa-cogs" title="options"></span>
         &nbsp;
-        <span id="info" class="fa fa-info" title="info"></span>
+        <span id="info-button" class="fa fa-info" title="info"></span>
         &nbsp;
-        <span id="logout" class="fa fa-sign-out" title="logout"></span>
+        <span id="logout-button" class="fa fa-sign-out" title="logout"></span>
     </div>
     <div class="submit">
-        <span id="send" class="fa fa-send"></span>
+        <span id="send-button" class="fa fa-send"></span>
     </div>
 </div>
 <script src="js/chat.js"></script>
