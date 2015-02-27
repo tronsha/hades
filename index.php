@@ -10,6 +10,7 @@ $hades = new Hades;
 
 if ($hades->isLoggedin() === false) {
     header('Location: login.php');
+    exit;
 }
 
 $_SESSION['bot'] = $hades->getBotId();
