@@ -14,6 +14,8 @@ jQuery(document).ready(function () {
     var $option_button = $('#option-button');
     var $info_button = $('#info-button');
     var $logout_button = $('#logout-button');
+    var $overlay = $('#overlay');
+    var $infobox = $('#infobox');
 
     $input.focus();
 
@@ -29,6 +31,8 @@ jQuery(document).ready(function () {
     });
 
     $channel_button.click(function () {
+        $overlay.css('display', 'block');
+        $infobox.css('display', 'block');
         setChannel('#cerberbot');
         // TODO
     });
@@ -54,6 +58,11 @@ jQuery(document).ready(function () {
                 action: 'logout'
             }
         });
+    });
+
+    $overlay.click(function () {
+        $overlay.css('display', 'none');
+        $infobox.css('display', 'none');
     });
 
     function read() {

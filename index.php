@@ -64,6 +64,8 @@ $_SESSION['last'] = 0;
         <span id="send-button" class="fa fa-send"></span>
     </div>
 </div>
+<div id="overlay" class="overlay"></div>
+<div id="infobox" class="infobox"></div>
 <script src="js/chat.js"></script>
 </body>
 </html>
