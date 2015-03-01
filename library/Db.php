@@ -36,8 +36,19 @@ class Db extends BaseDb
     public function setSession($mail, $sid)
     {
         try {
-            $sql = 'UPDATE `web` SET `sid` = ' . $this->conn->quote($sid) .' WHERE `email` = ' . $this->conn->quote($mail) . '';
+            $sql = 'UPDATE `web` SET `sid` = ' . $this->conn->quote($sid) .' WHERE `email` = ' . $this->conn->quote($mail);
             $this->conn->query($sql);
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
+
+    public function getChannel($bot)
+    {
+        try {
+            $sql = 'SELECT `channel`, `topic` FROM `channel` WHERE `bot_id` = ' . $this->conn->quote($bot) . ' ORDER BY `channel` ASC';
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchAll();
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
@@ -52,7 +63,7 @@ class Db extends BaseDb
     public function getChannelOutput($last, $channel, $bot)
     {
         try {
-            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id ASC' . ($last != 0 ? ' LIMIT 100' : '');
+            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id DESC' . ($last == 0 ? ' LIMIT 50' : '');
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll();
         } catch (\Exception $e) {

@@ -39,7 +39,7 @@ $_SESSION['last'] = 0;
     <h1>Hades</h1>
     <div class="title">
         <span id="channel"></span>
-        <span id="title"></span>
+        <span id="topic"></span>
     </div>
     <div class="output">
         <div id="output"></div>
@@ -48,21 +48,11 @@ $_SESSION['last'] = 0;
     <div class="input">
         <input id="input" placeholder="$">
     </div>
-    <div class="channels list">
-        <div id="channel-list"></div>
-    </div>
-    <div class="users list">
-        <div id="user-list"></div>
-    </div>
     <div class="buttons">
         <span id="channel-button" class="fa fa-comment" title="channels"></span>
-        &nbsp;
         <span id="user-button" class="fa fa-users" title="users"></span>
-        &nbsp;
         <span id="option-button" class="fa fa-cogs" title="options"></span>
-        &nbsp;
         <span id="info-button" class="fa fa-info" title="info"></span>
-        &nbsp;
         <span id="logout-button" class="fa fa-sign-out" title="logout"></span>
     </div>
     <div class="submit">

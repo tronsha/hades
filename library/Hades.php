@@ -64,6 +64,14 @@ class Hades
         $_SESSION['last'] = 0;
     }
 
+
+    public function getChannel()
+    {
+        $channel = $this->db->getChannel($_SESSION['bot']);
+
+        return json_encode($channel);
+    }
+
     /**
      * @return bool
      */
@@ -91,10 +99,12 @@ class Hades
         }
         $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel'], $_SESSION['bot']);
         if (count($data) > 0) {
-            $_SESSION['last'] = $data[count($data) - 1]['id'];
-        }
-        foreach($data as &$value) {
-            $value['text'] = htmlentities($value['text']);
+            $_SESSION['last'] = $data[0]['id'];
+            krsort($data);
+            $data = array_values($data);
+            foreach ($data as &$value) {
+                $value['text'] = htmlentities($value['text']);
+            }
         }
 
         return json_encode($data);
@@ -114,6 +124,7 @@ class Hades
     public function getBotId()
     {
         $bot = $this->db->getLastBot();
+
         return $bot['id'];
     }
 }

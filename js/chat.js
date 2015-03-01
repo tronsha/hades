@@ -5,9 +5,7 @@ jQuery(document).ready(function () {
     var $input = $('#input');
     var $output = $('#output');
     var $channel = $('#channel');
-    var $title = $('#title');
-    var $channel_list = $('#channel-list');
-    var $user_list = $('#user-list');
+    var $topic = $('#topic');
     var $send_button = $('#send-button');
     var $channel_button = $('#channel-button');
     var $user_button = $('#user-button');
@@ -31,10 +29,34 @@ jQuery(document).ready(function () {
     });
 
     $channel_button.click(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getchannel'
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $infobox.find('div').remove();
+                $infobox.append('<div><h2>Channel</h2></div>');
+                $.each(json, function (index, data) {
+                    $infobox.append('<div class="join" title="' + data.topic + '">' + data.channel + '</div>');
+                });
+                $('.join').on('click', function () {
+                    var channel = $(this).text();
+                    var topic = $(this).attr('title');
+                    setChannel(channel);
+                    $channel.text(channel);
+                    $topic.text(topic);
+                    $overlay.css('display', 'none');
+                    $infobox.css('display', 'none');
+
+                })
+            }
+        });
         $overlay.css('display', 'block');
         $infobox.css('display', 'block');
-        setChannel('#cerberbot');
-        // TODO
     });
 
     $user_button.click(function () {

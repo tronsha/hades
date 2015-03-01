@@ -21,7 +21,9 @@ if ($hades->isLoggedin() === false) {
     echo $hades->setInput();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'setchannel') {
     $hades->setChannel($_POST['channel']);
-}elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getchannel') {
+    echo $hades->getChannel();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
     echo $hades->logout();
 } else {
     echo json_encode(NULL);
