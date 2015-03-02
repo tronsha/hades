@@ -20,6 +20,9 @@ class Formatter extends FormatterHtml
      */
     public function irc2html($text)
     {
+        if (!mb_check_encoding($text, 'UTF-8')) {
+            $text = utf8_encode($text);
+        }
         $text = htmlentities($text);
         $text = $this->underline($text);
         $text = $this->bold($text);
