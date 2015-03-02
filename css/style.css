@@ -12,14 +12,17 @@ html {
     width: 100%;
 }
 
-input {
-    font-family: Arial;
+body {
+    font-family: "Ubuntu Mono";
+}
+
+h1, h2 {
+    font-family: Calligraffitti;
 }
 
 h1 {
     background: linear-gradient(#630031, #000000) repeat scroll 0% 0% #000000;
     color: #FFFFFF;
-    font-family: Calligraffitti;
     font-size: 24px;
     margin: 0;
     padding: 6px 0;
@@ -60,6 +63,7 @@ h1 {
     background: linear-gradient(#CCCCCC, #888888, #CCCCCC) repeat scroll 0% 0% #CCCCCC;
     color: #000000;
     font-weight: bolder;
+    letter-spacing: 1px;
     width: 100px;
 }
 
@@ -87,7 +91,6 @@ h1 {
     background: #000000;
     border-bottom: 1px dotted #333333;
     color: #CCCCCC;
-    font-family: "Ubuntu Mono";
     height: 24px;
     left: 0;
     overflow-y: auto;
@@ -112,7 +115,6 @@ h1 {
 
 .chat .output > #output > p {
     color: #CCCCCC;
-    font-family: "Ubuntu Mono";
     font-size: 14px;
     margin: 0;
 }
@@ -188,7 +190,7 @@ h1 {
     bottom: 0;
     display: none;
     left: 0;
-    opacity: 0.9;
+    opacity: 0.8;
     position: absolute;
     right: 0;
     top: 0;
@@ -196,14 +198,14 @@ h1 {
 }
 
 .infobox {
-    background: #FFFFFF;
-    border-radius: 0;
+    background: #CCCCCC;
+    border: 6px ridge #888888;
     display: none;
     height: 600px;
     left: 50%;
     max-height: 90%;
     max-width: 90%;
-    overflow: auto;
+    overflow: hidden;
     padding: 0px;
     position: absolute;
     top: 50%;
@@ -212,10 +214,10 @@ h1 {
     width: 1000px;
     z-index: 1100;
 }
+
 .infobox h2 {
-    background: linear-gradient(#630031, #FFFFFF) repeat scroll 0% 0% #630031;
+    background: linear-gradient(#630031, #CCCCCC) repeat scroll 0% 0% #630031;
     color: #FFFFFF;
-    font-family: Calligraffitti;
     font-size: 48px;
     letter-spacing: 4px;
     margin: 0;
@@ -231,9 +233,10 @@ h1 {
     color: #FFFFFF;
     cursor: pointer;
     display: block;
+    font-size: 24px;
     font-weight: bolder;
-    margin: 15px 10px;
-    padding: 10px;
+    margin: 10px;
+    padding: 20px;
     text-align: center;
     letter-spacing: 4px;
 }
