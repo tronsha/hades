@@ -63,7 +63,7 @@ class Db extends BaseDb
     public function getChannelOutput($last, $channel, $bot)
     {
         try {
-            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id DESC' . ($last == 0 ? ' LIMIT 50' : '');
+            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id DESC' . ($last == 0 ? ' LIMIT 100' : '');
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll();
         } catch (\Exception $e) {

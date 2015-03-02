@@ -129,19 +129,21 @@ jQuery(document).ready(function () {
     }
 
     function setTopic(channel) {
-        $.ajax({
-            url: 'ajax.php',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                action: 'gettopic',
-                channel: channel
-            }
-        }).done(function (json) {
-            if (json !== null) {
-                $topic.text(json[0].topic);
-            }
-        });
+        if (channel !== '') {
+            $.ajax({
+                url: 'ajax.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'gettopic',
+                    channel: channel
+                }
+            }).done(function (json) {
+                if (json !== null) {
+                    $topic.text(json[0].topic);
+                }
+            });
+        }
     }
 
     setInterval(function () {

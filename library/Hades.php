@@ -108,8 +108,9 @@ class Hades
             $_SESSION['last'] = $data[0]['id'];
             krsort($data);
             $data = array_values($data);
+            $formatter = new Formatter;
             foreach ($data as &$value) {
-                $value['text'] = htmlentities($value['text']);
+                $value['text'] = $formatter->irc2html($value['text']);
             }
         }
 
@@ -121,7 +122,7 @@ class Hades
      */
     public function setInput()
     {
-
+        // TODO
     }
 
     /**
