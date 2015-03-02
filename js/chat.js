@@ -15,8 +15,6 @@ jQuery(document).ready(function () {
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
 
-    var channel = $('#channel').text();
-
     $input.focus();
 
     $input.keyup(function (event) {
@@ -130,6 +128,22 @@ jQuery(document).ready(function () {
         $output.find('p').remove();
     }
 
+    function setTopic(channel) {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'gettopic',
+                channel: channel
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $topic.text(json[0].topic);
+            }
+        });
+    }
+
     setInterval(function () {
         $.ajax({
             url: 'ajax.php',
@@ -152,24 +166,14 @@ jQuery(document).ready(function () {
         });
     }, 1000);
 
+    setInterval(function () {
+        setTopic($('#channel').text());
+    }, 10000);
+
     $(window).resize(function () {
         scroll();
     });
 
-    if (channel !== '') {
-        $.ajax({
-            url: 'ajax.php',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                action: 'getchannel',
-                channel: channel
-            }
-        }).done(function (json) {
-            if (json !== null) {
-                $topic.text(json[0].topic);
-            }
-        });
-    }
+    setTopic($('#channel').text());
 
 });
