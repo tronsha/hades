@@ -38,7 +38,7 @@ $_SESSION['last'] = 0;
 <div class="chat">
     <h1>Hades</h1>
     <div class="title">
-        <span id="channel"></span>
+        <span id="channel"><?php echo isset($_SESSION['channel']) ? $_SESSION['channel'] : ''; ?></span>
         <span id="topic"></span>
     </div>
     <div class="output">

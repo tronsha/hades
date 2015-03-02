@@ -64,10 +64,16 @@ class Hades
         $_SESSION['last'] = 0;
     }
 
-
-    public function getChannel()
+    /**
+     * @param string|null $channel
+     * @return string
+     */
+    public function getChannel($channel = null)
     {
-        $channel = $this->db->getChannel($_SESSION['bot']);
+        $channel = $this->db->getChannel($_SESSION['bot'], $channel);
+        foreach ($channel as &$value) {
+            $value['topic'] = htmlentities($value['topic']);
+        }
 
         return json_encode($channel);
     }

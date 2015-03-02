@@ -43,10 +43,10 @@ class Db extends BaseDb
         }
     }
 
-    public function getChannel($bot)
+    public function getChannel($bot, $channel = null)
     {
         try {
-            $sql = 'SELECT `channel`, `topic` FROM `channel` WHERE `bot_id` = ' . $this->conn->quote($bot) . ' ORDER BY `channel` ASC';
+            $sql = 'SELECT `channel`, `topic` FROM `channel` WHERE `bot_id` = ' . $this->conn->quote($bot) . ($channel !== null ? ' AND `channel` = ' . $this->conn->quote($channel)  : '') . ' ORDER BY `channel` ASC';
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll();
         } catch (\Exception $e) {

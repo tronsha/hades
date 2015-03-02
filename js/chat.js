@@ -15,6 +15,8 @@ jQuery(document).ready(function () {
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
 
+    var channel = $('#channel').text();
+
     $input.focus();
 
     $input.keyup(function (event) {
@@ -153,5 +155,21 @@ jQuery(document).ready(function () {
     $(window).resize(function () {
         scroll();
     });
+
+    if (channel !== '') {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getchannel',
+                channel: channel
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $topic.text(json[0].topic);
+            }
+        });
+    }
 
 });
