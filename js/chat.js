@@ -140,7 +140,7 @@ jQuery(document).ready(function () {
                 }
             }).done(function (json) {
                 if (json !== null) {
-                    $topic.text(json[0].topic);
+                    $topic.html(json[0].topic);
                 }
             });
         }
