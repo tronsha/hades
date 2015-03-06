@@ -100,6 +100,9 @@ class Hades
      */
     public function getOutput()
     {
+        if (isset($_SESSION['channel']) === false) {
+            return json_encode(null);
+        }
         if (isset($_SESSION['last']) === false) {
             $_SESSION['last'] = 0;
         }
