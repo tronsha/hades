@@ -119,7 +119,7 @@ class Db extends BaseDb
             $stmt = $qb
                 ->select('*')
                 ->from('bot')
-                ->where('stop IS NULL')
+                ->where('stop IS NULL OR stop = \'NULL\'')
                 ->addOrderBy('id', 'DESC')
                 ->execute();
 //            $sql = 'SELECT * FROM `bot` WHERE `stop` IS NULL ORDER BY id DESC';
