@@ -58,6 +58,11 @@ class Db extends BaseDb
         }
     }
 
+    /**
+     * @param int $bot
+     * @param string|null $channel
+     * @return array
+     */
     public function getChannel($bot, $channel = null)
     {
         try {

@@ -17,6 +17,9 @@ jQuery(document).ready(function () {
 
     $input.focus();
 
+    /**
+     *
+     */
     $input.keyup(function (event) {
         if (event.which == 13) {
             event.preventDefault();
@@ -24,10 +27,16 @@ jQuery(document).ready(function () {
         }
     });
 
+    /**
+     *
+     */
     $send_button.click(function () {
         read();
     });
 
+    /**
+     *
+     */
     $channel_button.click(function () {
         $.ajax({
             url: 'ajax.php',
@@ -59,18 +68,30 @@ jQuery(document).ready(function () {
         $infobox.css('display', 'block');
     });
 
+    /**
+     *
+     */
     $user_button.click(function () {
         // TODO
     });
 
+    /**
+     *
+     */
     $option_button.click(function () {
         // TODO
     });
 
+    /**
+     *
+     */
     $info_button.click(function () {
         // TODO
     });
 
+    /**
+     *
+     */
     $logout_button.click(function () {
         $.ajax({
             url: 'ajax.php',
@@ -82,11 +103,18 @@ jQuery(document).ready(function () {
         });
     });
 
+    /**
+     *
+     */
     $overlay.click(function () {
         $overlay.css('display', 'none');
         $infobox.css('display', 'none');
     });
 
+    /**
+     *
+     * @returns {boolean}
+     */
     function read() {
         var input = $input.val();
         if (input == '') {
@@ -104,17 +132,28 @@ jQuery(document).ready(function () {
         $input.val('');
     }
 
+    /**
+     *
+     * @param text
+     */
     function write(text) {
         $output.append('<p>' + text + '</p>');
         scroll();
     }
 
+    /**
+     *
+     */
     function scroll() {
         $('.output').stop().animate({
             scrollTop: $('.scrollto')[0].offsetTop
         }, 1000);
     }
 
+    /**
+     *
+     * @param channel
+     */
     function setChannel(channel) {
         $.ajax({
             url: 'ajax.php',
@@ -128,6 +167,10 @@ jQuery(document).ready(function () {
         $output.find('p').remove();
     }
 
+    /**
+     *
+     * @param channel
+     */
     function setTopic(channel) {
         if (channel !== '') {
             $.ajax({
@@ -146,6 +189,9 @@ jQuery(document).ready(function () {
         }
     }
 
+    /**
+     *
+     */
     setInterval(function () {
         $.ajax({
             url: 'ajax.php',
@@ -168,14 +214,23 @@ jQuery(document).ready(function () {
         });
     }, 1000);
 
+    /**
+     *
+     */
     setInterval(function () {
         setTopic($('#channel').text());
     }, 10000);
 
+    /**
+     *
+     */
     $(window).resize(function () {
         scroll();
     });
 
+    /**
+     *
+     */
     setTopic($('#channel').text());
 
 });
