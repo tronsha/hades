@@ -122,7 +122,7 @@ class Db extends BaseDb
         try {
             $qb = $this->conn->createQueryBuilder();
             $stmt = $qb
-                ->select('*')
+                ->select('id')
                 ->from('bot')
                 ->where('stop IS NULL OR stop = \'NULL\'')
                 ->addOrderBy('id', 'DESC')
