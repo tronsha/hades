@@ -121,12 +121,15 @@ class Db extends BaseDb
     {
         try {
             $qb = $this->conn->createQueryBuilder();
-            $stmt = $qb
-                ->select('id')
+            $qb ->select('id')
                 ->from('bot')
-                ->where('stop IS NULL OR stop = \'NULL\'')
-                ->addOrderBy('id', 'DESC')
-                ->execute();
+                ->addOrderBy('id', 'DESC');
+            if ($this->config['driver'] === 'pdo_sqlite') {
+                $qb->where('stop = \'NULL\'');
+            } else {
+                $qb->where('stop IS NULL');
+            }
+            $stmt = $qb->execute();
 //            $sql = 'SELECT * FROM `bot` WHERE `stop` IS NULL ORDER BY id DESC';
 //            $stmt = $this->conn->query($sql);
             return $stmt->fetch();
