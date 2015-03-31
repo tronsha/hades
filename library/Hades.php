@@ -15,6 +15,7 @@ use Cerberus\Cerberus;
 class Hades
 {
     protected $session = '';
+    protected $config = null;
     protected $db = null;
 
     /**
@@ -25,9 +26,22 @@ class Hades
         session_start();
         $this->session = session_id();
         $path = Cerberus::getPath();
-        $config = parse_ini_file($path . '/config.ini', true);
-        $this->db = new Db($config['db']);
+        $this->config = parse_ini_file($path . '/config.ini', true);
+        $this->db = new Db($this->config['db']);
         $this->db->connect();
+    }
+
+    /**
+     * @param string $host
+     */
+    public function setHost($host)
+    {
+        if ($_GET['pw'] === md5($this->config['frontend']['password'])) {
+            $path = Cerberus::getPath();
+            $content = file_get_contents($path . '/config.ini');
+            $content = preg_replace('/host\ \=\ [0-9\.]+/', 'host = ' . $host, $content);
+            file_put_contents($path . '/config.ini', $content);
+        }
     }
 
     /**

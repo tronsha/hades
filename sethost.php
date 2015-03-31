@@ -1,8 +1,15 @@
 <?php
 
-if (md5($_GET['pw']) === 'e10adc3949ba59abbe56e057f20f883e') {
-    $content = file_get_contents('../config.ini');
-    $host = $_SERVER["REMOTE_ADDR"];
-    $content = preg_replace('/host\ \=\ [0-9\.]+/', 'host = ' . $host, $content);
-    file_put_contents('../config.ini', $content);
+chdir(__DIR__);
+
+foreach (array(__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php') as $file) {
+    if (file_exists($file)) {
+        require_once($file);
+        break;
+    }
 }
+
+use Hades\Hades;
+
+$hades = new Hades;
+$hades->setHost($_SERVER["REMOTE_ADDR"]);
