@@ -2,9 +2,6 @@
     "name": "tronsha/hades",
     "description": "Hades, the frontend for the Cerberus IRC Bot",
     "version": "1.0.0-dev",
-    "extra": {
-        "path": "public/"
-    },
     "homepage": "https://github.com/tronsha/cerberus",
     "license": "GPL-3.0",
     "authors": [
