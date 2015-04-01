@@ -7,9 +7,5 @@
     "require": {
         "php": ">=5.5.0"
     },
-    "minimum-stability": "dev",
-    "type": "composer-installer",
-    "extra": {
-        "path": "public/"
-    }
+    "minimum-stability": "dev"
 }
