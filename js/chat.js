@@ -206,7 +206,8 @@ jQuery(document).ready(function () {
                     location.href = 'login.php';
                 } else {
                     $.each(json, function (index, data) {
-                        write('[' + data.time + '] &lt;' + data.name + '&gt; ' + data.text);
+                        var dateObject = new Date(data.time);
+                        write('<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">[' + dateObject.toLocaleTimeString()+ ']</span> &lt;' + data.name + '&gt; ' + data.text);
                         scroll();
                     });
                 }

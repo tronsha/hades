@@ -76,6 +76,12 @@ h1 {
     top: 0;
 }
 
+.chat h1,
+.chat .title,
+.chat .output {
+    cursor: default;
+}
+
 .chat h1 {
     font-weight: lighter;
     text-shadow: 1px 1px #052B2D;
