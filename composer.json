@@ -1,0 +1,27 @@
+{
+    "name": "tronsha/hades",
+    "description": "Hades, the frontend for the Cerberus IRC Bot",
+    "version": "1.0.0-dev",
+    "type": "composer-installer",
+    "extra": {
+        "path": "public/"
+    },
+    "homepage": "https://github.com/tronsha/cerberus",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Stefan Hüsges",
+            "homepage": "http://www.mpcx.net",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "irc": "irc://irc.freenode.org/cerberbot",
+        "source": "https://github.com/tronsha/cerberus",
+        "issues": "https://github.com/tronsha/cerberus/issues"
+    },
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "minimum-stability": "dev"
+}
