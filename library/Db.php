@@ -29,8 +29,6 @@ class Db extends BaseDb
                 ->setMaxResults(1)
                 ->setParameter(0, $mail)
                 ->execute();
-//            $sql = 'SELECT `password` FROM `web` WHERE `email` = ' . $this->conn->quote($mail) . ' LIMIT 0, 1';
-//            $stmt = $this->conn->query($sql);
             return $stmt->fetch()['password'];
         } catch (\Exception $e) {
             $this->error($e->getMessage());
@@ -51,8 +49,6 @@ class Db extends BaseDb
                 ->setParameter(0, $sid)
                 ->setParameter(1, $mail)
                 ->execute();
-//            $sql = 'UPDATE `web` SET `sid` = ' . $this->conn->quote($sid) .' WHERE `email` = ' . $this->conn->quote($mail);
-//            $this->conn->query($sql);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
@@ -77,8 +73,6 @@ class Db extends BaseDb
                     ->setParameter(1, $channel);
             }
             $stmt = $qb->execute();
-//            $sql = 'SELECT `channel`, `topic` FROM `channel` WHERE `bot_id` = ' . $this->conn->quote($bot) . ($channel !== null ? ' AND `channel` = ' . $this->conn->quote($channel)  : '') . ' ORDER BY `channel` ASC';
-//            $stmt = $this->conn->query($sql);
             return $stmt->fetchAll();
         } catch (\Exception $e) {
             $this->error($e->getMessage());
@@ -106,8 +100,6 @@ class Db extends BaseDb
                 $qb->setMaxResults(100);
             }
             $stmt = $qb->execute();
-//            $sql = 'SELECT `id`, `nick` AS `name`, `text`, `time` FROM `log` WHERE `id` > ' . $this->conn->quote($last) . ' AND `bot_id` = ' . $this->conn->quote($bot) . ' AND `command` LIKE "PRIVMSG" AND `rest` LIKE ' . $this->conn->quote($channel) . ' ORDER BY id DESC' . ($last == 0 ? ' LIMIT 100' : '');
-//            $stmt = $this->conn->query($sql);
             return $stmt->fetchAll();
         } catch (\Exception $e) {
             $this->error($e->getMessage());
@@ -130,8 +122,6 @@ class Db extends BaseDb
                 $qb->where('stop IS NULL');
             }
             $stmt = $qb->execute();
-//            $sql = 'SELECT * FROM `bot` WHERE `stop` IS NULL ORDER BY id DESC';
-//            $stmt = $this->conn->query($sql);
             return $stmt->fetch();
         } catch (\Exception $e) {
             $this->error($e->getMessage());

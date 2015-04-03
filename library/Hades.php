@@ -127,6 +127,12 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as &$value) {
+                if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
+                    if ($matches[1] === 'ACTION') {
+                        $value['text'] = $matches[2];
+                        $value['action'] = '1';
+                    }
+                }
                 $value['text'] = $formatter->irc2html($value['text']);
             }
         }

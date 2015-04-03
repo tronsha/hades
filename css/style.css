@@ -191,6 +191,14 @@ h1 {
     cursor: pointer;
 }
 
+.chat .time {
+    color: #00FFFF;
+}
+
+.chat .action {
+    color: #FF00FF;
+}
+
 .overlay {
     background-color: #000000;
     bottom: 0;

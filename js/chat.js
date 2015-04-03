@@ -207,7 +207,13 @@ jQuery(document).ready(function () {
                 } else {
                     $.each(json, function (index, data) {
                         var dateObject = new Date(data.time);
-                        write('<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">[' + dateObject.toLocaleTimeString()+ ']</span> &lt;' + data.name + '&gt; ' + data.text);
+                        var output = '<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">[' + dateObject.toLocaleTimeString()+ ']</span> ';
+                        if (data.action == 1) {
+                            output += '<span class="action">' + data.name + ' ' + data.text + '</span>';
+                        } else {
+                            output += '&lt;' + data.name + '&gt; ' + data.text;
+                        }
+                        write(output);
                         scroll();
                     });
                 }
