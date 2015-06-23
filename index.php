@@ -31,7 +31,7 @@ $_SESSION['last'] = 0;
     <script src="js/jquery.js"></script>
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Calligraffitti|Ubuntu+Mono" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Calligraffitti%7CUbuntu+Mono" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
