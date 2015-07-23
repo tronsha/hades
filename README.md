@@ -9,6 +9,11 @@ Hades
 ## Libraries
 * [jQuery][4]
 
+## Fonts
+
+* __[Ubuntu Mono][10]__
+* __Calligraffitti__ _Copyright (c) 2010 by [Open Window][11]_
+
 ## Creator
 
 **Stefan Hüsges**
@@ -29,3 +34,5 @@ Hades
 [7]: https://www.google.com/fonts
 [8]: https://www.mozilla.org/en-US/firefox/developer/
 [9]: https://www.google.com/chrome/
+[10]: http://font.ubuntu.com/
+[11]: mailto:dathanboardman@gmail.com
