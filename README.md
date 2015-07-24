@@ -8,11 +8,13 @@ Hades
 
 ## Libraries
 * [jQuery][4]
+* [normalize.css][5]
+* [FortAwesome][6]
 
 ## Fonts
 
-* __[Ubuntu Mono][10]__
-* __Calligraffitti__ _Copyright (c) 2010 by [Open Window][11]_
+* [Ubuntu Mono][10]
+* Calligraffitti _Copyright (c) 2010 by [Open Window][11]_
 
 ## Creator
 
