@@ -148,6 +148,21 @@ class Hades
         if (substr($input, 0, 1) !== '/') {
             $text = 'PRIVMSG ' . $_SESSION['channel'] . ' :' . $input;
             return json_encode($this->db->setWrite($text));
+        } else {
+            preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
+            $matches = $matches[0];
+            switch($matches[1]) {
+                case 'join':
+                    $send = 'JOIN ' . $matches[3];
+                    break;
+                case 'part':
+                    $send = 'PART ' . $matches[3];
+                    break;
+            }
+            if (empty($send) === false) {
+                $this->db->setWrite($send);
+                return json_encode($send);
+            }
         }
         // TODO
         return json_encode(null);
