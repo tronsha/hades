@@ -84,7 +84,7 @@ class Hades
      */
     public function getChannel($channel = null)
     {
-        $channel = $this->db->getChannel($_SESSION['bot'], $channel);
+        $channel = $this->db->getChannel($channel);
         foreach ($channel as &$value) {
             $value['topic'] = htmlentities($value['topic']);
         }
@@ -120,7 +120,7 @@ class Hades
         if (isset($_SESSION['last']) === false) {
             $_SESSION['last'] = 0;
         }
-        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel'], $_SESSION['bot']);
+        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel']);
         if (count($data) > 0) {
             $_SESSION['last'] = $data[0]['id'];
             krsort($data);
@@ -143,9 +143,14 @@ class Hades
     /**
      *
      */
-    public function setInput()
+    public function setInput($input)
     {
+        if (substr($input, 0, 1) !== '/') {
+            $text = 'PRIVMSG ' . $_SESSION['channel'] . ' :' . $input;
+            return json_encode($this->db->setWrite($text));
+        }
         // TODO
+        return json_encode(null);
     }
 
     /**

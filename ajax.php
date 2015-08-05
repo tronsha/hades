@@ -18,7 +18,7 @@ if ($hades->isLoggedin() === false) {
 } elseif (isset($_POST['action']) && $_POST['action'] == 'getoutput') {
     echo $hades->getOutput();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'setinput') {
-    echo $hades->setInput();
+    echo $hades->setInput($_POST['text']);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'setchannel') {
     $hades->setChannel($_POST['channel']);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'getchannel') {
