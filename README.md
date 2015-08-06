@@ -8,6 +8,13 @@ Hades
 
 ## Libraries
 * [jQuery][4]
+* [normalize.css][5]
+* [FortAwesome][6]
+
+## Fonts
+
+* [Ubuntu Mono][10]
+* Calligraffitti _Copyright (c) 2010 by [Open Window][11]_
 
 ## Creator
 
@@ -29,3 +36,5 @@ Hades
 [7]: https://www.google.com/fonts
 [8]: https://www.mozilla.org/en-US/firefox/developer/
 [9]: https://www.google.com/chrome/
+[10]: http://font.ubuntu.com/
+[11]: mailto:dathanboardman@gmail.com

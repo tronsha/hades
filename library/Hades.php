@@ -3,6 +3,7 @@
 namespace Hades;
 
 use Cerberus\Cerberus;
+use Cerberus\Action;
 
 /**
  * Class Hades
@@ -17,6 +18,7 @@ class Hades
     protected $session = '';
     protected $config = null;
     protected $db = null;
+    protected $action = null;
 
     /**
      *
@@ -29,6 +31,15 @@ class Hades
         $this->config = parse_ini_file($path . '/config.ini', true);
         $this->db = new Db($this->config['db']);
         $this->db->connect();
+        $this->action = new Action(null, $this->db);
+    }
+
+    /**
+     * @return Action|null
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 
     /**
@@ -84,7 +95,7 @@ class Hades
      */
     public function getChannel($channel = null)
     {
-        $channel = $this->db->getChannel($_SESSION['bot'], $channel);
+        $channel = $this->db->getChannel($channel);
         foreach ($channel as &$value) {
             $value['topic'] = htmlentities($value['topic']);
         }
@@ -120,7 +131,7 @@ class Hades
         if (isset($_SESSION['last']) === false) {
             $_SESSION['last'] = 0;
         }
-        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel'], $_SESSION['bot']);
+        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel']);
         if (count($data) > 0) {
             $_SESSION['last'] = $data[0]['id'];
             krsort($data);
@@ -141,11 +152,48 @@ class Hades
     }
 
     /**
-     *
+     * @param string $input
+     * @return string
      */
-    public function setInput()
+    public function useInput($input)
     {
-        // TODO
+        if (substr($input, 0, 1) !== '/') {
+            $return = $this->getAction()->privmsg($_SESSION['channel'], $input);
+        } else {
+            preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
+            $return = $this->doAction($matches[0][1], $matches[0][3]);
+        }
+        return json_encode($return);
+    }
+
+    /**
+     * @param string $action
+     * @param string $param
+     * @return string
+     */
+    public function doAction($action, $param)
+    {
+        switch ($action) {
+            case 'join':
+                return $this->getAction()->join($param);
+                break;
+            case 'part':
+                if (empty(trim($param)) === true) {
+                    $param = $_SESSION['channel'];
+                }
+                if (trim($param) == $_SESSION['channel']) {
+                    $_SESSION['channel'] = null;
+                }
+                if ($param !== null) {
+                    return $this->getAction()->part($param);
+                }
+                break;
+            case 'nick':
+                return $this->getAction()->nick($param);
+                break;
+            default:
+                return null;
+        }
     }
 
     /**

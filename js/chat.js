@@ -6,12 +6,12 @@ jQuery(document).ready(function () {
     var $output = $('#output');
     var $channel = $('#channel');
     var $topic = $('#topic');
-    var $send_button = $('#send-button');
-    var $channel_button = $('#channel-button');
-    var $user_button = $('#user-button');
-    var $option_button = $('#option-button');
-    var $info_button = $('#info-button');
-    var $logout_button = $('#logout-button');
+    var $sendButton = $('#send-button');
+    var $channelButton = $('#channel-button');
+    var $userButton = $('#user-button');
+    var $optionButton = $('#option-button');
+    var $infoButton = $('#info-button');
+    var $logoutButton = $('#logout-button');
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
 
@@ -30,14 +30,14 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $send_button.click(function () {
+    $sendButton.click(function () {
         read();
     });
 
     /**
      *
      */
-    $channel_button.click(function () {
+    $channelButton.click(function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -71,28 +71,28 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $user_button.click(function () {
+    $userButton.click(function () {
         // TODO
     });
 
     /**
      *
      */
-    $option_button.click(function () {
+    $optionButton.click(function () {
         // TODO
     });
 
     /**
      *
      */
-    $info_button.click(function () {
+    $infoButton.click(function () {
         // TODO
     });
 
     /**
      *
      */
-    $logout_button.click(function () {
+    $logoutButton.click(function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -125,8 +125,12 @@ jQuery(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             data: {
-                action: 'read',
+                action: 'setinput',
                 text: input
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                console.log(json);
             }
         });
         $input.val('');

@@ -14,7 +14,13 @@ use Cerberus\Db as BaseDb;
  */
 class Db extends BaseDb
 {
-    /**
+    public function __construct($config)
+    {
+        parent::__construct($config);
+        $this->botId = $_SESSION['bot'];
+    }
+
+     /**
      * @param string $mail
      * @return string;
      */
@@ -55,11 +61,10 @@ class Db extends BaseDb
     }
 
     /**
-     * @param int $bot
      * @param string|null $channel
      * @return array
      */
-    public function getChannel($bot, $channel = null)
+    public function getChannel($channel = null)
     {
         try {
             $qb = $this->conn->createQueryBuilder();
@@ -67,7 +72,7 @@ class Db extends BaseDb
                 ->from('channel')
                 ->where('bot_id = ?')
                 ->addOrderBy('channel', 'ASC')
-                ->setParameter(0, $bot);
+                ->setParameter(0, $this->botId);
             if ($channel !== null) {
                 $qb ->andWhere('channel = ?')
                     ->setParameter(1, $channel);
@@ -82,10 +87,9 @@ class Db extends BaseDb
     /**
      * @param int $last
      * @param string $channel
-     * @param int $bot
      * @return array;
      */
-    public function getChannelOutput($last, $channel, $bot)
+    public function getChannelOutput($last, $channel)
     {
         try {
             $qb = $this->conn->createQueryBuilder();
@@ -94,7 +98,7 @@ class Db extends BaseDb
                 ->where('id > ? AND bot_id = ? AND command LIKE \'PRIVMSG\' AND rest LIKE ?')
                 ->addOrderBy('id', 'DESC')
                 ->setParameter(0, $last)
-                ->setParameter(1, $bot)
+                ->setParameter(1, $this->botId)
                 ->setParameter(2, $channel);
             if ($last == 0) {
                 $qb->setMaxResults(100);
