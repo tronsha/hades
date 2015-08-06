@@ -178,7 +178,15 @@ class Hades
                 return $this->getAction()->join($param);
                 break;
             case 'part':
-                return $this->getAction()->part($param);
+                if (empty(trim($param)) === true) {
+                    $param = $_SESSION['channel'];
+                }
+                if (trim($param) == $_SESSION['channel']) {
+                    $_SESSION['channel'] = null;
+                }
+                if ($param !== null) {
+                    return $this->getAction()->part($param);
+                }
                 break;
             case 'nick':
                 return $this->getAction()->nick($param);
