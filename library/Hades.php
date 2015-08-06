@@ -152,30 +152,40 @@ class Hades
     }
 
     /**
-     *
+     * @param string $input
+     * @return string
      */
-    public function setInput($input)
+    public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            $text = 'PRIVMSG ' . $_SESSION['channel'] . ' :' . $input;
-            return json_encode($this->db->setWrite($text));
+            $return = json_encode($this->getAction()->privmsg($_SESSION['channel'], $input));
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
-            $matches = $matches[0];
-            switch($matches[1]) {
-                case 'join':
-                    return json_encode($this->getAction()->join($matches[3]));
-                    break;
-                case 'part':
-                    return json_encode($this->getAction()->part($matches[3]));
-                    break;
-                case 'nick':
-                    return json_encode($this->getAction()->nick($matches[3]));
-                    break;
-            }
+            $return = $this->doAction($matches[0][1], $matches[0][3]);
         }
-        // TODO
-        return json_encode(null);
+        return $return;
+    }
+
+    /**
+     * @param string $action
+     * @param string $param
+     * @return string
+     */
+    public function doAction($action, $param)
+    {
+        switch ($action) {
+            case 'join':
+                return json_encode($this->getAction()->join($param));
+                break;
+            case 'part':
+                return json_encode($this->getAction()->part($param));
+                break;
+            case 'nick':
+                return json_encode($this->getAction()->nick($param));
+                break;
+            default:
+                return json_encode(null);
+        }
     }
 
     /**
