@@ -158,12 +158,12 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            $return = json_encode($this->getAction()->privmsg($_SESSION['channel'], $input));
+            $return = $this->getAction()->privmsg($_SESSION['channel'], $input);
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
             $return = $this->doAction($matches[0][1], $matches[0][3]);
         }
-        return $return;
+        return json_encode($return);
     }
 
     /**
@@ -175,16 +175,16 @@ class Hades
     {
         switch ($action) {
             case 'join':
-                return json_encode($this->getAction()->join($param));
+                return $this->getAction()->join($param);
                 break;
             case 'part':
-                return json_encode($this->getAction()->part($param));
+                return $this->getAction()->part($param);
                 break;
             case 'nick':
-                return json_encode($this->getAction()->nick($param));
+                return $this->getAction()->nick($param);
                 break;
             default:
-                return json_encode(null);
+                return null;
         }
     }
 
