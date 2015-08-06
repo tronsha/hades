@@ -3,6 +3,7 @@
 namespace Hades;
 
 use Cerberus\Cerberus;
+use Cerberus\Action;
 
 /**
  * Class Hades
@@ -17,6 +18,7 @@ class Hades
     protected $session = '';
     protected $config = null;
     protected $db = null;
+    protected $action = null;
 
     /**
      *
@@ -29,6 +31,15 @@ class Hades
         $this->config = parse_ini_file($path . '/config.ini', true);
         $this->db = new Db($this->config['db']);
         $this->db->connect();
+        $this->action = new Action(null, $this->db);
+    }
+
+    /**
+     * @return Action|null
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 
     /**
@@ -153,15 +164,14 @@ class Hades
             $matches = $matches[0];
             switch($matches[1]) {
                 case 'join':
-                    $send = 'JOIN ' . $matches[3];
+                    return json_encode($this->getAction()->join($matches[3]));
                     break;
                 case 'part':
-                    $send = 'PART ' . $matches[3];
+                    return json_encode($this->getAction()->part($matches[3]));
                     break;
-            }
-            if (empty($send) === false) {
-                $this->db->setWrite($send);
-                return json_encode($send);
+                case 'nick':
+                    return json_encode($this->getAction()->nick($matches[3]));
+                    break;
             }
         }
         // TODO
