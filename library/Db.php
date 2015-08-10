@@ -17,7 +17,9 @@ class Db extends BaseDb
     public function __construct($config)
     {
         parent::__construct($config);
-        $this->botId = $_SESSION['bot'];
+        if (isset($_SESSION['bot']) === true) {
+            $this->botId = $_SESSION['bot'];
+        }
     }
 
      /**
