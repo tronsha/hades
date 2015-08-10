@@ -1,6 +1,10 @@
 Hades
 =====
 
+Frontend for Cerberus to use it as Browser [IRC client][12].
+
+Version: 0.1 Alpha
+
 ## Recommended Browser
 
 * [Firefox][8]
@@ -38,3 +42,4 @@ Hades
 [9]: https://www.google.com/chrome/
 [10]: http://font.ubuntu.com/
 [11]: mailto:dathanboardman@gmail.com
+[12]: https://en.wikipedia.org/wiki/Internet_Relay_Chat#Clients
