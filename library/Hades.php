@@ -174,6 +174,9 @@ class Hades
     public function doAction($action, $param)
     {
         switch ($action) {
+            case 'me':
+                return $this->getAction()->me($_SESSION['channel'], $param);
+                break;
             case 'join':
                 return $this->getAction()->join($param);
                 break;
