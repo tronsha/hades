@@ -32,7 +32,7 @@ $_SESSION['last'] = 0;
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/trontastic/jquery-ui.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

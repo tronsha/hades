@@ -22,10 +22,11 @@ jQuery(document).ready(function () {
      */
     $('body').on('click', '.link.web', function() {
         var webLink = $(this).text();
+        $("#dialog").text(webLink);
         $('#dialog').dialog({
-            title: webLink,
+            title: 'URL',
             resizable: false,
-            height:140,
+            height: 180,
             modal: true,
             buttons: {
                 'Open': function() {
@@ -44,10 +45,11 @@ jQuery(document).ready(function () {
      */
     $('body').on('click', '.link.channel', function() {
         var channelName = $(this).text();
+        $("#dialog").text(channelName);
         $('#dialog').dialog({
-            title: channelName,
+            title: 'Channel',
             resizable: false,
-            height:140,
+            height: 180,
             modal: true,
             buttons: {
                 'Join': function() {
