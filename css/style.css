@@ -215,6 +215,7 @@ h1 {
 
 .chat .link {
     color: #FFFF00;
+    cursor: pointer;
 }
 
 .overlay {

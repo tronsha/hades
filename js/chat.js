@@ -20,6 +20,50 @@ jQuery(document).ready(function () {
     /**
      *
      */
+    $('body').on('click', '.link.web', function() {
+        var webLink = $(this).text();
+        $('#dialog').dialog({
+            title: webLink,
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+                'Open': function() {
+                    window.open(webLink);
+                    $(this).dialog('close');
+                },
+                'Cancel': function() {
+                    $(this).dialog('close');
+                }
+            }
+        });
+    });
+
+    /**
+     *
+     */
+    $('body').on('click', '.link.channel', function() {
+        var channelName = $(this).text();
+        $('#dialog').dialog({
+            title: channelName,
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+                'Join': function() {
+                    joinChannel(channelName);
+                    $(this).dialog('close');
+                },
+                'Cancel': function() {
+                    $(this).dialog('close');
+                }
+            }
+        });
+    });
+
+    /**
+     *
+     */
     $input.keyup(function (event) {
         if (event.which == 13) {
             event.preventDefault();
@@ -134,6 +178,46 @@ jQuery(document).ready(function () {
             }
         });
         $input.val('');
+    }
+
+    /**
+     *
+     * @param channel
+     */
+    function joinChannel(channel) {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'setinput',
+                text: '/join ' + channel
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                console.log(json);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param channel
+     */
+    function partChannel(channel) {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'setinput',
+                text: '/part ' + channel
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                console.log(json);
+            }
+        });
     }
 
     /**
