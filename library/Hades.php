@@ -145,6 +145,8 @@ class Hades
                     }
                 }
                 $value['text'] = $formatter->irc2html($value['text']);
+                $value['text'] = preg_replace('/https?:\/\/\S+/i', '<span class="link web">$0</span>', $value['text']);
+                $value['text'] = preg_replace('/(^|\s)(#\S+)(\s|$)/i', '$1<span class="link channel">$2</span>$3', $value['text']);
             }
         }
 
