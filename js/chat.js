@@ -26,8 +26,6 @@ jQuery(document).ready(function () {
         $('#dialog').dialog({
             title: 'URL',
             resizable: false,
-            height: 180,
-            modal: true,
             buttons: {
                 'Open': function() {
                     window.open(webLink);
@@ -36,6 +34,14 @@ jQuery(document).ready(function () {
                 'Cancel': function() {
                     $(this).dialog('close');
                 }
+            },
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
             }
         });
     });
@@ -49,8 +55,6 @@ jQuery(document).ready(function () {
         $('#dialog').dialog({
             title: 'Channel',
             resizable: false,
-            height: 180,
-            modal: true,
             buttons: {
                 'Join': function() {
                     joinChannel(channelName);
@@ -59,6 +63,14 @@ jQuery(document).ready(function () {
                 'Cancel': function() {
                     $(this).dialog('close');
                 }
+            },
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
             }
         });
     });
