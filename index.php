@@ -28,11 +28,9 @@ $_SESSION['last'] = 0;
     <title>Chat - Hades</title>
     <meta name="description" content="Hades, master of Cerberus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="js/jquery.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/trontastic/jquery-ui.css">
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -63,6 +61,8 @@ $_SESSION['last'] = 0;
 <div id="overlay" class="overlay"></div>
 <div id="infobox" class="infobox"></div>
 <div id="dialog"></div>
-<script src="js/chat.js"></script>
+<script src="js/jquery.js" type="application/javascript"></script>
+<script src="js/jquery-ui.js" type="application/javascript"></script>
+<script src="js/chat.js" type="application/javascript"></script>
 </body>
 </html>
