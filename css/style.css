@@ -217,6 +217,12 @@ h1 {
     cursor: pointer;
 }
 
+.chat .link .fa {
+    color: #ff7f00;
+    font-size: smaller;
+    margin-left: 4px;
+}
+
 .overlay {
     background-color: #000000;
     bottom: 0;
