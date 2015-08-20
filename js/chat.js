@@ -118,7 +118,6 @@ jQuery(document).ready(function () {
                     $topic.text(topic);
                     $overlay.css('display', 'none');
                     $infobox.css('display', 'none');
-
                 })
             }
         });
@@ -130,7 +129,24 @@ jQuery(document).ready(function () {
      *
      */
     $userButton.click(function () {
-        // TODO
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getuser'
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $infobox.find('div').remove();
+                $infobox.append('<div><h2>User at ' + $channel.text() + '</h2></div>');
+                $.each(json, function (index, data) {
+                    $infobox.append('<div class="whisper">' + data.username + '</div>');
+                });
+            }
+        });
+        $overlay.css('display', 'block');
+        $infobox.css('display', 'block');
     });
 
     /**

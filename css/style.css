@@ -175,7 +175,6 @@ h1 {
     margin-left: 10px;
 }
 
-#user-button,
 #option-button,
 #info-button {
     display: none;
@@ -259,7 +258,7 @@ h1 {
     text-shadow: 1px 1px #052B2D;
 }
 
-
+.infobox .whisper,
 .infobox .join {
     background: linear-gradient(#052B2D, #000000) repeat 0% 0% #052B2D;
     border-radius: 10px;

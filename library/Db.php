@@ -87,6 +87,28 @@ class Db extends BaseDb
     }
 
     /**
+     * @param string $channel
+     * @return array
+     */
+    public function getUser($channel)
+    {
+        try {
+            $qb = $this->conn->createQueryBuilder();
+            $qb ->select('username')
+                ->from('channel_user')
+                ->where('bot_id = ?')
+                ->andWhere('channel = ?')
+                ->addOrderBy('username', 'ASC')
+                ->setParameter(0, $this->botId)
+                ->setParameter(1, $channel);
+            $stmt = $qb->execute();
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
+
+    /**
      * @param int $last
      * @param string $channel
      * @return array;

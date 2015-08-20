@@ -23,6 +23,8 @@ if ($hades->isLoggedin() === false) {
     $hades->setChannel($_POST['channel']);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'getchannel') {
     echo $hades->getChannel();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getuser') {
+    echo $hades->getUser();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'gettopic' && isset($_POST['channel'])) {
     echo $hades->getChannel($_POST['channel']);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {

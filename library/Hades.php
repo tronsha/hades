@@ -104,6 +104,18 @@ class Hades
     }
 
     /**
+     * @return string
+     */
+    public function getUser()
+    {
+        if (empty($_SESSION['channel'])) {
+            return json_encode(null);
+        }
+        $user = $this->db->getUser($_SESSION['channel']);
+        return json_encode($user);
+    }
+
+    /**
      * @return bool
      */
     public function isLoggedin()
