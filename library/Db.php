@@ -109,6 +109,28 @@ class Db extends BaseDb
     }
 
     /**
+     * @return array
+     */
+    public function getWhisperList()
+    {
+        try {
+            $qb = $this->conn->createQueryBuilder();
+            $qb ->select('rest')
+                ->from('log')
+                ->where('bot_id = ?')
+                ->andWhere('command = ?')
+                ->andWhere('SUBSTR(rest, 1, 1) NOT IN ("#", "&")')
+                ->setParameter(0, $this->botId)
+                ->setParameter(1, 'PRIVMSG')
+                ->groupBy('rest');
+            $stmt = $qb->execute();
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
+
+    /**
      * @param int $last
      * @param string $channel
      * @return array;
@@ -119,7 +141,10 @@ class Db extends BaseDb
             $qb = $this->conn->createQueryBuilder();
             $qb ->select('id', 'nick AS name', 'text', 'time')
                 ->from('log')
-                ->where('id > ? AND bot_id = ? AND command LIKE \'PRIVMSG\' AND rest LIKE ?')
+                ->where('id > ?')
+                ->andWhere('bot_id = ?')
+                ->andWhere('command = \'PRIVMSG\'')
+                ->andWhere('rest = ?')
                 ->addOrderBy('id', 'DESC')
                 ->setParameter(0, $last)
                 ->setParameter(1, $this->botId)
