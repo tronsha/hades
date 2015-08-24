@@ -265,9 +265,11 @@ jQuery(document).ready(function () {
      *
      */
     function scroll() {
-        $('.output').stop().animate({
-            scrollTop: $('.scrollto')[0].offsetTop
-        }, 1000);
+        if (autoscroll) {
+            $('.output').stop().animate({
+                scrollTop: $('.scrollto')[0].offsetTop
+            }, 1000);
+        }
     }
 
     /**
@@ -361,3 +363,5 @@ jQuery(document).ready(function () {
     setTopic($('#channel').text());
 
 });
+
+var autoscroll = true;
