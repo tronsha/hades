@@ -126,6 +126,7 @@ h1 {
     bottom: 36px;
     left: 0;
     overflow: hidden;
+    /*overflow-y: scroll;*/
     padding: 4px 10px;
     position: absolute;
     right: 0;
@@ -221,6 +222,14 @@ h1 {
     color: #FF7F00;
     font-size: smaller;
     margin-left: 4px;
+}
+
+.chat img {
+    background-color: #000000;
+    border: 3px double #FFFFFF;
+    padding: 3px;
+    margin: 4px 0;
+    max-width: 100%;
 }
 
 .overlay {
