@@ -2,6 +2,7 @@ jQuery(document).ready(function () {
 
     var $ = jQuery;
 
+    var $title = $('title');
     var $input = $('#input');
     var $output = $('#output');
     var $channel = $('#channel');
@@ -114,6 +115,7 @@ jQuery(document).ready(function () {
                     var channel = $(this).text();
                     var topic = $(this).attr('title');
                     setChannel(channel);
+                    $title.text(channel + ' - Hades');
                     $channel.text(channel);
                     $topic.text(topic);
                     $overlay.css('display', 'none');
