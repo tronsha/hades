@@ -225,10 +225,12 @@ h1 {
 }
 
 .chat img {
-    background-color: #000000;
-    border: 3px double #FFFFFF;
-    padding: 3px;
-    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    display: block;
+    padding: 16px;
+    margin: 8px 0;
     max-width: 100%;
 }
 
