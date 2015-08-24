@@ -224,6 +224,7 @@ h1 {
     margin-left: 4px;
 }
 
+.chat iframe,
 .chat img {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
@@ -232,6 +233,11 @@ h1 {
     padding: 16px;
     margin: 8px 0;
     max-width: 100%;
+}
+
+.chat iframe {
+    height: 315px;
+    width: 560px;
 }
 
 .overlay {
