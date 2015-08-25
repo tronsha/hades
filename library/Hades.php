@@ -158,7 +158,10 @@ class Hades
                 }
                 $value['text'] = $formatter->irc2html($value['text']);
                 $value['text'] = preg_replace('/https?:\/\/\S+(?:png|jpg|jpeg|gif)/i', '<img src="$0" alt="$0">', $value['text']);
-                $value['text'] = preg_replace('/(?:https:\/\/www.youtube.com\/watch\?v\=|https:\/\/youtu.be\/)(.+)/i', '<iframe src="https://www.youtube.com/embed/$1"></iframe>', $value['text']);
+                $value['text'] = preg_replace('/(?:https:\/\/www.youtube.com\/watch\?v\=|https:\/\/youtu.be\/)(.+)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
+//                $value['text'] = preg_replace('/https?:\/\/gist.github.com\/(\S+)/i', '<script src="$0.js"></script>', $value['text']);
+                $value['text'] = preg_replace('/https?:\/\/jsfiddle.net\/(\S+)/i', '<iframe class="jsfiddle" src="//jsfiddle.net/$1embedded/" frameborder="0" allowfullscreen></iframe>', $value['text']);
+                $value['text'] = preg_replace('/https?:\/\/pastebin.com\/(\S+)/i', '<iframe class="pastebin" src="http://pastebin.com/embed_iframe.php?i=$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/(?![^<]+>)https?:\/\/\S+/i', '<span class="link web">$0</span>', $value['text']);
                 $value['text'] = preg_replace('/(?![^<]+>)#[^,\s]+/i', '<span class="link channel">$0</span>', $value['text']);
             }
