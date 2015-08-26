@@ -21,7 +21,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '.link.web', function() {
+    $('body').on('click', '#output .link', function() {
         var webLink = $(this).text();
         $("#dialog").text(webLink);
         $('#dialog').dialog({
@@ -50,7 +50,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '.link.channel', function() {
+    $('body').on('click', '#output .channel', function() {
         var channelName = $(this).text();
         $("#dialog").text(channelName);
         $('#dialog').dialog({

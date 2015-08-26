@@ -205,20 +205,21 @@ h1 {
     cursor: pointer;
 }
 
-.chat .time {
+.chat #output .time {
     color: #00FFFF;
 }
 
-.chat .action {
+.chat #output .action {
     color: #FF00FF;
 }
 
-.chat .link {
+.chat #output .channel,
+.chat #output .link {
     color: #FFFF00;
     cursor: pointer;
 }
 
-.chat .link .fa {
+.chat #output .link .fa {
     color: #FF7F00;
     font-size: smaller;
     margin-left: 4px;
