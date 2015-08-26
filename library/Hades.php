@@ -161,7 +161,7 @@ class Hades
                 $value['text'] = preg_replace('/(?:https:\/\/youtu.be\/)(.+)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https:\/\/www.youtube.com\/watch\?(?:\S*?)?v\=([^\?&=]+)(?:\S*)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https?:\/\/jsfiddle.net\/([^\.\s]+)/i', '<iframe class="jsfiddle" src="//jsfiddle.net/$1embedded/" frameborder="0" allowfullscreen></iframe>', $value['text']);
-                $value['text'] = preg_replace('/https?:\/\/pastebin.com\/([^\.\s]+)/i', '<iframe class="pastebin" src="http://pastebin.com/embed_iframe.php?i=$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
+                $value['text'] = preg_replace('/https?:\/\/pastebin.com\/(?:raw.php\?i\=)?([^\.\s\=]+)/i', '<iframe class="pastebin" src="http://pastebin.com/embed_iframe.php?i=$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/(?![^<]+>)https?:\/\/\S+/i', '<span class="link">$0</span>', $value['text']);
                 $value['text'] = preg_replace('/(?![^<]+>)#[^,\s]+/i', '<span class="channel">$0</span>', $value['text']);
             }
