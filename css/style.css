@@ -242,7 +242,7 @@ h1 {
 
 .chat iframe.pastebin,
 .chat iframe.jsfiddle {
-    height: 315px;
+    height: auto;
     width: 1000px;
 }
 
