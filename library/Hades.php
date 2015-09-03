@@ -227,4 +227,20 @@ class Hades
 
         return $bot['id'];
     }
+
+    /**
+     * @return string
+     */
+    public function isRunning()
+    {
+        $bot = $this->db->getBotData();
+        if ($bot['stop'] !== null) {
+            return json_encode(false);
+        }
+        if ((time() - strtotime($bot['ping'])) > 600) {
+            return json_encode(false);
+        }
+
+        return json_encode(true);
+    }
 }

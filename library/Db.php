@@ -180,4 +180,19 @@ class Db extends BaseDb
             $this->error($e->getMessage());
         }
     }
+
+    public function getBotData()
+    {
+        try {
+            $qb = $this->conn->createQueryBuilder();
+            $qb ->select('*')
+                ->from('bot')
+                ->where('id = ?')
+                ->setParameter(0, $this->botId);
+            $stmt = $qb->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
 }

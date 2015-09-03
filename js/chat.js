@@ -341,7 +341,7 @@ jQuery(document).ready(function () {
                 }
             }
         });
-    }, 1000);
+    }, 2000);
 
     /**
      *
@@ -349,6 +349,28 @@ jQuery(document).ready(function () {
     setInterval(function () {
         setTopic($('#channel').text());
     }, 10000);
+
+    /**
+     *
+     */
+    setInterval(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'isrunning'
+            }
+        }).done(function (json) {
+            console.log(json);
+            if (json === false && $infobox.css('display') !== 'block') {
+                $infobox.find('div').remove();
+                $infobox.append('<div class="info">Chat is disconnected...</div>');
+                $overlay.css('display', 'block');
+                $infobox.css('display', 'block');
+            }
+        });
+    }, 120000);
 
     /**
      *
