@@ -2,7 +2,7 @@
 
 chdir(__DIR__);
 
-foreach (array(__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php') as $file) {
+foreach ([__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php'] as $file) {
     if (file_exists($file)) {
         require_once($file);
         break;
@@ -14,7 +14,7 @@ use Hades\Hades;
 $hades = new Hades;
 
 if ($hades->isLoggedin() === false) {
-    echo json_encode(array('loggedin' => false));
+    echo json_encode(['loggedin' => false]);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'getoutput') {
     echo $hades->getOutput();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'setinput') {
