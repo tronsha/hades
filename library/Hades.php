@@ -27,8 +27,7 @@ class Hades
     {
         session_start();
         $this->session = session_id();
-        $path = Cerberus::getPath();
-        $this->config = parse_ini_file($path . '/config.ini', true);
+        $this->config = Cerberus::getConfig();
         $this->db = new Db($this->config['db']);
         $this->db->connect();
         $this->action = new Action(null, $this->db);
