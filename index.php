@@ -33,7 +33,7 @@ $_SESSION['last'] = 0;
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="theme-default">
 <div class="chat">
     <h1>Hades</h1>
     <div class="title">
