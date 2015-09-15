@@ -1,1 +1,146 @@
+/********************************************************/
 
+.theme-default .infobox h2,
+.theme-default .chat h1,
+.theme-default .chat .output > #output > p {
+}
+
+.theme-default .infobox .whisper,
+.theme-default .infobox .join,
+.theme-default .chat .title,
+.theme-default .chat .output > #output > p > .text,
+.theme-default .chat .output > #output > p > .time,
+.theme-default .chat .output > #output > p > .user {
+}
+
+.theme-default .chat #output .channel,
+.theme-default .chat #output .link {
+}
+
+.theme-default .chat iframe,
+.theme-default .chat img {
+}
+
+.theme-default .infobox h2,
+.theme-default .chat h1 {
+}
+
+.theme-default .infobox,
+.theme-default .infobox .whisper,
+.theme-default .infobox .join,
+.theme-default .infobox h2,
+.theme-default .chat h1,
+.theme-default .chat .title,
+.theme-default .chat .output {
+}
+
+.theme-default .infobox .whisper,
+.theme-default .infobox .join {
+}
+
+.theme-default .chat .buttons {
+}
+
+/********************************************************/
+
+.theme-one .infobox h2,
+.theme-one .chat h1,
+.theme-one .chat .output > #output > p {
+    color: #036052;
+}
+
+.theme-one .infobox .whisper,
+.theme-one .infobox .join,
+.theme-one .chat .title,
+.theme-one .chat .output > #output > p > .text,
+.theme-one .chat .output > #output > p > .time,
+.theme-one .chat .output > #output > p > .user {
+    color: #8BF6BF;
+}
+
+.theme-one .chat #output .channel,
+.theme-one .chat #output .link {
+    color: #B6D8ED;
+}
+
+.theme-one .chat iframe,
+.theme-one .chat img {
+    background-color: rgba(139, 246, 191, 0.1);
+}
+
+.theme-one .infobox h2,
+.theme-one .chat h1 {
+    text-shadow: 1px 1px #8BF6BF;
+}
+
+.theme-one .infobox,
+.theme-one .infobox .whisper,
+.theme-one .infobox .join,
+.theme-one .infobox h2,
+.theme-one .chat h1,
+.theme-one .chat .title,
+.theme-one .chat .output {
+    background: #000000;
+}
+
+.theme-one .infobox .whisper,
+.theme-one .infobox .join {
+    border: 1px dotted #036052;
+}
+
+.theme-one .chat .buttons {
+    color: #FFFFFF;
+}
+
+/********************************************************/
+
+.theme-two .infobox h2,
+.theme-two .chat h1,
+.theme-two .chat .output > #output > p {
+    color: #000000;
+}
+
+.theme-two .infobox .whisper,
+.theme-two .infobox .join,
+.theme-two .chat .title,
+.theme-two .chat .output > #output > p > .text,
+.theme-two .chat .output > #output > p > .time,
+.theme-two .chat .output > #output > p > .user {
+    color: #600001;
+}
+
+.theme-two .chat #output .channel,
+.theme-two .chat #output .link {
+    color: #ff7f00;
+}
+
+.theme-two .chat iframe,
+.theme-two .chat img {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-two .infobox h2,
+.theme-two .chat h1 {
+    text-shadow: 1px 1px #600001;
+}
+
+.theme-two .infobox,
+.theme-two .infobox .whisper,
+.theme-two .infobox .join,
+.theme-two .infobox h2,
+.theme-two .chat h1,
+.theme-two .chat .title,
+.theme-two .chat .output {
+    background: #FFFFFF;
+}
+
+.theme-two .infobox .whisper,
+.theme-two .infobox .join {
+    border: 1px dotted #000000;
+}
+
+.theme-two .chat .buttons {
+    color: #000000;
+}
+
+/********************************************************/
