@@ -329,7 +329,7 @@ jQuery(document).ready(function () {
                 } else {
                     $.each(json, function (index, data) {
                         var dateObject = new Date(data.time);
-                        var output = '[<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">' + dateObject.toLocaleTimeString()+ '</span>] ';
+                        var output = '[<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">' + dateObject.toLocaleTimeString() + '</span>] ';
                         if (data.action == 1) {
                             output += '<span class="action">' + data.name + ' ' + data.text + '</span>';
                         } else {
