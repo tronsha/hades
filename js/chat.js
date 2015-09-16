@@ -16,6 +16,12 @@ jQuery(document).ready(function () {
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
 
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            $infobox.fadeOut(500, function() {$overlay.fadeOut(500);});
+        }
+    });
+
     $input.focus();
 
     /**
@@ -118,13 +124,11 @@ jQuery(document).ready(function () {
                     $title.text(channel + ' - Hades');
                     $channel.text(channel);
                     $topic.text(topic);
-                    $overlay.css('display', 'none');
-                    $infobox.css('display', 'none');
+                    $infobox.fadeOut(500, function() {$overlay.fadeOut(500);});
                 })
             }
         });
-        $overlay.css('display', 'block');
-        $infobox.css('display', 'block');
+        $overlay.fadeIn(500, function() {$infobox.fadeIn(500);});
     });
 
     /**
@@ -147,8 +151,7 @@ jQuery(document).ready(function () {
                 });
             }
         });
-        $overlay.css('display', 'block');
-        $infobox.css('display', 'block');
+        $overlay.fadeIn(500, function() {$infobox.fadeIn(500);});
     });
 
     /**
@@ -183,8 +186,7 @@ jQuery(document).ready(function () {
      *
      */
     $overlay.click(function () {
-        $overlay.css('display', 'none');
-        $infobox.css('display', 'none');
+        $infobox.fadeOut(500, function() {$overlay.fadeOut(500);});
     });
 
     /**
@@ -366,8 +368,7 @@ jQuery(document).ready(function () {
             if (json === false && $infobox.css('display') !== 'block') {
                 $infobox.find('div').remove();
                 $infobox.append('<div class="info">Chat is disconnected...</div>');
-                $overlay.css('display', 'block');
-                $infobox.css('display', 'block');
+                $overlay.fadeIn(500, function() {$infobox.fadeIn(500);});
             }
         });
     }, 120000);
