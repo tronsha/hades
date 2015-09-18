@@ -41,9 +41,11 @@ jQuery(document).ready(function () {
                 'Open': function() {
                     window.open(webLink);
                     $(this).dialog('close');
+                    $input.focus();
                 },
                 'Cancel': function() {
                     $(this).dialog('close');
+                    $input.focus();
                 }
             },
             show: {
@@ -70,9 +72,11 @@ jQuery(document).ready(function () {
                 'Join': function() {
                     joinChannel(channelName);
                     $(this).dialog('close');
+                    $input.focus();
                 },
                 'Cancel': function() {
                     $(this).dialog('close');
+                    $input.focus();
                 }
             },
             show: {
