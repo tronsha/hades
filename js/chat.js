@@ -228,7 +228,7 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
-                console.log(json);
+                response(json);
             }
         });
         $input.val('');
@@ -249,7 +249,7 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
-                console.log(json);
+                response(json);
             }
         });
     }
@@ -327,9 +327,28 @@ jQuery(document).ready(function () {
                 }
             }).done(function (json) {
                 if (json !== null) {
-                    $topic.html(json[0].topic);
+                    if (json[0].topic !== undefined) {
+                        $topic.html(json[0].topic);
+                    } else {
+                        $topic.html('');
+                    }
                 }
             });
+        }
+    }
+
+    /**
+     *
+     * @param json
+     */
+    function response(json) {
+        var json = jQuery.parseJSON(json);
+        if (json.action === 'join') {
+            var channel = json.channel;
+            setChannel(channel);
+            $title.text(channel + ' - Hades');
+            $channel.text(channel);
+            $topic.text('');
         }
     }
 

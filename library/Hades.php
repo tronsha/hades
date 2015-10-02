@@ -196,7 +196,7 @@ class Hades
                 return $this->getAction()->me($_SESSION['channel'], $param);
                 break;
             case 'join':
-                return $this->getAction()->join($param);
+                return json_encode($this->getAction()->join($param));
                 break;
             case 'part':
                 if (empty(trim($param)) === true) {
@@ -206,7 +206,7 @@ class Hades
                     $_SESSION['channel'] = null;
                 }
                 if ($param !== null) {
-                    return $this->getAction()->part($param);
+                    return json_encode($this->getAction()->part($param));
                 }
                 break;
             case 'nick':
