@@ -140,11 +140,10 @@ class Db extends BaseDb
         try {
             $qb = $this->conn->createQueryBuilder();
             $qb ->select('id', 'nick AS name', 'text', 'time')
-                ->from('log')
+                ->from('log_privmsg')
                 ->where('id > ?')
                 ->andWhere('bot_id = ?')
-                ->andWhere('command = \'PRIVMSG\'')
-                ->andWhere('rest = ?')
+                ->andWhere('channel = ?')
                 ->addOrderBy('id', 'DESC')
                 ->setParameter(0, $last)
                 ->setParameter(1, $this->botId)
