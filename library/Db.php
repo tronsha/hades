@@ -116,13 +116,11 @@ class Db extends BaseDb
         try {
             $qb = $this->conn->createQueryBuilder();
             $qb ->select('rest')
-                ->from('log')
+                ->from('log_privmsg')
                 ->where('bot_id = ?')
-                ->andWhere('command = ?')
-                ->andWhere('SUBSTR(rest, 1, 1) NOT IN ("#", "&")')
+                ->andWhere('SUBSTR(channel, 1, 1) NOT IN ("#", "&")')
                 ->setParameter(0, $this->botId)
-                ->setParameter(1, 'PRIVMSG')
-                ->groupBy('rest');
+                ->groupBy('channel');
             $stmt = $qb->execute();
             return $stmt->fetchAll();
         } catch (\Exception $e) {
