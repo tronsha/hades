@@ -192,8 +192,14 @@ class Hades
     public function doAction($action, $param)
     {
         switch ($action) {
+            case 'load':
+                return json_encode($this->getAction()->load($param));
+                break;
             case 'me':
-                return $this->getAction()->me($_SESSION['channel'], $param);
+                return json_encode($this->getAction()->me($_SESSION['channel'], $param));
+                break;
+            case 'nick':
+                return json_encode($this->getAction()->nick($param));
                 break;
             case 'join':
                 return json_encode($this->getAction()->join($param));
@@ -208,9 +214,6 @@ class Hades
                 if ($param !== null) {
                     return json_encode($this->getAction()->part($param));
                 }
-                break;
-            case 'nick':
-                return $this->getAction()->nick($param);
                 break;
             default:
                 return null;
