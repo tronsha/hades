@@ -36,7 +36,7 @@ class Hades
     /**
      * @return Action|null
      */
-    public function getAction()
+    public function getActions()
     {
         return $this->action;
     }
@@ -176,7 +176,7 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            $return = $this->getAction()->privmsg($_SESSION['channel'], $input);
+            $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
             $return = $this->doAction($matches[0][1], $matches[0][3]);
@@ -193,16 +193,16 @@ class Hades
     {
         switch ($action) {
             case 'load':
-                return json_encode($this->getAction()->load($param));
+                return json_encode($this->getActions()->load($param));
                 break;
             case 'me':
-                return json_encode($this->getAction()->me($_SESSION['channel'], $param));
+                return json_encode($this->getActions()->me($_SESSION['channel'], $param));
                 break;
             case 'nick':
-                return json_encode($this->getAction()->nick($param));
+                return json_encode($this->getActions()->nick($param));
                 break;
             case 'join':
-                return json_encode($this->getAction()->join($param));
+                return json_encode($this->getActions()->join($param));
                 break;
             case 'part':
                 if (empty(trim($param)) === true) {
@@ -212,7 +212,7 @@ class Hades
                     $_SESSION['channel'] = null;
                 }
                 if ($param !== null) {
-                    return json_encode($this->getAction()->part($param));
+                    return json_encode($this->getActions()->part($param));
                 }
                 break;
             default:
