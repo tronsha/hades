@@ -34,6 +34,14 @@ class Hades
     }
 
     /**
+     * @return Db|null
+     */
+    public function getDb()
+    {
+        return $this->db;
+    }
+
+    /**
      * @return Action|null
      */
     public function getActions()
@@ -60,10 +68,10 @@ class Hades
      */
     public function login($username, $password)
     {
-        $hash = $this->db->getHash($username);
+        $hash = $this->getDb()->getHash($username);
         if (password_verify($password, $hash) === true) {
             $_SESSION['username'] = $username;
-            $this->db->setSession($_SESSION['username'], session_id());
+            $this->getDb()->setSession($_SESSION['username'], session_id());
             header('Location: index.php');
         }
     }
@@ -73,7 +81,7 @@ class Hades
      */
     public function logout()
     {
-        $this->db->setSession($_SESSION['username'], '');
+        $this->getDb()->setSession($_SESSION['username'], '');
         session_unset();
         session_destroy();
         header('Location: login.php');
@@ -94,7 +102,7 @@ class Hades
      */
     public function getChannel($channel = null)
     {
-        $channel = $this->db->getChannel($channel);
+        $channel = $this->getDb()->getChannel($channel);
         foreach ($channel as &$value) {
             $value['topic'] = htmlentities($value['topic']);
         }
@@ -110,7 +118,7 @@ class Hades
         if (empty($_SESSION['channel'])) {
             return json_encode(null);
         }
-        $user = $this->db->getUser($_SESSION['channel']);
+        $user = $this->getDb()->getUser($_SESSION['channel']);
         return json_encode($user);
     }
 
@@ -128,7 +136,7 @@ class Hades
     public function setPassword($password)
     {
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $this->db->setPassword($this->session, $hash);
+        $this->getDb()->setPassword($this->session, $hash);
     }
 
     /**
@@ -142,7 +150,7 @@ class Hades
         if (isset($_SESSION['last']) === false) {
             $_SESSION['last'] = 0;
         }
-        $data = $this->db->getChannelOutput($_SESSION['last'], $_SESSION['channel']);
+        $data = $this->getDb()->getChannelOutput($_SESSION['last'], $_SESSION['channel']);
         if (count($data) > 0) {
             $_SESSION['last'] = $data[0]['id'];
             krsort($data);
@@ -225,7 +233,7 @@ class Hades
      */
     public function getBotId()
     {
-        $bot = $this->db->getLastBot();
+        $bot = $this->getDb()->getLastBot();
 
         return $bot['id'];
     }
@@ -235,7 +243,7 @@ class Hades
      */
     public function isRunning()
     {
-        $bot = $this->db->getBotData();
+        $bot = $this->getDb()->getBotData();
         if ($bot['stop'] !== null) {
             return json_encode(false);
         }
