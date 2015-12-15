@@ -188,6 +188,13 @@ jQuery(document).ready(function () {
      *
      */
     $logoutButton.click(function () {
+        logout();
+    });
+
+    /**
+     *
+     */
+    function logout() {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -196,7 +203,7 @@ jQuery(document).ready(function () {
                 action: 'logout'
             }
         });
-    });
+    }
 
     /**
      *
@@ -350,14 +357,7 @@ jQuery(document).ready(function () {
             $topic.text('');
         }
         if (json.action === 'logout') {
-            $.ajax({
-                url: 'ajax.php',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    action: 'logout'
-                }
-            });
+            logout();
         }
     }
 
