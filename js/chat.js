@@ -342,13 +342,22 @@ jQuery(document).ready(function () {
      * @param json
      */
     function response(json) {
-        var json = jQuery.parseJSON(json);
         if (json.action === 'join') {
             var channel = json.channel;
             setChannel(channel);
             $title.text(channel + ' - Hades');
             $channel.text(channel);
             $topic.text('');
+        }
+        if (json.action === 'logout') {
+            $.ajax({
+                url: 'ajax.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'logout'
+                }
+            });
         }
     }
 
