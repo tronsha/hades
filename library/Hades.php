@@ -27,7 +27,7 @@ class Hades
     {
         session_start();
         $this->session = session_id();
-        $this->config = Cerberus::getConfig();
+        $this->config = Cerberus::loadConfig();
         $this->db = new Db($this->config['db']);
         $this->db->connect();
         $this->action = new Action(null, $this->db);
