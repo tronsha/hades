@@ -205,7 +205,7 @@ class Hades
                 return ['action' => 'logout'];
                 break;
             case 'load':
-                return $this->db->addControl('load', $param);
+                return $this->getActions()->control('load', $param);
                 break;
             case 'me':
                 return $this->getActions()->me($_SESSION['channel'], $param);
