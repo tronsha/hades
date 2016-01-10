@@ -228,6 +228,12 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
+            case 'cputemp':
+                return $this->getActions()->control('cputemp');
+                break;
+            case 'temp':
+                return $this->getActions()->control('temp');
+                break;
             default:
                 return null;
         }
