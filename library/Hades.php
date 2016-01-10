@@ -199,6 +199,7 @@ class Hades
      */
     public function doAction($action, $param)
     {
+        $action = strtolower($action);
         switch ($action) {
             case 'exit':
             case 'logout':
