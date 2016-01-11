@@ -206,9 +206,6 @@ class Hades
             case 'logout':
                 return ['action' => 'logout'];
                 break;
-            case 'load':
-                return $this->getActions()->control('load', $data);
-                break;
             case 'me':
                 return $this->getActions()->me($_SESSION['channel'], $param);
                 break;
@@ -230,14 +227,9 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
-            case 'cputemp':
-                return $this->getActions()->control('cputemp', $data);
-                break;
-            case 'temp':
-                return $this->getActions()->control('temp', $data);
-                break;
             default:
-                return null;
+                return $this->getActions()->control($action, $data);
+                break;
         }
     }
 
