@@ -180,6 +180,7 @@ h1 {
     margin-left: 10px;
 }
 
+#media-button,
 #option-button,
 #info-button {
     display: none;

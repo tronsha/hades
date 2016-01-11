@@ -50,6 +50,7 @@ $_SESSION['last'] = 0;
     <div class="buttons">
         <span id="channel-button" class="fa fa-comment" title="channel"></span>
         <span id="user-button" class="fa fa-users" title="user"></span>
+        <span id="media-button" class="fa fa-folder-open" title="media"></span>
         <span id="option-button" class="fa fa-cogs" title="options"></span>
         <span id="info-button" class="fa fa-info" title="info"></span>
         <span id="logout-button" class="fa fa-sign-out" title="logout"></span>
