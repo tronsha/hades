@@ -200,13 +200,14 @@ class Hades
     public function doAction($action, $param)
     {
         $action = strtolower($action);
+        $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
         switch ($action) {
             case 'exit':
             case 'logout':
                 return ['action' => 'logout'];
                 break;
             case 'load':
-                return $this->getActions()->control('load', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
+                return $this->getActions()->control('load', $data);
                 break;
             case 'me':
                 return $this->getActions()->me($_SESSION['channel'], $param);
@@ -218,10 +219,11 @@ class Hades
                 return $this->getActions()->join($param);
                 break;
             case 'part':
-                if (empty(trim($param)) === true) {
+                $param = trim($param);
+                if (empty($param) === true) {
                     $param = $_SESSION['channel'];
                 }
-                if (trim($param) == $_SESSION['channel']) {
+                if ($param == $_SESSION['channel']) {
                     $_SESSION['channel'] = null;
                 }
                 if ($param !== null) {
@@ -229,10 +231,10 @@ class Hades
                 }
                 break;
             case 'cputemp':
-                return $this->getActions()->control('cputemp', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
+                return $this->getActions()->control('cputemp', $data);
                 break;
             case 'temp':
-                return $this->getActions()->control('temp', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
+                return $this->getActions()->control('temp', $data);
                 break;
             default:
                 return null;
