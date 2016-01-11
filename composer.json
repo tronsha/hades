@@ -5,7 +5,8 @@
   "homepage": "https://github.com/tronsha/hades",
   "license": "GPL-3.0",
   "require": {
-    "php": ">=5.5.0"
+    "php": ">=5.5.0",
+    "ext-curl": "*"
   },
   "minimum-stability": "dev"
 }
