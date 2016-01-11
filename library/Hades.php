@@ -206,7 +206,7 @@ class Hades
                 return ['action' => 'logout'];
                 break;
             case 'load':
-                return $this->getActions()->control('load', $param);
+                return $this->getActions()->control('load', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
                 break;
             case 'me':
                 return $this->getActions()->me($_SESSION['channel'], $param);
@@ -229,10 +229,10 @@ class Hades
                 }
                 break;
             case 'cputemp':
-                return $this->getActions()->control('cputemp');
+                return $this->getActions()->control('cputemp', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
                 break;
             case 'temp':
-                return $this->getActions()->control('temp');
+                return $this->getActions()->control('temp', json_encode(['channel' => $_SESSION['channel'], 'param' => $param]));
                 break;
             default:
                 return null;
