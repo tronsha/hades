@@ -20,23 +20,13 @@ jQuery(document).ready(function () {
     var historyCount = 0;
     var historyPos = 0;
 
-    $(document).keyup(function (e) {
-        if (e.keyCode == 27) {
+    $(document).keyup(function (event) {
+        if (event.keyCode == 27) {
             $infobox.fadeOut(500, function () {
                 $overlay.fadeOut(500, function () {
                     $input.focus();
                 });
             });
-        } else if (e.keyCode == 38) { /* up arrow */
-            if (historyPos < historyCount) {
-                historyPos++;
-                $input.val(history[historyCount - historyPos]);
-            }
-        } else if (e.keyCode == 40) { /* down arrow */
-            if (historyPos > 0) {
-                historyPos--;
-                $input.val(history[historyCount - historyPos]);
-            }
         }
     });
 
@@ -108,9 +98,19 @@ jQuery(document).ready(function () {
      *
      */
     $input.keyup(function (event) {
-        if (event.which == 13) {
+        if (event.which == 13) { /* enter */
             event.preventDefault();
             read();
+        } else if (event.keyCode == 38) { /* up arrow */
+            if (historyPos < historyCount) {
+                historyPos++;
+                $input.val(history[historyCount - historyPos]);
+            }
+        } else if (event.keyCode == 40) { /* down arrow */
+            if (historyPos > 0) {
+                historyPos--;
+                $input.val(history[historyCount - historyPos]);
+            }
         }
     });
 
