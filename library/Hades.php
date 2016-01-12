@@ -200,6 +200,7 @@ class Hades
     public function doAction($action, $param)
     {
         $action = strtolower($action);
+        $param = trim($param);
         $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
         switch ($action) {
             case 'exit':
