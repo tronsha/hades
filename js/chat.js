@@ -456,7 +456,7 @@ jQuery(document).ready(function () {
      *
      */
     $(window).bind('beforeunload', function () {
-        return 'Do you really want to leave?';
+        return '';
     });
 
 });
