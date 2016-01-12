@@ -452,6 +452,13 @@ jQuery(document).ready(function () {
      */
     setTopic($('#channel').text());
 
+    /**
+     *
+     */
+    $(window).bind('beforeunload', function () {
+        return 'Do you really want to leave?';
+    });
+
 });
 
 var autoscroll = true;
