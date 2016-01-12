@@ -16,6 +16,10 @@ jQuery(document).ready(function () {
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
 
+    var history = [];
+    var historyCount = 0;
+    var historyPos = 0;
+
     $(document).keyup(function (e) {
         if (e.keyCode == 27) {
             $infobox.fadeOut(500, function () {
@@ -23,6 +27,16 @@ jQuery(document).ready(function () {
                     $input.focus();
                 });
             });
+        } else if (e.keyCode == 38) { /* up arrow */
+            if (historyPos < historyCount) {
+                historyPos++;
+                $input.val(history[historyCount - historyPos]);
+            }
+        } else if (e.keyCode == 40) { /* down arrow */
+            if (historyPos > 0) {
+                historyPos--;
+                $input.val(history[historyCount - historyPos]);
+            }
         }
     });
 
@@ -225,6 +239,9 @@ jQuery(document).ready(function () {
         if (input == '') {
             return false;
         }
+        history[historyCount] = input;
+        historyCount++;
+        historyPos = 0;
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
