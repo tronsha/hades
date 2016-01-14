@@ -158,9 +158,9 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as &$value) {
-                if (empty($_SESSION['crypt'][$_SESSION['channel']]) === false) {
-                    if (preg_match("/\+OK (.+)/i", $value['text'], $matches)) {
-                        $key = $_SESSION['crypt'][$_SESSION['channel']];
+                if (preg_match("/\+OK (.+)/i", $value['text'], $matches)) {
+                    if (empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false) {
+                        $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
                         $crypt = new Mircryption;
                         $value['text'] = $crypt->decode($matches[1], $key);
                     }
@@ -192,8 +192,8 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            if (empty($_SESSION['crypt'][$_SESSION['channel']]) === false) {
-                $key = $_SESSION['crypt'][$_SESSION['channel']];
+            if (empty($_SESSION['mircryption'][$_SESSION['channel']]['encode']) === false) {
+                $key = $_SESSION['mircryption'][$_SESSION['channel']]['encode'];
                 $crypt = new Mircryption;
                 $input = '+OK ' . $crypt->encode($input, $key);
             }
@@ -241,11 +241,17 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
-            case 'crypt':
-                $_SESSION['crypt'][$_SESSION['channel']] = $param;
-                break;
-            case 'nocrypt':
-                unset($_SESSION['crypt'][$_SESSION['channel']]);
+            case 'mircryption':
+                $params = explode(' ', $param);
+                if (strtolower($params[0]) == 'unset') {
+                    unset($_SESSION['mircryption'][$_SESSION['channel']]);
+                } elseif (strtolower($params[0]) == 'set') {
+                    if (strtolower($params[1]) == 'encode') {
+                        $_SESSION['mircryption'][$_SESSION['channel']]['encode'] = trim($params[2]);
+                    } elseif (strtolower($params[1]) == 'decode') {
+                        $_SESSION['mircryption'][$_SESSION['channel']]['decode'] = trim($params[2]);
+                    }
+                }
                 break;
             default:
                 return $this->getActions()->control($action, $data);
