@@ -4,6 +4,7 @@ namespace Hades;
 
 use Cerberus\Cerberus;
 use Cerberus\Action;
+use Cerberus\Mircryption;
 
 /**
  * Class Hades
@@ -157,6 +158,13 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as &$value) {
+                if (empty($_SESSION['crypt'][$_SESSION['channel']]) === false) {
+                    if (preg_match("/\+OK (.+)/i", $value['text'], $matches)) {
+                        $key = $_SESSION['crypt'][$_SESSION['channel']];
+                        $crypt = new Mircryption;
+                        $value['text'] = $crypt->decode($matches[1], $key);
+                    }
+                }
                 if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
                     if ($matches[1] === 'ACTION') {
                         $value['text'] = $matches[2];
@@ -184,6 +192,11 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
+            if (empty($_SESSION['crypt'][$_SESSION['channel']]) === false) {
+                $key = $_SESSION['crypt'][$_SESSION['channel']];
+                $crypt = new Mircryption;
+                $input = '+OK ' . $crypt->encode($input, $key);
+            }
             $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
@@ -227,6 +240,12 @@ class Hades
                 if ($param !== null) {
                     return $this->getActions()->part($param);
                 }
+                break;
+            case 'crypt':
+                $_SESSION['crypt'][$_SESSION['channel']] = $param;
+                break;
+            case 'nocrypt':
+                unset($_SESSION['crypt'][$_SESSION['channel']]);
                 break;
             default:
                 return $this->getActions()->control($action, $data);
