@@ -162,6 +162,7 @@ class Hades
                     if (empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false) {
                         $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
                         $crypt = new Mircryption;
+                        $value['crypt'] = $value['text'];
                         $value['text'] = $crypt->decode($matches[1], $key);
                     }
                 }
@@ -250,6 +251,9 @@ class Hades
                         $_SESSION['mircryption'][$_SESSION['channel']]['encode'] = trim($params[2]);
                     } elseif (strtolower($params[1]) == 'decode') {
                         $_SESSION['mircryption'][$_SESSION['channel']]['decode'] = trim($params[2]);
+                    } else {
+                        $_SESSION['mircryption'][$_SESSION['channel']]['encode'] = trim($params[1]);
+                        $_SESSION['mircryption'][$_SESSION['channel']]['decode'] = trim($params[1]);
                     }
                 }
                 break;

@@ -381,6 +381,24 @@ jQuery(document).ready(function () {
     /**
      *
      */
+    $('body').on('click', '#output .lock', function() {
+        var $this = $(this);
+        if ($this.hasClass('fa-lock')) {
+            $this.removeClass('fa-lock');
+            $this.addClass('fa-unlock');
+            $this.parent('p').find('.text').css('display', '');
+            $this.parent('p').find('.crypt').css('display', 'none');
+        } else if ($this.hasClass('fa-unlock')) {
+            $this.removeClass('fa-unlock');
+            $this.addClass('fa-lock');
+            $this.parent('p').find('.text').css('display', 'none');
+            $this.parent('p').find('.crypt').css('display', '');
+        }
+    });
+
+    /**
+     *
+     */
     setInterval(function () {
         $.ajax({
             url: 'ajax.php',
@@ -397,10 +415,16 @@ jQuery(document).ready(function () {
                     $.each(json, function (index, data) {
                         var dateObject = new Date(data.time);
                         var output = '[<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">' + dateObject.toLocaleTimeString() + '</span>] ';
+                        if (data.crypt != undefined) {
+                            output += '<i class="lock fa fa-lock"></i> ';
+                        }
                         if (data.action == 1) {
                             output += '<span class="action">' + data.name + ' ' + data.text + '</span>';
                         } else {
-                            output += '&lt;<span class="user" title="' + data.name + '">' + data.name + '</span>&gt; <span class="text">' + data.text + '</span>';
+                            output += '&lt;<span class="user" title="' + data.name + '">' + data.name + '</span>&gt; <span class="text"' + (data.crypt !== undefined ? ' style="display: none;"' : '') + '>' + data.text + '</span>';
+                        }
+                        if (data.crypt !== undefined) {
+                            output += '<span class="crypt">' + data.crypt + '</span>';
                         }
                         write(output);
                         scroll();
