@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 chdir(__DIR__);
 
 foreach ([__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php'] as $file) {
