@@ -5,6 +5,7 @@ namespace Hades;
 use Cerberus\Cerberus;
 use Cerberus\Action;
 use Cerberus\Mircryption;
+use Cerberus\Ccryption;
 
 /**
  * Class Hades
@@ -158,7 +159,7 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as &$value) {
-                if (preg_match("/\+OK (.+)/i", $value['text'], $matches)) {
+                if (preg_match("/\+(OK|CC) (.+)/i", $value['text'], $matches)) {
                     if (
                         (
                             empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false
@@ -177,9 +178,13 @@ class Hades
                         } else {
                             $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
                         }
-                        $crypt = new Mircryption;
+                        if ($matches[1] == 'OK') {
+                            $crypt = new Mircryption;
+                        } elseif ($matches[1] == 'CC') {
+                            $crypt = new Ccryption;
+                        }
                         $value['crypt'] = $value['text'];
-                        $value['text'] = $crypt->decode($matches[1], $key);
+                        $value['text'] = $crypt->decode($matches[2], $key);
                     }
                 }
                 if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
