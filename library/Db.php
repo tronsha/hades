@@ -137,7 +137,7 @@ class Db extends BaseDb
     {
         try {
             $qb = $this->conn->createQueryBuilder();
-            $qb ->select('id', 'nick AS name', 'text', 'time')
+            $qb ->select('id', 'nick AS name', 'text', 'time', 'direction')
                 ->from('log_privmsg')
                 ->where('id > ?')
                 ->andWhere('bot_id = ?')

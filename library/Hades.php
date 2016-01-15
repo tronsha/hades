@@ -159,8 +159,24 @@ class Hades
             $formatter = new Formatter;
             foreach ($data as &$value) {
                 if (preg_match("/\+OK (.+)/i", $value['text'], $matches)) {
-                    if (empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false) {
-                        $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
+                    if (
+                        (
+                            empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false
+                            &&
+                            $value['direction'] == '<'
+                        )
+                        ||
+                        (
+                            empty($_SESSION['mircryption'][$_SESSION['channel']]['encode']) === false
+                            &&
+                            $value['direction'] == '>'
+                        )
+                    ) {
+                        if ($value['direction'] == '>') {
+                            $key = $_SESSION['mircryption'][$_SESSION['channel']]['encode'];
+                        } else {
+                            $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
+                        }
                         $crypt = new Mircryption;
                         $value['crypt'] = $value['text'];
                         $value['text'] = $crypt->decode($matches[1], $key);
