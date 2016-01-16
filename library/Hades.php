@@ -162,21 +162,21 @@ class Hades
                 if (preg_match("/\+(OK|CC) (.+)/i", $value['text'], $matches)) {
                     if (
                         (
-                            empty($_SESSION['mircryption'][$_SESSION['channel']]['decode']) === false
+                            empty($_SESSION['cryption'][$_SESSION['channel']]['decode']) === false
                             &&
                             $value['direction'] == '<'
                         )
                         ||
                         (
-                            empty($_SESSION['mircryption'][$_SESSION['channel']]['encode']) === false
+                            empty($_SESSION['cryption'][$_SESSION['channel']]['encode']) === false
                             &&
                             $value['direction'] == '>'
                         )
                     ) {
                         if ($value['direction'] == '>') {
-                            $key = $_SESSION['mircryption'][$_SESSION['channel']]['encode'];
+                            $key = $_SESSION['cryption'][$_SESSION['channel']]['encode'];
                         } else {
-                            $key = $_SESSION['mircryption'][$_SESSION['channel']]['decode'];
+                            $key = $_SESSION['cryption'][$_SESSION['channel']]['decode'];
                         }
                         if ($matches[1] == 'OK') {
                             $crypt = new Mircryption;
@@ -214,8 +214,8 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            if (empty($_SESSION['mircryption'][$_SESSION['channel']]['encode']) === false) {
-                $key = $_SESSION['mircryption'][$_SESSION['channel']]['encode'];
+            if (empty($_SESSION['cryption'][$_SESSION['channel']]['encode']) === false) {
+                $key = $_SESSION['cryption'][$_SESSION['channel']]['encode'];
                 $crypt = new Mircryption;
                 $input = '+OK ' . $crypt->encode($input, $key);
             }
@@ -266,15 +266,15 @@ class Hades
             case 'mircryption':
                 $params = explode(' ', $param);
                 if (strtolower($params[0]) == 'unset') {
-                    unset($_SESSION['mircryption'][$_SESSION['channel']]);
+                    unset($_SESSION['cryption'][$_SESSION['channel']]);
                 } elseif (strtolower($params[0]) == 'set') {
                     if (strtolower($params[1]) == 'encode') {
-                        $_SESSION['mircryption'][$_SESSION['channel']]['encode'] = trim($params[2]);
+                        $_SESSION['cryption'][$_SESSION['channel']]['encode'] = trim($params[2]);
                     } elseif (strtolower($params[1]) == 'decode') {
-                        $_SESSION['mircryption'][$_SESSION['channel']]['decode'] = trim($params[2]);
+                        $_SESSION['cryption'][$_SESSION['channel']]['decode'] = trim($params[2]);
                     } else {
-                        $_SESSION['mircryption'][$_SESSION['channel']]['encode'] = trim($params[1]);
-                        $_SESSION['mircryption'][$_SESSION['channel']]['decode'] = trim($params[1]);
+                        $_SESSION['cryption'][$_SESSION['channel']]['encode'] = trim($params[1]);
+                        $_SESSION['cryption'][$_SESSION['channel']]['decode'] = trim($params[1]);
                     }
                 }
                 break;
