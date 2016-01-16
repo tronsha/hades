@@ -263,7 +263,7 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
-            case 'mircryption':
+            case 'crypt':
                 $params = explode(' ', $param);
                 if (strtolower($params[0]) == 'unset') {
                     unset($_SESSION['cryption'][$_SESSION['channel']]);
