@@ -162,29 +162,29 @@ class Hades
                 if (preg_match("/\+(OK|CC) (.+)/i", $value['text'], $matches)) {
                     if (
                         (
-                            empty($_SESSION['cryption'][$_SESSION['channel']]['decode']) === false
+                            empty($_SESSION['crypt'][$_SESSION['channel']]['decode']) === false
                             &&
                             $value['direction'] == '<'
                         )
                         ||
                         (
-                            empty($_SESSION['cryption'][$_SESSION['channel']]['encode']) === false
+                            empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
                             &&
                             $value['direction'] == '>'
                         )
                     ) {
                         if ($value['direction'] == '>') {
-                            $key = $_SESSION['cryption'][$_SESSION['channel']]['encode'];
+                            $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
                         } else {
-                            $key = $_SESSION['cryption'][$_SESSION['channel']]['decode'];
+                            $key = $_SESSION['crypt'][$_SESSION['channel']]['decode'];
                         }
                         if ($matches[1] == 'OK') {
-                            $crypt = new Mircryption;
+                            $value['crypt'] = $value['text'];
+                            $value['text'] = Mircryption::decode($matches[2], $key);
                         } elseif ($matches[1] == 'CC') {
-                            $crypt = new Ccryption;
+                            $value['crypt'] = $value['text'];
+                            $value['text'] = Ccryption::decode($matches[2], $key);
                         }
-                        $value['crypt'] = $value['text'];
-                        $value['text'] = $crypt->decode($matches[2], $key);
                     }
                 }
                 if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
@@ -214,10 +214,17 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
-            if (empty($_SESSION['cryption'][$_SESSION['channel']]['encode']) === false) {
-                $key = $_SESSION['cryption'][$_SESSION['channel']]['encode'];
-                $crypt = new Mircryption;
-                $input = '+OK ' . $crypt->encode($input, $key);
+            if (
+                empty($_SESSION['crypt'][$_SESSION['channel']]['method']) === false
+                &&
+                empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
+            ) {
+                $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
+                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'mircryption') {
+                    $input = '+OK ' . Mircryption::encode($input, $key);
+                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'ccryption') {
+                    $input = '+CC ' . Ccryption::encode($input, $key);
+                }
             }
             $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
         } else {
@@ -266,16 +273,18 @@ class Hades
             case 'crypt':
                 $params = explode(' ', $param);
                 if (strtolower($params[0]) == 'unset') {
-                    unset($_SESSION['cryption'][$_SESSION['channel']]);
+                    unset($_SESSION['crypt'][$_SESSION['channel']]);
                 } elseif (strtolower($params[0]) == 'set') {
                     if (strtolower($params[1]) == 'encode') {
-                        $_SESSION['cryption'][$_SESSION['channel']]['encode'] = trim($params[2]);
+                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
                     } elseif (strtolower($params[1]) == 'decode') {
-                        $_SESSION['cryption'][$_SESSION['channel']]['decode'] = trim($params[2]);
+                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
                     } else {
-                        $_SESSION['cryption'][$_SESSION['channel']]['encode'] = trim($params[1]);
-                        $_SESSION['cryption'][$_SESSION['channel']]['decode'] = trim($params[1]);
+                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);
+                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[1]);
                     }
+                } else {
+                    $_SESSION['crypt'][$_SESSION['channel']]['method'] = trim($params[0]);
                 }
                 break;
             default:
