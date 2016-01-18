@@ -138,7 +138,7 @@ jQuery(document).ready(function () {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>Channel</h2></div>');
                 $.each(json, function (index, data) {
-                    $infobox.append('<div class="join" title="' + data.topic + '">' + data.channel + '</div>');
+                    $infobox.append('<div class="join-container"><div class="join" title="' + data.topic + '">' + data.channel + '</div><span class="close" title="close"><i class="fa fa-close"></i></span></div>');
                 });
                 $('.join').on('click', function () {
                     var channel = $(this).text();
@@ -163,6 +163,17 @@ jQuery(document).ready(function () {
     /**
      *
      */
+    $('body').on('click', '.infobox .close', function() {
+        event.preventDefault();
+        var $this = $(this);
+        var $parent = $this.parent('div');
+        partChannel($parent.text());
+        $parent.remove();
+    });
+
+    /**
+     *
+     */
     $userButton.click(function () {
         $.ajax({
             url: 'ajax.php',
@@ -176,7 +187,7 @@ jQuery(document).ready(function () {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>User at ' + $channel.text() + '</h2></div>');
                 $.each(json, function (index, data) {
-                    $infobox.append('<div class="whisper">' + data.username + '</div>');
+                    $infobox.append('<div class="whisper-container"><div class="whisper">' + data.username + '</div></div>');
                 });
             }
         });
@@ -201,7 +212,7 @@ jQuery(document).ready(function () {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>Whisper User</h2></div>');
                 $.each(json, function (index, data) {
-                    $infobox.append('<div class="whisper">' + data.channel + '</div>');
+                    $infobox.append('<div class="whisper-container"><div class="whisper">' + data.channel + '</div></div>');
                 });
                 $('.join').on('click', function () {
                     var whisper = $(this).text();
