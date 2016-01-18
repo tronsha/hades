@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
     var $topic = $('#topic');
     var $sendButton = $('#send-button');
     var $channelButton = $('#channel-button');
+    var $whisperButton = $('#whisper-button');
     var $userButton = $('#user-button');
     var $optionButton = $('#option-button');
     var $infoButton = $('#info-button');
@@ -177,6 +178,42 @@ jQuery(document).ready(function () {
                 $.each(json, function (index, data) {
                     $infobox.append('<div class="whisper">' + data.username + '</div>');
                 });
+            }
+        });
+        $overlay.fadeIn(500, function () {
+            $infobox.fadeIn(500);
+        });
+    });
+
+    /**
+     *
+     */
+    $whisperButton.click(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getwhisper'
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                $infobox.find('div').remove();
+                $infobox.append('<div><h2>Whisper User</h2></div>');
+                $.each(json, function (index, data) {
+                    $infobox.append('<div class="whisper">' + data.channel + '</div>');
+                });
+                $('.join').on('click', function () {
+                    var whisper = $(this).text();
+                    setChannel(whisper);
+                    $title.text(whisper + ' - Hades');
+                    $channel.text(whisper);
+                    $infobox.fadeOut(500, function () {
+                        $overlay.fadeOut(500, function () {
+                            $input.focus();
+                        });
+                    });
+                })
             }
         });
         $overlay.fadeIn(500, function () {

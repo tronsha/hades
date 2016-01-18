@@ -28,6 +28,8 @@ if ($hades->isLoggedin() === false) {
     echo $hades->getUser();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'gettopic' && isset($_POST['channel'])) {
     echo $hades->getChannel($_POST['channel']);
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getwhisper') {
+    echo $hades->getWhisper();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'isrunning') {
     echo $hades->isRunning();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {

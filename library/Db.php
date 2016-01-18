@@ -115,7 +115,7 @@ class Db extends BaseDb
     {
         try {
             $qb = $this->conn->createQueryBuilder();
-            $qb ->select('rest')
+            $qb ->select('IF(direction = "<", nick, channel) AS channel')
                 ->from('log_privmsg')
                 ->where('bot_id = ?')
                 ->andWhere('SUBSTR(channel, 1, 1) NOT IN ("#", "&")')

@@ -115,6 +115,15 @@ class Hades
     /**
      * @return string
      */
+    public function getWhisper()
+    {
+        $channel = $this->getDb()->getWhisperList();
+        return json_encode($channel);
+    }
+
+    /**
+     * @return string
+     */
     public function getUser()
     {
         if (empty($_SESSION['channel'])) {
