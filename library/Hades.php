@@ -229,9 +229,9 @@ class Hades
                 empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
             ) {
                 $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
-                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'mircryption') {
+                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'mirc') {
                     $input = '+OK ' . Mircryption::encode($input, $key);
-                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'ccryption') {
+                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'cc') {
                     $input = '+CC ' . Ccryption::encode($input, $key);
                 }
             }
