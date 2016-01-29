@@ -280,7 +280,10 @@ class Hades
                 }
                 break;
             case 'topic':
-                return $this->getActions()->topic($_SESSION['channel'], $param);
+                $this->getActions()->topic($_SESSION['channel'], $param);
+                Cerberus::msleep(2500);
+                $status = $this->getDb()->getStatus();
+                return $status;
                 break;
             case 'crypt':
                 $params = explode(' ', $param);
