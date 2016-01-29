@@ -279,6 +279,9 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
+            case 'topic':
+                return $this->getActions()->topic($_SESSION['channel'], $param);
+                break;
             case 'crypt':
                 $params = explode(' ', $param);
                 if (strtolower($params[0]) == 'unset') {
