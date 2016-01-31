@@ -281,7 +281,7 @@ class Hades
                 break;
             case 'topic':
                 $this->getActions()->topic($_SESSION['channel'], $param);
-                Cerberus::msleep(2500);
+                Cerberus::msleep(10000);
                 $status = $this->getDb()->getStatus(482);
                 return $status;
                 break;
