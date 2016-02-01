@@ -281,7 +281,7 @@ class Hades
                 break;
             case 'topic':
                 $this->getActions()->topic($_SESSION['channel'], $param);
-                Cerberus::msleep(10000);
+                Cerberus::msleep(2000);
                 $status = $this->getDb()->getStatus(482);
                 return $status;
                 break;
@@ -306,6 +306,15 @@ class Hades
                 return $this->getActions()->control($action, $data);
                 break;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        $status = $this->getDb()->getStatus();
+        return json_encode($status);
     }
 
     /**

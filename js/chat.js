@@ -424,7 +424,54 @@ jQuery(document).ready(function () {
         if (json.action === 'logout') {
             logout();
         }
+        if (json.type === 'status') {
+            responseStatus(json);
+        }
     }
+
+    /**
+     *
+     * @param text
+     */
+    function responseStatus(json) {
+        $("#dialog").text(json.text);
+        $('#dialog').dialog({
+            title: json.status,
+            resizable: false,
+            buttons: {
+                'Ok': function() {
+                    $(this).dialog('close');
+                    $input.focus();
+                }
+            },
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
+            }
+        });
+    }
+
+    /**
+     *
+     */
+    setInterval(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getstatus'
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                responseStatus(json);
+            }
+        });
+    }, 3000);
 
     /**
      *

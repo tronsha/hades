@@ -30,6 +30,8 @@ if ($hades->isLoggedin() === false) {
     echo $hades->getWhisper();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'getuser') {
     echo $hades->getUser();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getstatus') {
+    echo $hades->getStatus();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'isrunning') {
     echo $hades->isRunning();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
