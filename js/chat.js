@@ -38,7 +38,8 @@ jQuery(document).ready(function () {
      */
     $('body').on('click', '#output .link', function() {
         var webLink = $(this).text();
-        $("#dialog").text(webLink);
+        $('#dialog').html('<p></p>');
+        $('#dialog p').text(webLink);
         $('#dialog').dialog({
             title: 'URL',
             resizable: false,
@@ -69,7 +70,8 @@ jQuery(document).ready(function () {
      */
     $('body').on('click', '#output .channel', function() {
         var channelName = $(this).text();
-        $("#dialog").text(channelName);
+        $('#dialog').html('<p></p>');
+        $('#dialog p').text(channelName);
         $('#dialog').dialog({
             title: 'Channel',
             resizable: false,
@@ -434,7 +436,8 @@ jQuery(document).ready(function () {
      * @param text
      */
     function responseStatus(json) {
-        $("#dialog").text(json.text);
+        $('#dialog').html('<p></p>');
+        $('#dialog p').text(json.text);
         $('#dialog').dialog({
             title: json.status,
             resizable: false,
