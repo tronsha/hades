@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 chdir(__DIR__);
 
 foreach ([__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php'] as $file) {
@@ -21,12 +22,16 @@ if ($hades->isLoggedin() === false) {
     echo $hades->useInput($_POST['text']);
 } elseif (isset($_POST['action']) && $_POST['action'] == 'setchannel') {
     $hades->setChannel($_POST['channel']);
-} elseif (isset($_POST['action']) && $_POST['action'] == 'getchannel') {
-    echo $hades->getChannel();
-} elseif (isset($_POST['action']) && $_POST['action'] == 'getuser') {
-    echo $hades->getUser();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'gettopic' && isset($_POST['channel'])) {
     echo $hades->getChannel($_POST['channel']);
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getchannel') {
+    echo $hades->getChannel();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getwhisper') {
+    echo $hades->getWhisper();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getuser') {
+    echo $hades->getUser();
+} elseif (isset($_POST['action']) && $_POST['action'] == 'getstatus') {
+    echo $hades->getStatus();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'isrunning') {
     echo $hades->isRunning();
 } elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {

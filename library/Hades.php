@@ -4,6 +4,8 @@ namespace Hades;
 
 use Cerberus\Cerberus;
 use Cerberus\Action;
+use Cerberus\Mircryption;
+use Cerberus\Ccryption;
 
 /**
  * Class Hades
@@ -113,6 +115,15 @@ class Hades
     /**
      * @return string
      */
+    public function getWhisper()
+    {
+        $channel = $this->getDb()->getWhisperList();
+        return json_encode($channel);
+    }
+
+    /**
+     * @return string
+     */
     public function getUser()
     {
         if (empty($_SESSION['channel'])) {
@@ -157,6 +168,34 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as &$value) {
+                if (preg_match("/\+(OK|CC) (.+)/i", $value['text'], $matches)) {
+                    if (
+                        (
+                            empty($_SESSION['crypt'][$_SESSION['channel']]['decode']) === false
+                            &&
+                            $value['direction'] == '<'
+                        )
+                        ||
+                        (
+                            empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
+                            &&
+                            $value['direction'] == '>'
+                        )
+                    ) {
+                        if ($value['direction'] == '>') {
+                            $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
+                        } else {
+                            $key = $_SESSION['crypt'][$_SESSION['channel']]['decode'];
+                        }
+                        if ($matches[1] == 'OK') {
+                            $value['crypt'] = $value['text'];
+                            $value['text'] = Mircryption::decode($matches[2], $key);
+                        } elseif ($matches[1] == 'CC') {
+                            $value['crypt'] = $value['text'];
+                            $value['text'] = Ccryption::decode($matches[2], $key);
+                        }
+                    }
+                }
                 if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
                     if ($matches[1] === 'ACTION') {
                         $value['text'] = $matches[2];
@@ -184,6 +223,18 @@ class Hades
     public function useInput($input)
     {
         if (substr($input, 0, 1) !== '/') {
+            if (
+                empty($_SESSION['crypt'][$_SESSION['channel']]['method']) === false
+                &&
+                empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
+            ) {
+                $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
+                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'mirc') {
+                    $input = '+OK ' . Mircryption::encode($input, $key);
+                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'cc') {
+                    $input = '+CC ' . Ccryption::encode($input, $key);
+                }
+            }
             $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
@@ -200,14 +251,12 @@ class Hades
     public function doAction($action, $param)
     {
         $action = strtolower($action);
+        $param = trim($param);
         $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
         switch ($action) {
             case 'exit':
             case 'logout':
                 return ['action' => 'logout'];
-                break;
-            case 'load':
-                return $this->getActions()->control('load', $data);
                 break;
             case 'me':
                 return $this->getActions()->me($_SESSION['channel'], $param);
@@ -230,15 +279,42 @@ class Hades
                     return $this->getActions()->part($param);
                 }
                 break;
-            case 'cputemp':
-                return $this->getActions()->control('cputemp', $data);
+            case 'topic':
+                $this->getActions()->topic($_SESSION['channel'], $param);
+                Cerberus::msleep(2000);
+                $status = $this->getDb()->getStatus(482);
+                return $status;
                 break;
-            case 'temp':
-                return $this->getActions()->control('temp', $data);
+            case 'crypt':
+                $params = explode(' ', $param);
+                if (strtolower($params[0]) == 'unset') {
+                    unset($_SESSION['crypt'][$_SESSION['channel']]);
+                } elseif (strtolower($params[0]) == 'set') {
+                    if (strtolower($params[1]) == 'encode') {
+                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
+                    } elseif (strtolower($params[1]) == 'decode') {
+                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
+                    } else {
+                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);
+                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[1]);
+                    }
+                } else {
+                    $_SESSION['crypt'][$_SESSION['channel']]['method'] = trim($params[0]);
+                }
                 break;
             default:
-                return null;
+                return $this->getActions()->control($action, $data);
+                break;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        $status = $this->getDb()->getStatus();
+        return json_encode($status);
     }
 
     /**
