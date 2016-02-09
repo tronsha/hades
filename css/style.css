@@ -232,6 +232,7 @@ h1 {
 }
 
 .chat iframe,
+.chat video,
 .chat img {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;

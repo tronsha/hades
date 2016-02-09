@@ -204,6 +204,7 @@ class Hades
                 }
                 $value['text'] = $formatter->irc2html($value['text']);
                 $value['text'] = preg_replace('/https?:\/\/\S+\.(?:png|jpg|jpeg|gif)(\?\S+)?/i', '<img src="$0" alt="$0">', $value['text']);
+                $value['text'] = preg_replace('/https?:\/\/\S+\.(?:mp4)(\?\S+)?/i', '<video controls><source src="$0" type="video/mp4"></video>', $value['text']);
                 $value['text'] = preg_replace('/(?:https:\/\/youtu.be\/)(.+)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https:\/\/www.youtube.com\/watch\?(?:\S*?)?v\=([^\?&=]+)(?:\S*)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https?:\/\/jsfiddle.net\/([^\.\s]+)/i', '<iframe class="jsfiddle" src="//jsfiddle.net/$1embedded/" frameborder="0" allowfullscreen></iframe>', $value['text']);
