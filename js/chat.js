@@ -216,11 +216,12 @@ jQuery(document).ready(function () {
                 $.each(json, function (index, data) {
                     $infobox.append('<div class="whisper-container"><div class="whisper">' + data.channel + '</div></div>');
                 });
-                $('.join').on('click', function () {
+                $('.whisper').on('click', function () {
                     var whisper = $(this).text();
                     setChannel(whisper);
                     $title.text(whisper + ' - Hades');
                     $channel.text(whisper);
+                    $topic.text('');
                     $infobox.fadeOut(500, function () {
                         $overlay.fadeOut(500, function () {
                             $input.focus();
@@ -400,13 +401,12 @@ jQuery(document).ready(function () {
                     channel: channel
                 }
             }).done(function (json) {
-                if (json !== null) {
-                    if (json[0].topic !== undefined) {
-                        $topic.html(json[0].topic);
-                    } else {
-                        $topic.html('');
-                    }
+                if (json !== null && json[0] !== undefined && json[0].topic !== undefined) {
+                    $topic.html(json[0].topic);
+                } else {
+                    $topic.html('');
                 }
+
             });
         }
     }
