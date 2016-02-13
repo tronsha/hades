@@ -436,6 +436,9 @@ jQuery(document).ready(function () {
      * @param text
      */
     function responseStatus(json) {
+        if (json.status === undefined) {
+            return false;
+        }
         $('#dialog').html('<p></p>');
         $('#dialog p').text(json.text);
         $('#dialog').dialog({
