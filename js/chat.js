@@ -16,6 +16,7 @@ jQuery(document).ready(function () {
     var $logoutButton = $('#logout-button');
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
+    var $optionbox = $('#optionbox');
 
     var history = [];
     var historyCount = 0;
@@ -239,6 +240,15 @@ jQuery(document).ready(function () {
      *
      */
     $optionButton.click(function () {
+        $overlay.fadeIn(500, function () {
+            $optionbox.fadeIn(500);
+        });
+    });
+
+    /**
+     *
+     */
+    $optionButton.click(function () {
         // TODO
     });
 
@@ -274,7 +284,14 @@ jQuery(document).ready(function () {
      *
      */
     $overlay.click(function () {
-        $infobox.fadeOut(500, function () {
+        var $box = false;
+        if ($infobox.css('display') == 'block') {
+            $box = $infobox;
+        }
+        if ($optionbox.css('display') == 'block') {
+            $box = $optionbox;
+        }
+        $box.fadeOut(500, function () {
             $overlay.fadeOut(500, function () {
                 $input.focus();
             });

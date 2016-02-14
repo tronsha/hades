@@ -182,7 +182,6 @@ h1 {
 
 #whisper-button,
 #media-button,
-#option-button,
 #info-button {
     display: none;
 }
@@ -266,6 +265,7 @@ h1 {
     z-index: 1000;
 }
 
+.optionbox,
 .infobox {
     background: #CCCCCC;
     border: 6px ridge #888888;
@@ -284,6 +284,7 @@ h1 {
     z-index: 1100;
 }
 
+.optionbox h2,
 .infobox h2 {
     background: linear-gradient(#630031, #CCCCCC) repeat scroll 0% 0% #630031;
     color: #FFFFFF;

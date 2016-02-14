@@ -33,7 +33,7 @@ $_SESSION['last'] = 0;
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body class="theme-default">
+<body class="theme-one">
 <div class="chat">
     <h1>Hades</h1>
     <div class="title">
@@ -62,6 +62,9 @@ $_SESSION['last'] = 0;
 </div>
 <div id="overlay" class="overlay"></div>
 <div id="infobox" class="infobox"></div>
+<div id="optionbox" class="optionbox">
+    <div><h2>Options</h2></div>
+</div>
 <div id="dialog"></div>
 <script src="js/jquery.js" type="application/javascript"></script>
 <script src="js/jquery-ui.js" type="application/javascript"></script>
