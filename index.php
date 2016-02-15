@@ -64,6 +64,9 @@ $_SESSION['last'] = 0;
 <div id="infobox" class="infobox"></div>
 <div id="optionbox" class="optionbox">
     <div><h2>Options</h2></div>
+    <div style="color: #FFFFFF; padding: 20px;">
+        <input id="autoscroll" type="checkbox" checked style="margin-right: 10px;"><label for="autoscroll">Autoscroll</label>
+    </div>
 </div>
 <div id="dialog"></div>
 <script src="js/jquery.js" type="application/javascript"></script>

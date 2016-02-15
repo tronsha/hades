@@ -601,6 +601,19 @@ jQuery(document).ready(function () {
         return '';
     });
 
+    /**
+     *
+     */
+    $('body').on('click', '#autoscroll', function() {
+        var $this = $(this);
+        if ($this.prop('checked') == false) {
+            autoscroll = false;
+        } else {
+            autoscroll = true;
+        }
+        console.log(autoscroll);
+    });
+
 });
 
 var autoscroll = true;
