@@ -604,14 +604,21 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '#autoscroll', function() {
+    $('body').on('change', '#theme-one, #theme-two', function() {
         var $this = $(this);
-        if ($this.prop('checked') == false) {
-            autoscroll = false;
-        } else {
-            autoscroll = true;
+        if ($this.prop('checked') === true) {
+            $('body').attr('class', '').addClass('theme-' + $this.attr('value'));
         }
-        console.log(autoscroll);
+    });
+
+    /**
+     *
+     */
+    $('body').on('change', '#autoscroll-enable, #autoscroll-disable', function() {
+        var $this = $(this);
+        if ($this.prop('checked') === true) {
+            autoscroll = $this.attr('value') === 'true';
+        }
     });
 
 });

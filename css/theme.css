@@ -8,6 +8,7 @@
 
 .theme-default .infobox .whisper,
 .theme-default .infobox .join,
+.theme-default .optionbox,
 .theme-default .chat .title,
 .theme-default .chat .output > #output > p > .text,
 .theme-default .chat .output > #output > p > .time,
@@ -56,6 +57,7 @@
 
 .theme-one .infobox .whisper,
 .theme-one .infobox .join,
+.theme-one .optionbox,
 .theme-one .chat .title,
 .theme-one .chat .output > #output > p > .text,
 .theme-one .chat .output > #output > p > .time,
@@ -111,6 +113,7 @@
 
 .theme-two .infobox .whisper,
 .theme-two .infobox .join,
+.theme-two .optionbox,
 .theme-two .chat .title,
 .theme-two .chat .output > #output > p > .text,
 .theme-two .chat .output > #output > p > .time,

@@ -64,8 +64,18 @@ $_SESSION['last'] = 0;
 <div id="infobox" class="infobox"></div>
 <div id="optionbox" class="optionbox">
     <div><h2>Options</h2></div>
-    <div style="color: #FFFFFF; padding: 20px;">
-        <input id="autoscroll" type="checkbox" checked style="margin-right: 10px;"><label for="autoscroll">Autoscroll</label>
+    <div style="padding: 20px;">
+        <fieldset>
+            <legend style="padding: 0 10px;">Theme</legend>
+            <input id="theme-one" name="theme" type="radio" value="one" style="margin-right: 10px;" checked><label for="theme-one">one</label>
+            <input id="theme-two" name="theme" type="radio" value="two" style="margin-right: 10px;"><label for="theme-two">two</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend style="padding: 0 10px;">Autoscroll</legend>
+            <input id="autoscroll-enable" name="autoscroll" type="radio" value="true" style="margin-right: 10px;" checked><label for="autoscroll-enable">enable</label>
+            <input id="autoscroll-disable" name="autoscroll" type="radio" value="false" style="margin-right: 10px;"><label for="autoscroll-disable">disable</label>
+        </fieldset>
     </div>
 </div>
 <div id="dialog"></div>
