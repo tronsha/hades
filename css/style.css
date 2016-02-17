@@ -340,6 +340,29 @@ h1 {
     top: 2px;
 }
 
+.optionbox fieldset {
+    margin: 10px;
+    padding: 15px;
+}
+
+.optionbox fieldset legend {
+    padding: 0 10px;
+}
+
+.optionbox ul {
+    margin: 0;
+    padding: 0;
+}
+
+.optionbox ul li {
+    display: block;
+    line-height: 20px;
+}
+
+.optionbox input {
+    margin-right: 10px;
+}
+
 @media (max-width: 480px) {
 
     .chat {
