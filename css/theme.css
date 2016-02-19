@@ -93,6 +93,10 @@
     background: #000000;
 }
 
+.theme-one .infobox .close {
+    color: #FFFFFF;
+}
+
 .theme-one .infobox .whisper-container,
 .theme-one .infobox .join-container {
     border: 1px dotted #036052;
@@ -147,6 +151,10 @@
 .theme-two .chat .title,
 .theme-two .chat .output {
     background: #FFFFFF;
+}
+
+.theme-two .infobox .close {
+    color: #000000;
 }
 
 .theme-two .infobox .whisper-container,
