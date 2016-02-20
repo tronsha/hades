@@ -33,7 +33,7 @@ $_SESSION['last'] = 0;
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body class="theme-one">
+<body class="theme-dark">
 <div class="chat">
     <h1>Hades</h1>
     <div class="title">
@@ -67,8 +67,8 @@ $_SESSION['last'] = 0;
     <fieldset>
         <legend>Theme</legend>
         <ul>
-            <li><input id="theme-one" name="theme" type="radio" value="one" checked><label for="theme-one">Dark Theme</label></li>
-            <li><input id="theme-two" name="theme" type="radio" value="two"><label for="theme-two">Light Theme</label></li>
+            <li><input id="theme-dark" name="theme" type="radio" value="dark" checked><label for="theme-dark">Dark Theme</label></li>
+            <li><input id="theme-light" name="theme" type="radio" value="light"><label for="theme-light">Light Theme</label></li>
         </ul>
     </fieldset>
     <fieldset>

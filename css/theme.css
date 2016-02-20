@@ -48,121 +48,121 @@
 
 /********************************************************/
 
-.theme-one .infobox h2,
-.theme-one .optionbox h2,
-.theme-one .chat h1,
-.theme-one .chat .output > #output > p {
+.theme-dark .infobox h2,
+.theme-dark .optionbox h2,
+.theme-dark .chat h1,
+.theme-dark .chat .output > #output > p {
     color: #036052;
 }
 
-.theme-one .infobox .whisper,
-.theme-one .infobox .join,
-.theme-one .optionbox,
-.theme-one .chat .title,
-.theme-one .chat .output > #output > p > .text,
-.theme-one .chat .output > #output > p > .time,
-.theme-one .chat .output > #output > p > .user {
+.theme-dark .infobox .whisper,
+.theme-dark .infobox .join,
+.theme-dark .optionbox,
+.theme-dark .chat .title,
+.theme-dark .chat .output > #output > p > .text,
+.theme-dark .chat .output > #output > p > .time,
+.theme-dark .chat .output > #output > p > .user {
     color: #8BF6BF;
 }
 
-.theme-one .chat #output .channel,
-.theme-one .chat #output .link {
+.theme-dark .chat #output .channel,
+.theme-dark .chat #output .link {
     color: #B6D8ED;
 }
 
-.theme-one .chat iframe,
-.theme-one .chat img {
+.theme-dark .chat iframe,
+.theme-dark .chat img {
     background-color: rgba(139, 246, 191, 0.1);
 }
 
-.theme-one .infobox h2,
-.theme-one .optionbox h2,
-.theme-one .chat h1 {
+.theme-dark .infobox h2,
+.theme-dark .optionbox h2,
+.theme-dark .chat h1 {
     text-shadow: 1px 1px #8BF6BF;
 }
 
-.theme-one .infobox,
-.theme-one .optionbox,
-.theme-one .infobox .whisper-container,
-.theme-one .infobox .join-container,
-.theme-one .infobox h2,
-.theme-one .optionbox h2,
-.theme-one .chat h1,
-.theme-one .chat .title,
-.theme-one .chat .output {
+.theme-dark .infobox,
+.theme-dark .optionbox,
+.theme-dark .infobox .whisper-container,
+.theme-dark .infobox .join-container,
+.theme-dark .infobox h2,
+.theme-dark .optionbox h2,
+.theme-dark .chat h1,
+.theme-dark .chat .title,
+.theme-dark .chat .output {
     background: #000000;
 }
 
-.theme-one .infobox .close {
+.theme-dark .infobox .close {
     color: #FFFFFF;
 }
 
-.theme-one .infobox .whisper-container,
-.theme-one .infobox .join-container {
+.theme-dark .infobox .whisper-container,
+.theme-dark .infobox .join-container {
     border: 1px dotted #036052;
 }
 
-.theme-one .chat .buttons {
+.theme-dark .chat .buttons {
     color: #FFFFFF;
 }
 
 /********************************************************/
 
-.theme-two .infobox h2,
-.theme-two .optionbox h2,
-.theme-two .chat h1,
-.theme-two .chat .output > #output > p {
+.theme-light .infobox h2,
+.theme-light .optionbox h2,
+.theme-light .chat h1,
+.theme-light .chat .output > #output > p {
     color: #000000;
 }
 
-.theme-two .infobox .whisper,
-.theme-two .infobox .join,
-.theme-two .optionbox,
-.theme-two .chat .title,
-.theme-two .chat .output > #output > p > .text,
-.theme-two .chat .output > #output > p > .time,
-.theme-two .chat .output > #output > p > .user {
+.theme-light .infobox .whisper,
+.theme-light .infobox .join,
+.theme-light .optionbox,
+.theme-light .chat .title,
+.theme-light .chat .output > #output > p > .text,
+.theme-light .chat .output > #output > p > .time,
+.theme-light .chat .output > #output > p > .user {
     color: #600001;
 }
 
-.theme-two .chat #output .channel,
-.theme-two .chat #output .link {
+.theme-light .chat #output .channel,
+.theme-light .chat #output .link {
     color: #ff7f00;
 }
 
-.theme-two .chat iframe,
-.theme-two .chat img {
+.theme-light .chat iframe,
+.theme-light .chat img {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.theme-two .infobox h2,
-.theme-two .optionbox h2,
-.theme-two .chat h1 {
+.theme-light .infobox h2,
+.theme-light .optionbox h2,
+.theme-light .chat h1 {
     text-shadow: 1px 1px #600001;
 }
 
-.theme-two .infobox,
-.theme-two .optionbox,
-.theme-two .infobox .whisper-container,
-.theme-two .infobox .join-container,
-.theme-two .infobox h2,
-.theme-two .optionbox h2,
-.theme-two .chat h1,
-.theme-two .chat .title,
-.theme-two .chat .output {
+.theme-light .infobox,
+.theme-light .optionbox,
+.theme-light .infobox .whisper-container,
+.theme-light .infobox .join-container,
+.theme-light .infobox h2,
+.theme-light .optionbox h2,
+.theme-light .chat h1,
+.theme-light .chat .title,
+.theme-light .chat .output {
     background: #FFFFFF;
 }
 
-.theme-two .infobox .close {
+.theme-light .infobox .close {
     color: #000000;
 }
 
-.theme-two .infobox .whisper-container,
-.theme-two .infobox .join-container {
+.theme-light .infobox .whisper-container,
+.theme-light .infobox .join-container {
     border: 1px dotted #000000;
 }
 
-.theme-two .chat .buttons {
+.theme-light .chat .buttons {
     color: #000000;
 }
 
