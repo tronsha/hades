@@ -341,12 +341,22 @@ h1 {
 }
 
 .optionbox fieldset {
+    border: 1px solid #000000;
+    background: linear-gradient(#052B2D, #000000) repeat 0% 0% #052B2D;
+    border-radius: 10px;
+    color: #FFFFFF;
     margin: 10px;
     padding: 15px;
 }
 
 .optionbox fieldset legend {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
     padding: 0 10px;
+    position: relative;
+    text-align: center;
+    top: 20px;
 }
 
 .optionbox ul {
