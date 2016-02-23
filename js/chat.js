@@ -604,7 +604,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('change', '#theme-dark, #theme-light', function() {
+    $('body').on('change', '#theme-default, #theme-dark, #theme-light', function() {
         var $this = $(this);
         if ($this.prop('checked') === true) {
             $('body').attr('class', '').addClass('theme-' + $this.attr('value'));

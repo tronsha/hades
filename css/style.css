@@ -48,7 +48,6 @@ h1 {
 }
 
 .login {
-    background: #FFFFFF;
     border-radius: 16px;
     left: 50%;
     max-width: 90%;
@@ -101,19 +100,20 @@ h1 {
 }
 
 .chat h1 {
+    background: #052B2D;
     font-weight: lighter;
-    text-shadow: 1px 1px #052B2D;
     height: 36px;
     left: 0;
     letter-spacing: 1px;
     position: absolute;
     right: 0;
+    text-shadow: 1px 1px #630031;
     top: 0;
 }
 
 .chat .title {
-    background: #000000;
-    border-bottom: 1px dotted #333333;
+    background: #052B2D;
+    border-bottom: 1px dotted #630031;
     color: #CCCCCC;
     height: 24px;
     left: 0;
@@ -126,7 +126,7 @@ h1 {
 }
 
 .chat .output {
-    background: linear-gradient(#000000, #052B2D) repeat fixed 0% 0% #000000;
+    background: #052B2D;
     bottom: 36px;
     left: 0;
     overflow: hidden;
