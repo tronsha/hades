@@ -267,7 +267,13 @@ class Hades
                 return $this->getActions()->nick($param);
                 break;
             case 'join':
-                return $this->getActions()->join($param);
+                $join = $this->getActions()->join($param);
+                Cerberus::msleep(2000);
+                $status = $this->getDb()->getStatus(477);
+                if ($status !== null) {
+                    return $status;
+                }
+                return $join;
                 break;
             case 'part':
                 $param = trim($param);
@@ -284,7 +290,7 @@ class Hades
             case 'topic':
                 $this->getActions()->topic($_SESSION['channel'], $param);
                 Cerberus::msleep(2000);
-                $status = $this->getDb()->getStatus(482);
+                $status = $this->getDb()->getStatus([482, 442]);
                 return $status;
                 break;
             case 'crypt':
