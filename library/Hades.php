@@ -267,25 +267,14 @@ class Hades
                 return $this->getActions()->nick($param);
                 break;
             case 'join':
-                $join = $this->getActions()->join($param);
-                Cerberus::msleep(2000);
-                $status = $this->getDb()->getStatus(477);
-                if ($status !== null) {
-                    return $status;
-                }
-                return $join;
+                return $this->doJoin($param);
                 break;
             case 'part':
-                $param = trim($param);
-                if (empty($param) === true) {
-                    $param = $_SESSION['channel'];
-                }
-                if ($param == $_SESSION['channel']) {
-                    $_SESSION['channel'] = null;
-                }
-                if ($param !== null) {
-                    return $this->getActions()->part($param);
-                }
+                return $this->doPart($param);
+                break;
+            case 'hop':
+                $result = $this->doPart();
+                return $this->doJoin($result['channel']);
                 break;
             case 'topic':
                 $this->getActions()->topic($_SESSION['channel'], $param);
@@ -313,6 +302,39 @@ class Hades
             default:
                 return $this->getActions()->control($action, $data);
                 break;
+        }
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function doJoin($param)
+    {
+        $join = $this->getActions()->join($param);
+        Cerberus::msleep(2000);
+        $status = $this->getDb()->getStatus(477);
+        if ($status !== null) {
+            return $status;
+        }
+        return $join;
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function doPart($param)
+    {
+        $param = trim($param);
+        if (empty($param) === true) {
+            $param = $_SESSION['channel'];
+        }
+        if ($param == $_SESSION['channel']) {
+            $_SESSION['channel'] = null;
+        }
+        if ($param !== null) {
+            return $this->getActions()->part($param);
         }
     }
 
