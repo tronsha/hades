@@ -252,7 +252,7 @@ class Hades
      */
     public function doAction($action, $param)
     {
-        $control = new Control($this->getDb(), $this->getActions());
+        $actions = new Control($this->getDb(), $this->getActions());
         $action = strtolower($action);
         $param = trim($param);
         $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
@@ -268,36 +268,19 @@ class Hades
                 return $this->getActions()->nick($param);
                 break;
             case 'join':
-                return $control->doJoin($param);
+                return $actions->doJoin($param);
                 break;
             case 'part':
-                return $control->doPart($param);
+                return $actions->doPart($param);
                 break;
             case 'hop':
-                return $control->doHop($param);
+                return $actions->doHop($param);
                 break;
             case 'topic':
-                $this->getActions()->topic($_SESSION['channel'], $param);
-                Cerberus::msleep(2000);
-                $status = $this->getDb()->getStatus([482, 442]);
-                return $status;
+                return $actions->doTopic($param);
                 break;
             case 'crypt':
-                $params = explode(' ', $param);
-                if (strtolower($params[0]) == 'unset') {
-                    unset($_SESSION['crypt'][$_SESSION['channel']]);
-                } elseif (strtolower($params[0]) == 'set') {
-                    if (strtolower($params[1]) == 'encode') {
-                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
-                    } elseif (strtolower($params[1]) == 'decode') {
-                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
-                    } else {
-                        $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);
-                        $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[1]);
-                    }
-                } else {
-                    $_SESSION['crypt'][$_SESSION['channel']]['method'] = trim($params[0]);
-                }
+                $actions->doCrypt($param);
                 break;
             default:
                 return $this->getActions()->control($action, $data);

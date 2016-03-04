@@ -4,8 +4,6 @@ namespace Hades;
 
 use Cerberus\Cerberus;
 use Cerberus\Action;
-use Cerberus\Mircryption;
-use Cerberus\Ccryption;
 
 /**
  * Class Control
@@ -83,5 +81,39 @@ class Control
     {
         $result = $this->doPart($param);
         return $this->doJoin($result['channel']);
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function doTopic($param)
+    {
+        $this->getActions()->topic($_SESSION['channel'], $param);
+        Cerberus::msleep(2000);
+        $status = $this->getDb()->getStatus([482, 442]);
+        return $status;
+    }
+
+    /**
+     * @param string $param
+     */
+    public function doCrypt($param)
+    {
+        $params = explode(' ', $param);
+        if (strtolower($params[0]) == 'unset') {
+            unset($_SESSION['crypt'][$_SESSION['channel']]);
+        } elseif (strtolower($params[0]) == 'set') {
+            if (strtolower($params[1]) == 'encode') {
+                $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
+            } elseif (strtolower($params[1]) == 'decode') {
+                $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
+            } else {
+                $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);
+                $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[1]);
+            }
+        } else {
+            $_SESSION['crypt'][$_SESSION['channel']]['method'] = trim($params[0]);
+        }
     }
 }
