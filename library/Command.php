@@ -3,7 +3,6 @@
 namespace Hades;
 
 use Cerberus\Cerberus;
-use Cerberus\Action;
 
 /**
  * Class Command
@@ -109,7 +108,7 @@ class Command
     {
         $this->getActions()->topic($_SESSION['channel'], $param);
         Cerberus::msleep(2000);
-        $status = $this->getDb()->getStatus([482, 442]);
+        $status = $this->getDb()->getStatus([482, 442, 403]);
         return $status;
     }
 

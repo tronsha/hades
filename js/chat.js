@@ -480,6 +480,38 @@ jQuery(document).ready(function () {
 
     /**
      *
+     * @param text
+     */
+    function invitedToJoin(json) {
+        $('#dialog').html('<p></p>');
+        $('#dialog p').text(json.text);
+        $('#dialog').dialog({
+            title: json.status,
+            resizable: false,
+            buttons: {
+                'Join': function() {
+                    joinChannel(json.data.channel);
+                    $(this).dialog('close');
+                    $input.focus();
+                },
+                'Ignore': function() {
+                    $(this).dialog('close');
+                    $input.focus();
+                }
+            },
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
+            }
+        });
+    }
+
+    /**
+     *
      */
     setInterval(function () {
         $.ajax({
@@ -490,8 +522,12 @@ jQuery(document).ready(function () {
                 action: 'getstatus'
             }
         }).done(function (json) {
-            if (json !== null) {
-                responseStatus(json);
+            if (json !== null && json.status !== undefined) {
+                if (json.status == 'INVITE') {
+                    invitedToJoin(json);
+                } else {
+                    responseStatus(json);
+                }
             }
         });
     }, 3000);
