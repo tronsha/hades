@@ -252,7 +252,7 @@ class Hades
      */
     public function doAction($action, $param)
     {
-        $actions = new Control($this->getDb(), $this->getActions());
+        $command = new Command($this->getActions(), $this->getDb());
         $action = strtolower($action);
         $param = trim($param);
         $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
@@ -262,25 +262,25 @@ class Hades
                 return ['action' => 'logout'];
                 break;
             case 'me':
-                return $this->getActions()->me($_SESSION['channel'], $param);
+                return $command->me($param);
                 break;
             case 'nick':
-                return $this->getActions()->nick($param);
+                return $command->nick($param);
                 break;
             case 'join':
-                return $actions->doJoin($param);
+                return $command->join($param);
                 break;
             case 'part':
-                return $actions->doPart($param);
+                return $command->part($param);
                 break;
             case 'hop':
-                return $actions->doHop($param);
+                return $command->hop($param);
                 break;
             case 'topic':
-                return $actions->doTopic($param);
+                return $command->topic($param);
                 break;
             case 'crypt':
-                $actions->doCrypt($param);
+                return $command->crypt($param);
                 break;
             default:
                 return $this->getActions()->control($action, $data);

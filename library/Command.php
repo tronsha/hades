@@ -6,19 +6,19 @@ use Cerberus\Cerberus;
 use Cerberus\Action;
 
 /**
- * Class Control
+ * Class Command
  * @package Hades
  * @author Stefan Hüsges
  * @link https://github.com/tronsha/hades Project on GitHub
  * @link https://github.com/tronsha/cerberus Cerberus Project on GitHub
  * @license http://www.gnu.org/licenses/gpl-3.0 GNU General Public License
  */
-class Control
+class Command
 {
     protected $db =  null;
     protected $action = null;
 
-    public function __construct($db, $action)
+    public function __construct($action, $db)
     {
         $this->db = $db;
         $this->action = $action;
@@ -44,7 +44,25 @@ class Control
      * @param string $param
      * @return mixed
      */
-    public function doJoin($param)
+    public function me($param)
+    {
+        return $this->getActions()->me($_SESSION['channel'], $param);
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function nick($param)
+    {
+        return $this->getActions()->nick($param);
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function join($param)
     {
         $join = $this->getActions()->join($param);
         Cerberus::msleep(2000);
@@ -59,7 +77,7 @@ class Control
      * @param string $param
      * @return mixed
      */
-    public function doPart($param)
+    public function part($param)
     {
         $param = trim($param);
         if (empty($param) === true) {
@@ -77,17 +95,17 @@ class Control
      * @param string $param
      * @return mixed
      */
-    public function doHop($param)
+    public function hop($param)
     {
-        $result = $this->doPart($param);
-        return $this->doJoin($result['channel']);
+        $result = $this->part($param);
+        return $this->join($result['channel']);
     }
 
     /**
      * @param string $param
      * @return mixed
      */
-    public function doTopic($param)
+    public function topic($param)
     {
         $this->getActions()->topic($_SESSION['channel'], $param);
         Cerberus::msleep(2000);
@@ -98,7 +116,7 @@ class Control
     /**
      * @param string $param
      */
-    public function doCrypt($param)
+    public function crypt($param)
     {
         $params = explode(' ', $param);
         if (strtolower($params[0]) == 'unset') {
