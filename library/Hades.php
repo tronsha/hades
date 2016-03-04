@@ -252,6 +252,7 @@ class Hades
      */
     public function doAction($action, $param)
     {
+        $control = new Control($this->getDb(), $this->getActions());
         $action = strtolower($action);
         $param = trim($param);
         $data = json_encode(['channel' => $_SESSION['channel'], 'param' => $param]);
@@ -267,14 +268,13 @@ class Hades
                 return $this->getActions()->nick($param);
                 break;
             case 'join':
-                return $this->doJoin($param);
+                return $control->doJoin($param);
                 break;
             case 'part':
-                return $this->doPart($param);
+                return $control->doPart($param);
                 break;
             case 'hop':
-                $result = $this->doPart();
-                return $this->doJoin($result['channel']);
+                return $control->doHop($param);
                 break;
             case 'topic':
                 $this->getActions()->topic($_SESSION['channel'], $param);
@@ -302,39 +302,6 @@ class Hades
             default:
                 return $this->getActions()->control($action, $data);
                 break;
-        }
-    }
-
-    /**
-     * @param string $param
-     * @return mixed
-     */
-    public function doJoin($param)
-    {
-        $join = $this->getActions()->join($param);
-        Cerberus::msleep(2000);
-        $status = $this->getDb()->getStatus(477);
-        if ($status !== null) {
-            return $status;
-        }
-        return $join;
-    }
-
-    /**
-     * @param string $param
-     * @return mixed
-     */
-    public function doPart($param)
-    {
-        $param = trim($param);
-        if (empty($param) === true) {
-            $param = $_SESSION['channel'];
-        }
-        if ($param == $_SESSION['channel']) {
-            $_SESSION['channel'] = null;
-        }
-        if ($param !== null) {
-            return $this->getActions()->part($param);
         }
     }
 
