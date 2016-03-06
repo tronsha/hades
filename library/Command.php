@@ -104,6 +104,17 @@ class Command
      * @param string $param
      * @return mixed
      */
+    public function invite($param)
+    {
+        $param = trim($param);
+        list($nick, $channel) = explode(' ', $param);
+        return $this->getActions()->invite($channel, $nick);
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
     public function topic($param)
     {
         $this->getActions()->topic($_SESSION['channel'], $param);

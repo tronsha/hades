@@ -276,6 +276,9 @@ class Hades
             case 'hop':
                 return $command->hop($param);
                 break;
+            case 'invite':
+                return $command->invite($param);
+                break;
             case 'topic':
                 return $command->topic($param);
                 break;
