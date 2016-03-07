@@ -107,7 +107,16 @@ class Command
     public function invite($param)
     {
         $param = trim($param);
-        list($nick, $channel) = explode(' ', $param);
+        if (empty($param) === true) {
+            return false;
+        }
+        $params = explode(' ', $param);
+        $nick = $params[0];
+        if (count($params) === 1) {
+            $channel = $_SESSION['channel'];
+        } else {
+            $channel = $params[1];
+        }
         return $this->getActions()->invite($channel, $nick);
     }
 
