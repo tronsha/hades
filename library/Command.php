@@ -117,7 +117,12 @@ class Command
         } else {
             $channel = $params[1];
         }
-        return $this->getActions()->invite($channel, $nick);
+        $invite = $this->getActions()->invite($channel, $nick);
+        $status = $this->getDb()->getStatus([443, 442, 403]);
+        if ($status !== null) {
+            return $status;
+        }
+        return $invite;
     }
 
     /**
@@ -126,10 +131,13 @@ class Command
      */
     public function topic($param)
     {
-        $this->getActions()->topic($_SESSION['channel'], $param);
+        $topic = $this->getActions()->topic($_SESSION['channel'], $param);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([482, 442, 403]);
-        return $status;
+        if ($status !== null) {
+            return $status;
+        }
+        return $topic;
     }
 
     /**
