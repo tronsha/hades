@@ -434,7 +434,7 @@ jQuery(document).ready(function () {
      */
     function response(json) {
         if (json.action === 'join') {
-            var channel = json.channel;
+            var channel = json.channel[0];
             setChannel(channel);
             $title.text(channel + ' - Hades');
             $channel.text(channel);
