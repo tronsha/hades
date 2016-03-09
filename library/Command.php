@@ -65,7 +65,7 @@ class Command
     {
         $join = $this->getActions()->join($param);
         Cerberus::msleep(2000);
-        $status = $this->getDb()->getStatus(477);
+        $status = $this->getDb()->getStatus([475, 477]);
         if ($status !== null) {
             return $status;
         }
