@@ -129,6 +129,31 @@ class Command
      * @param string $param
      * @return mixed
      */
+    public function op($param)
+    {
+        $param = trim($param);
+        if (empty($param) === true) {
+            $op = $this->getActions()->op($_SESSION['channel']);
+        } else {
+            $params = explode(' ', $param);
+            $count = count($params);
+            if ($count === 1) {
+                $op = $this->getActions()->op($params[0]);
+            } elseif ($count === 2) {
+                $op = $this->getActions()->op($params[0], $params[1]);
+            } elseif ($count >= 3) {
+                for ($i = 1; $i < $count; $i++) {
+                    $op = $this->getActions()->op($params[0], $params[$i]);
+                }
+            }
+        }
+        return $op;
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
     public function topic($param)
     {
         $topic = $this->getActions()->topic($_SESSION['channel'], $param);
