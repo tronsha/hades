@@ -54,7 +54,13 @@ class Command
      */
     public function nick($param)
     {
-        return $this->getActions()->nick($param);
+        $nick = $this->getActions()->nick($param);
+        Cerberus::msleep(2000);
+        $status = $this->getDb()->getStatus([432, 433]);
+        if ($status !== null) {
+            return $status;
+        }
+        return $nick;
     }
 
     /**
@@ -174,6 +180,7 @@ class Command
     {
         list ($channel, $user, $comment) = explode(' ', trim($param), 3);
         $kick = $this->getActions()->kick($channel, $user, $comment);
+        Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([401, 442, 482]);
         if ($status !== null) {
             return $status;
