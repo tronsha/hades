@@ -118,7 +118,7 @@ class Command
             $channel = $params[1];
         }
         $invite = $this->getActions()->invite($channel, $nick);
-        $status = $this->getDb()->getStatus([443, 442, 403]);
+        $status = $this->getDb()->getStatus([403, 442, 443]);
         if ($status !== null) {
             return $status;
         }
@@ -170,11 +170,26 @@ class Command
      * @param string $param
      * @return mixed
      */
+    public function kick($param)
+    {
+        list ($channel, $user, $comment) = explode(' ', trim($param), 3);
+        $kick = $this->getActions()->kick($channel, $user, $comment);
+        $status = $this->getDb()->getStatus([401, 442, 482]);
+        if ($status !== null) {
+            return $status;
+        }
+        return $kick;
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
     public function topic($param)
     {
         $topic = $this->getActions()->topic($_SESSION['channel'], $param);
         Cerberus::msleep(2000);
-        $status = $this->getDb()->getStatus([482, 442, 403]);
+        $status = $this->getDb()->getStatus([403, 442, 482]);
         if ($status !== null) {
             return $status;
         }
