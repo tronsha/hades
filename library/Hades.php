@@ -282,6 +282,9 @@ class Hades
             case 'op':
                 return $command->op($param);
                 break;
+            case 'deop':
+                return $command->deop($param);
+                break;
             case 'topic':
                 return $command->topic($param);
                 break;

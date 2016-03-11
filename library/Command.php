@@ -139,15 +139,31 @@ class Command
             $count = count($params);
             if ($count === 1) {
                 $op = $this->getActions()->op($params[0]);
-            } elseif ($count === 2) {
-                $op = $this->getActions()->op($params[0], $params[1]);
-            } elseif ($count >= 3) {
+            } elseif ($count >= 2) {
                 for ($i = 1; $i < $count; $i++) {
-                    $op = $this->getActions()->op($params[0], $params[$i]);
+                    $op[] = $this->getActions()->op($params[0], $params[$i]);
                 }
             }
         }
         return $op;
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
+    public function deop($param)
+    {
+        $params = explode(' ', trim($param));
+        $count = count($params);
+        if ($count === 1) {
+            return false;
+        } elseif ($count >= 2) {
+            for ($i = 1; $i < $count; $i++) {
+                $deop[] = $this->getActions()->deop($params[0], $params[$i]);
+            }
+        }
+        return $deop;
     }
 
     /**
