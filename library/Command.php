@@ -178,7 +178,7 @@ class Command
      */
     public function kick($param)
     {
-        list ($channel, $user, $comment) = explode(' ', trim($param), 3);
+        list($channel, $user, $comment) = explode(' ', trim($param), 3);
         $kick = $this->getActions()->kick($channel, $user, $comment);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([401, 442, 482]);

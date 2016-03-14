@@ -30,5 +30,4 @@ class Formatter extends FormatterHtml
 
         return $text;
     }
-
 }

@@ -37,5 +37,5 @@ if ($hades->isLoggedin() === false) {
 } elseif (isset($_POST['action']) && $_POST['action'] == 'logout') {
     echo $hades->logout();
 } else {
-    echo json_encode(NULL);
+    echo json_encode(null);
 }
