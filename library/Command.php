@@ -88,7 +88,7 @@ class Command
         if (empty($param) === true) {
             $param = $_SESSION['channel'];
         }
-        if ($param == $_SESSION['channel']) {
+        if ($param === $_SESSION['channel']) {
             $_SESSION['channel'] = null;
         }
         if ($param !== null) {
@@ -209,12 +209,12 @@ class Command
     public function crypt($param)
     {
         $params = explode(' ', $param);
-        if (strtolower($params[0]) == 'unset') {
+        if (strtolower($params[0]) === 'unset') {
             unset($_SESSION['crypt'][$_SESSION['channel']]);
-        } elseif (strtolower($params[0]) == 'set') {
-            if (strtolower($params[1]) == 'encode') {
+        } elseif (strtolower($params[0]) === 'set') {
+            if (strtolower($params[1]) === 'encode') {
                 $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
-            } elseif (strtolower($params[1]) == 'decode') {
+            } elseif (strtolower($params[1]) === 'decode') {
                 $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
             } else {
                 $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);

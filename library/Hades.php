@@ -2,10 +2,10 @@
 
 namespace Hades;
 
-use Cerberus\Cerberus;
 use Cerberus\Action;
-use Cerberus\Mircryption;
 use Cerberus\Ccryption;
+use Cerberus\Cerberus;
+use Cerberus\Mircryption;
 
 /**
  * Class Hades
@@ -173,24 +173,24 @@ class Hades
                         (
                             empty($_SESSION['crypt'][$_SESSION['channel']]['decode']) === false
                             &&
-                            $value['direction'] == '<'
+                            $value['direction'] === '<'
                         )
                         ||
                         (
                             empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
                             &&
-                            $value['direction'] == '>'
+                            $value['direction'] === '>'
                         )
                     ) {
-                        if ($value['direction'] == '>') {
+                        if ($value['direction'] === '>') {
                             $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
                         } else {
                             $key = $_SESSION['crypt'][$_SESSION['channel']]['decode'];
                         }
-                        if ($matches[1] == 'OK') {
+                        if ($matches[1] === 'OK') {
                             $value['crypt'] = $value['text'];
                             $value['text'] = Mircryption::decode($matches[2], $key);
-                        } elseif ($matches[1] == 'CC') {
+                        } elseif ($matches[1] === 'CC') {
                             $value['crypt'] = $value['text'];
                             $value['text'] = Ccryption::decode($matches[2], $key);
                         }
@@ -231,9 +231,9 @@ class Hades
                 empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
             ) {
                 $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
-                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'mirc') {
+                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] === 'mirc') {
                     $input = '+OK ' . Mircryption::encode($input, $key);
-                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] == 'cc') {
+                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] === 'cc') {
                     $input = '+CC ' . Ccryption::encode($input, $key);
                 }
             }
