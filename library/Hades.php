@@ -24,6 +24,7 @@ use Cerberus\Action;
 use Cerberus\Ccryption;
 use Cerberus\Cerberus;
 use Cerberus\Mircryption;
+use Cerberus\Translate;
 
 /**
  * Class Hades
@@ -39,6 +40,7 @@ class Hades
     protected $config = null;
     protected $db = null;
     protected $action = null;
+    protected $translate = null;
 
     /**
      *
@@ -51,6 +53,18 @@ class Hades
         $this->db = new Db($this->config['db']);
         $this->db->connect();
         $this->action = new Action(null, $this->db);
+        $this->translate = new Translate();
+        $this->translate->setLanguage('de');
+        $this->translate->setTranslations(
+            [
+                'de' => [
+                    'Login' => 'Anmelden',
+                    'Username' => 'Benutzer',
+                    'Password' => 'Passwort',
+                    'Submit' => 'Senden',
+                ]
+            ]
+        );
     }
 
     /**
@@ -351,5 +365,16 @@ class Hades
         }
 
         return json_encode(true);
+    }
+
+    /**
+     * @param string $text
+     * @param array $array
+     * @param mixed $lang
+     * @return string
+     */
+    public function __($text, $array = [], $lang = null)
+    {
+        return $this->translate->__($text, $array, $lang);
     }
 }
