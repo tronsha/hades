@@ -55,16 +55,7 @@ class Hades
         $this->action = new Action(null, $this->db);
         $this->translate = new Translate();
         $this->translate->setLanguage('de');
-        $this->translate->setTranslations(
-            [
-                'de' => [
-                    'Login' => 'Anmelden',
-                    'Username' => 'Benutzer',
-                    'Password' => 'Passwort',
-                    'Submit' => 'Senden',
-                ]
-            ]
-        );
+        $this->translate->loadTranslationFile('frontend');
     }
 
     /**
