@@ -54,12 +54,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </head>
 <body>
 <div class="login">
-    <h1><?php echo $hades->__('Login'); ?></h1>
+    <h1><?php echo $hades->__('login'); ?></h1>
     <div>
         <form action="./login.php" method="post">
-            <input name="username" placeholder="<?php echo $hades->__('Username'); ?>" type="text">
-            <input name="password" placeholder="<?php echo $hades->__('Password'); ?>" type="password">
-            <input type="submit" value="<?php echo $hades->__('Submit'); ?>">
+            <input name="username" placeholder="<?php echo $hades->__('username'); ?>" type="text">
+            <input name="password" placeholder="<?php echo $hades->__('password'); ?>" type="password">
+            <input type="submit" value="<?php echo $hades->__('submit'); ?>">
         </form>
     </div>
 </div>

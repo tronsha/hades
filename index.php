@@ -81,20 +81,20 @@ $_SESSION['last'] = 0;
 <div id="overlay" class="overlay"></div>
 <div id="infobox" class="infobox"></div>
 <div id="optionbox" class="optionbox">
-    <div><h2>Options</h2></div>
+    <div><h2><?php echo $hades->__('options'); ?></h2></div>
     <fieldset>
-        <legend>Theme</legend>
+        <legend><?php echo $hades->__('theme'); ?></legend>
         <ul>
-            <li><input id="theme-default" name="theme" type="radio" value="default" checked><label for="theme-default">Default Theme</label></li>
-            <li><input id="theme-dark" name="theme" type="radio" value="dark"><label for="theme-dark">Dark Theme</label></li>
-            <li><input id="theme-light" name="theme" type="radio" value="light"><label for="theme-light">Light Theme</label></li>
+            <li><input id="theme-default" name="theme" type="radio" value="default" checked><label for="theme-default"><?php echo $hades->__('default theme'); ?></label></li>
+            <li><input id="theme-dark" name="theme" type="radio" value="dark"><label for="theme-dark"><?php echo $hades->__('dark theme'); ?></label></li>
+            <li><input id="theme-light" name="theme" type="radio" value="light"><label for="theme-light"><?php echo $hades->__('light theme'); ?></label></li>
         </ul>
     </fieldset>
     <fieldset>
-        <legend>Autoscroll</legend>
+        <legend><?php echo $hades->__('autoscroll'); ?></legend>
         <ul>
-            <li><input id="autoscroll-enable" name="autoscroll" type="radio" value="true" checked><label for="autoscroll-enable">Enable</label></li>
-            <li><input id="autoscroll-disable" name="autoscroll" type="radio" value="false"><label for="autoscroll-disable">Disable</label></li>
+            <li><input id="autoscroll-enable" name="autoscroll" type="radio" value="true" checked><label for="autoscroll-enable"><?php echo $hades->__('enable'); ?></label></li>
+            <li><input id="autoscroll-disable" name="autoscroll" type="radio" value="false"><label for="autoscroll-disable"><?php echo $hades->__('disable'); ?></label></li>
         </ul>
     </fieldset>
 </div>
