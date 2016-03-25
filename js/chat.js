@@ -361,7 +361,6 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
-                console.log(json);
             }
         });
     }
@@ -607,7 +606,6 @@ jQuery(document).ready(function () {
                 action: 'isrunning'
             }
         }).done(function (json) {
-            console.log(json);
             if (json === false && $infobox.css('display') !== 'block') {
                 $infobox.find('div').remove();
                 $infobox.append('<div class="info">Chat is disconnected...</div>');
