@@ -606,12 +606,12 @@ jQuery(document).ready(function () {
                 action: 'isrunning'
             }
         }).done(function (json) {
-            if (json === false && $infobox.css('display') !== 'block') {
-                $infobox.find('div').remove();
-                $infobox.append('<div class="info">Chat is disconnected...</div>');
-                $overlay.fadeIn(500, function () {
-                    $infobox.fadeIn(500);
-                });
+            if (json === false ) {
+                $('#connection > .fa-flash').css('display', 'none');
+                $('#connection > .fa-refresh').css('display', '');
+            } else {
+                $('#connection > .fa-flash').css('display', '');
+                $('#connection > .fa-refresh').css('display', 'none');
             }
         });
     }, 120000);
