@@ -17,6 +17,7 @@ jQuery(document).ready(function () {
     var $overlay = $('#overlay');
     var $infobox = $('#infobox');
     var $optionbox = $('#optionbox');
+    var $connection = $('#connection');
 
     var history = [];
     var historyCount = 0;
@@ -615,6 +616,13 @@ jQuery(document).ready(function () {
             }
         });
     }, 120000);
+
+    /**
+     *
+     */
+    $('body').on('click', '#connection > .fa-refresh', function() {
+        location.reload(true);
+    });
 
     /**
      *
