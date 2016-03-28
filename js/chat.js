@@ -608,19 +608,19 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json === false ) {
-                $('#connection > .fa-flash').css('display', 'none');
-                $('#connection > .fa-refresh').css('display', '');
+                $connection.children('.fa-flash').css('display', 'none');
+                $connection.children('.fa-refresh').css('display', '');
             } else {
-                $('#connection > .fa-flash').css('display', '');
-                $('#connection > .fa-refresh').css('display', 'none');
+                $connection.children('.fa-flash').css('display', '');
+                $connection.children('.fa-refresh').css('display', 'none');
             }
         });
-    }, 120000);
+    }, 12000);
 
     /**
      *
      */
-    $('body').on('click', '#connection > .fa-refresh', function() {
+    $connection.on('click', '.fa-refresh', function() {
         location.reload(true);
     });
 
