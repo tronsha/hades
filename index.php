@@ -46,10 +46,7 @@ $_SESSION['last'] = 0;
     <title><?php echo isset($_SESSION['channel']) ? $_SESSION['channel'] . ' - Hades' : 'Chat - Hades'; ?></title>
     <meta name="description" content="Hades, master of Cerberus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" rel="stylesheet" type="text/css">
 </head>
 <body class="theme-default">
 <div class="chat">
@@ -103,8 +100,6 @@ $_SESSION['last'] = 0;
     </fieldset>
 </div>
 <div id="dialog"></div>
-<script src="js/jquery.js" type="application/javascript"></script>
-<script src="js/jquery-ui.js" type="application/javascript"></script>
-<script src="js/chat.js" type="application/javascript"></script>
+<script src="js/script.min.js" type="application/javascript"></script>
 </body>
 </html>

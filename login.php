@@ -47,10 +47,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <title>Login - Hades</title>
     <meta name="description" content="Hades, master of Cerberus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="js/jquery.js"></script>
-    <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="login">
