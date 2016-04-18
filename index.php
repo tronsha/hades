@@ -60,6 +60,7 @@ $_SESSION['last'] = 0;
         <div class="scrollto"></div>
     </div>
     <div class="input">
+        <span class="menu"></span>
         <input id="input" placeholder="$">
     </div>
     <div class="buttons">

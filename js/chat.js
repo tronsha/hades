@@ -680,6 +680,24 @@ jQuery(document).ready(function () {
         }
     });
 
+    /**
+     *
+     */
+    $('.input').hover(
+        function () {
+            var $menu = $('.input > .menu');
+            $menu.css('height', 'auto');
+            var height = $menu.height() + 20;
+            $menu.css('height', '0');
+            //$menu.animate({padding: '10px 20px', height: height}, 100);
+        },
+        function () {
+            var $menu = $('.input > .menu');
+            //$menu.animate({height: 0, padding: '0px 20px'}, 100);
+        }
+
+    );
+
 });
 
 var autoscroll = true;
