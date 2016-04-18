@@ -1,14 +1,13 @@
 /********************************************************/
 
-.theme-default .infobox h2,
-.theme-default .optionbox h2,
+.theme-default .box h2,
 .theme-default .chat h1,
 .theme-default .chat .output > #output > p {
 }
 
-.theme-default .infobox .whisper,
-.theme-default .infobox .join,
-.theme-default .optionbox,
+.theme-default .box .whisper,
+.theme-default .box .join,
+.theme-default .box,
 .theme-default .chat .title,
 .theme-default .chat .output > #output > p > .text,
 .theme-default .chat .output > #output > p > .time,
@@ -23,24 +22,21 @@
 .theme-default .chat img {
 }
 
-.theme-default .infobox h2,
-.theme-default .optionbox h2,
+.theme-default .box h2,
 .theme-default .chat h1 {
 }
 
-.theme-default .infobox,
-.theme-default .optionbox,
-.theme-default .infobox .whisper-container,
-.theme-default .infobox .join-container,
-.theme-default .infobox h2,
-.theme-default .optionbox h2,
+.theme-default .box,
+.theme-default .box .whisper-container,
+.theme-default .box .join-container,
+.theme-default .box h2,
 .theme-default .chat h1,
 .theme-default .chat .title,
 .theme-default .chat .output {
 }
 
-.theme-default .infobox .whisper-container,
-.theme-default .infobox .join-container {
+.theme-default .box .whisper-container,
+.theme-default .box .join-container {
 }
 
 .theme-default .chat .buttons {
@@ -48,16 +44,15 @@
 
 /********************************************************/
 
-.theme-dark .infobox h2,
-.theme-dark .optionbox h2,
+.theme-dark .box h2,
 .theme-dark .chat h1,
 .theme-dark .chat .output > #output > p {
     color: #036052;
 }
 
-.theme-dark .infobox .whisper,
-.theme-dark .infobox .join,
-.theme-dark .optionbox fieldset,
+.theme-dark .box .whisper,
+.theme-dark .box .join,
+.theme-dark .box fieldset,
 .theme-dark .chat .title,
 .theme-dark .chat .output > #output > p > .text,
 .theme-dark .chat .output > #output > p > .time,
@@ -75,32 +70,29 @@
     background-color: rgba(139, 246, 191, 0.1);
 }
 
-.theme-dark .infobox h2,
-.theme-dark .optionbox h2,
+.theme-dark .box h2,
 .theme-dark .chat h1 {
     text-shadow: 1px 1px #8BF6BF;
 }
 
-.theme-dark .infobox,
-.theme-dark .optionbox,
-.theme-dark .infobox .whisper-container,
-.theme-dark .infobox .join-container,
-.theme-dark .optionbox fieldset,
-.theme-dark .infobox h2,
-.theme-dark .optionbox h2,
+.theme-dark .box,
+.theme-dark .box .whisper-container,
+.theme-dark .box .join-container,
+.theme-dark .box fieldset,
+.theme-dark .box h2,
 .theme-dark .chat h1,
 .theme-dark .chat .title,
 .theme-dark .chat .output {
     background: #000000;
 }
 
-.theme-dark .infobox .close {
+.theme-dark .box .close {
     color: #FFFFFF;
 }
 
-.theme-dark .infobox .whisper-container,
-.theme-dark .infobox .join-container,
-.theme-dark .optionbox fieldset {
+.theme-dark .box .whisper-container,
+.theme-dark .box .join-container,
+.theme-dark .box fieldset {
     border: 1px dotted #036052;
 }
 
@@ -108,7 +100,7 @@
     color: #FFFFFF;
 }
 
-.theme-dark .optionbox fieldset legend {
+.theme-dark .box fieldset legend {
     font-size: medium;
     font-weight: normal;
     margin-bottom: 0;
@@ -118,16 +110,15 @@
 
 /********************************************************/
 
-.theme-light .infobox h2,
-.theme-light .optionbox h2,
+.theme-light .box h2,
 .theme-light .chat h1,
 .theme-light .chat .output > #output > p {
     color: #000000;
 }
 
-.theme-light .infobox .whisper,
-.theme-light .infobox .join,
-.theme-light .optionbox fieldset,
+.theme-light .box .whisper,
+.theme-light .box .join,
+.theme-light .box fieldset,
 .theme-light .chat .title,
 .theme-light .chat .output > #output > p > .text,
 .theme-light .chat .output > #output > p > .time,
@@ -145,32 +136,29 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.theme-light .infobox h2,
-.theme-light .optionbox h2,
+.theme-light .box h2,
 .theme-light .chat h1 {
     text-shadow: 1px 1px #600001;
 }
 
-.theme-light .infobox,
-.theme-light .optionbox,
-.theme-light .infobox .whisper-container,
-.theme-light .infobox .join-container,
-.theme-light .optionbox fieldset,
-.theme-light .infobox h2,
-.theme-light .optionbox h2,
+.theme-light .box,
+.theme-light .box .whisper-container,
+.theme-light .box .join-container,
+.theme-light .box fieldset,
+.theme-light .box h2,
 .theme-light .chat h1,
 .theme-light .chat .title,
 .theme-light .chat .output {
     background: #FFFFFF;
 }
 
-.theme-light .infobox .close {
+.theme-light .box .close {
     color: #000000;
 }
 
-.theme-light .infobox .whisper-container,
-.theme-light .infobox .join-container,
-.theme-light .optionbox fieldset {
+.theme-light .box .whisper-container,
+.theme-light .box .join-container,
+.theme-light .box fieldset {
     border: 1px dotted #000000;
 }
 
@@ -178,7 +166,7 @@
     color: #000000;
 }
 
-.theme-light .optionbox fieldset legend {
+.theme-light .box fieldset legend {
     font-size: medium;
     font-weight: normal;
     margin-bottom: 0;

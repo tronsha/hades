@@ -81,8 +81,8 @@ $_SESSION['last'] = 0;
     </div>
 </div>
 <div id="overlay" class="overlay"></div>
-<div id="infobox" class="infobox"></div>
-<div id="optionbox" class="optionbox">
+<div id="infobox" class="box"></div>
+<div id="optionbox" class="box">
     <div><h2><?php echo $hades->__('options'); ?></h2></div>
     <fieldset>
         <legend><?php echo $hades->__('theme'); ?></legend>

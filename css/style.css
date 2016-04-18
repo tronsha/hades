@@ -294,8 +294,7 @@ h1 {
     z-index: 1000;
 }
 
-.optionbox,
-.infobox {
+.box {
     background: #CCCCCC;
     border: 6px ridge #888888;
     display: none;
@@ -313,8 +312,7 @@ h1 {
     z-index: 1100;
 }
 
-.optionbox h2,
-.infobox h2 {
+.box h2 {
     background: linear-gradient(#630031, #CCCCCC) repeat scroll 0% 0% #630031;
     color: #FFFFFF;
     font-size: 48px;
@@ -325,8 +323,8 @@ h1 {
     text-shadow: 1px 1px #052B2D;
 }
 
-.infobox .whisper-container,
-.infobox .join-container {
+.box .whisper-container,
+.box .join-container {
     background: linear-gradient(#052B2D, #000000) repeat 0% 0% #052B2D;
     border-radius: 10px;
     color: #FFFFFF;
@@ -339,8 +337,8 @@ h1 {
     letter-spacing: 4px;
 }
 
-.infobox .whisper,
-.infobox .join {
+.box .whisper,
+.box .join {
     display: block;
     font-size: 24px;
     font-weight: bolder;
@@ -350,7 +348,7 @@ h1 {
     width: 100%;
 }
 
-.infobox .info {
+.box .info {
     background: #000000;
     bottom: 0;
     color: #FF7F00;
@@ -363,13 +361,13 @@ h1 {
     top: 0;
 }
 
-.infobox .close {
+.box .close {
     position: absolute;
     right: 2px;
     top: 2px;
 }
 
-.optionbox fieldset {
+.box fieldset {
     border: 1px solid #000000;
     background: linear-gradient(#052B2D, #000000) repeat 0% 0% #052B2D;
     border-radius: 10px;
@@ -378,7 +376,7 @@ h1 {
     padding: 15px;
 }
 
-.optionbox fieldset legend {
+.box fieldset legend {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -388,17 +386,17 @@ h1 {
     top: 20px;
 }
 
-.optionbox ul {
+.box ul {
     margin: 0;
     padding: 0;
 }
 
-.optionbox ul li {
+.box ul li {
     display: block;
     line-height: 20px;
 }
 
-.optionbox input {
+.box input {
     margin-right: 10px;
 }
 
