@@ -184,12 +184,22 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '.infobox .close', function() {
+    $('body').on('click', '.box .close', function() {
         event.preventDefault();
         var $this = $(this);
         var $parent = $this.parent('div');
         partChannel($parent.text());
         $parent.remove();
+    });
+
+    /**
+     *
+     */
+    $('body').on('click', '.box .whois', function() {
+        event.preventDefault();
+        var $this = $(this);
+        var $parent = $this.parent('div');
+        whoisUser($parent.text());
     });
 
     /**
@@ -208,7 +218,7 @@ jQuery(document).ready(function () {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>User at ' + $channel.text() + '</h2></div>');
                 $.each(json, function (index, data) {
-                    $infobox.append('<div class="whisper-container"><div class="whisper">' + data.username + '</div></div>');
+                    $infobox.append('<div class="whisper-container"><div class="whisper">' + data.username + '</div><span class="whois" title="whois"><i class="fa fa-question"></i></span></div>');
                 });
             }
         });
@@ -261,13 +271,6 @@ jQuery(document).ready(function () {
         $overlay.fadeIn(500, function () {
             $optionbox.fadeIn(500);
         });
-    });
-
-    /**
-     *
-     */
-    $optionButton.click(function () {
-        // TODO
     });
 
     /**
@@ -379,6 +382,26 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
+            }
+        });
+    }
+
+    /**
+     *
+     * @param user
+     */
+    function whoisUser(user) {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'setinput',
+                text: '/whois ' + user
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                response(json);
             }
         });
     }
