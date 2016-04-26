@@ -497,7 +497,7 @@ jQuery(document).ready(function () {
             return false;
         }
         $('#dialog').html('<p></p>');
-        $('#dialog p').text(json.text);
+        $('#dialog p').html(json.text);
         $('#dialog').dialog({
             title: json.status,
             resizable: false,
