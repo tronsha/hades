@@ -516,6 +516,12 @@ jQuery(document).ready(function () {
                 duration: 500
             }
         });
+        if (json.status === "470") {
+            var channel = json.data.forwarding;
+            setChannel(channel);
+            $title.text(channel + ' - Hades');
+            $channel.text(channel);
+        }
     }
 
     /**
