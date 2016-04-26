@@ -86,8 +86,9 @@
     background: #000000;
 }
 
+.theme-dark .box .whois,
 .theme-dark .box .close {
-    color: #FFFFFF;
+    color: #8BF6BF;
 }
 
 .theme-dark .box .whisper-container,
@@ -152,8 +153,9 @@
     background: #FFFFFF;
 }
 
+.theme-light .box .whois,
 .theme-light .box .close {
-    color: #000000;
+    color: #600001;
 }
 
 .theme-light .box .whisper-container,

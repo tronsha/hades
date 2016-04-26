@@ -363,6 +363,7 @@ h1 {
 
 .box .whois,
 .box .close {
+    color: #CCCCCC;
     position: absolute;
     right: 2px;
     top: 2px;
