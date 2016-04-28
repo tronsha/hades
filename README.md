@@ -3,7 +3,7 @@ Hades
 
 Frontend for [Cerberus][4] to use it as Browser [IRC client][5].
 
-Version: 0.4 Alpha Development
+Version: 0.4 Alpha
 
 ## Recommended Browser
 
