@@ -414,10 +414,10 @@ h1 {
 
 }
 
-@media (min-width: 481px) {
+@media (min-width: 600px) {
 
     .ui-dialog {
-        min-width: 400px;
+        min-width: 520px;
     }
 
 }
