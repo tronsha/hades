@@ -1,15 +1,21 @@
 #!/bin/sh
+rm ./fonts/*
+cp ./vendor/fonts-master/apache/calligraffitti/*.ttf ./fonts/
+cp ./vendor/fonts-master/ufl/ubuntumono/*.ttf ./fonts/
+cp ./vendor/font-awesome-4.6.*/fonts/* ./fonts/
+rm ./css/images/*
+cp ./vendor/jquery-ui-1.11.*/images/* ./css/images/
 echo "" > ./tmp.css
-cat ./css/normalize.css >> ./tmp.css
-cat ./css/font-awesome.css >> ./tmp.css
-cat ./css/jquery-ui.css >> ./tmp.css
-cat ./css/style.css >> ./tmp.css
-cat ./css/theme.css >> ./tmp.css
-java -jar ./yuicompressor-2.4.8.jar --type css ./tmp.css -o ./css/style.min.css
+cat ./vendor/normalize.css-4.1.*/normalize.css >> ./tmp.css
+cat ./vendor/font-awesome-4.6.*/css/font-awesome.css >> ./tmp.css
+cat ./vendor/jquery-ui-1.11.*/jquery-ui.css >> ./tmp.css
+cat ./src/css/style.css >> ./tmp.css
+cat ./src/css/theme.css >> ./tmp.css
+java -jar ./vendor/yuicompressor-2.4.8.jar --type css ./tmp.css -o ./css/style.min.css
 rm ./tmp.css
 echo "" > ./tmp.js
-cat ./js/jquery.js >> ./tmp.js
-cat ./js/jquery-ui.js >> ./tmp.js
-cat ./js/chat.js >> ./tmp.js
-java -jar ./yuicompressor-2.4.8.jar --type js ./tmp.js -o ./js/script.min.js
+cat ./vendor/jquery-dist-1.12.*/dist/jquery.js >> ./tmp.js
+cat ./vendor/jquery-ui-1.11.*/jquery-ui.js >> ./tmp.js
+cat ./src/js/chat.js >> ./tmp.js
+java -jar ./vendor/yuicompressor-2.4.8.jar --type js ./tmp.js -o ./js/script.min.js
 rm ./tmp.js
