@@ -61,6 +61,19 @@ class Command
      * @param string $param
      * @return mixed
      */
+    public function msg($param)
+    {
+        $params = explode(' ', $param, 2);
+        if (count($params) === 2) {
+            return $this->getActions()->privmsg($params[0], $params[1]);
+        }
+        return false;
+    }
+
+    /**
+     * @param string $param
+     * @return mixed
+     */
     public function me($param)
     {
         return $this->getActions()->me($_SESSION['channel'], $param);

@@ -284,6 +284,10 @@ class Hades
             case 'logout':
                 return ['action' => 'logout'];
                 break;
+            case 'msg':
+            case 'privmsg':
+                return $command->msg($param);
+                break;
             case 'me':
                 return $command->me($param);
                 break;
