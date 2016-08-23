@@ -686,7 +686,9 @@ jQuery(document).ready(function () {
      *
      */
     $(window).bind('beforeunload', function () {
-        return '';
+        if ($('.fa-refresh').css('display') === 'none') {
+            return '';
+        }
     });
 
     /**
