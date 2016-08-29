@@ -259,8 +259,8 @@ class Command
     /**
      * @return mixed
      */
-    public function getList()
+    public function channelList()
     {
-        return $this->getActions()->getList();
+        return $this->getActions()->channelList();
     }
 }

@@ -322,7 +322,7 @@ class Hades
                 return $command->crypt($param);
                 break;
             case 'list':
-                return $command->getList();
+                return $command->channelList();
                 break;
             default:
                 return $this->getActions()->control($action, $data);
