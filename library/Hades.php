@@ -321,6 +321,9 @@ class Hades
             case 'crypt':
                 return $command->crypt($param);
                 break;
+            case 'list':
+                return $command->getList();
+                break;
             default:
                 return $this->getActions()->control($action, $data);
                 break;

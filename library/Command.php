@@ -255,4 +255,12 @@ class Command
             $_SESSION['crypt'][$_SESSION['channel']]['method'] = trim($params[0]);
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getList()
+    {
+        return $this->getActions()->getList();
+    }
 }
