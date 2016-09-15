@@ -68,6 +68,7 @@ $_SESSION['last'] = 0;
             <span class="fa fa-flash fa-stack-1x"></span>
             <span class="fa fa-refresh fa-spin fa-stack-1x" style="display: none;"></span>
         </span>
+        <span id="list-button" class="fa fa-list" title="list"></span>
         <span id="channel-button" class="fa fa-comment" title="channel"></span>
         <span id="whisper-button" class="fa fa-comments" title="whisper"></span>
         <span id="user-button" class="fa fa-users" title="user"></span>
