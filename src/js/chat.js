@@ -496,6 +496,10 @@ jQuery(document).ready(function () {
         if (json.status === undefined) {
             return false;
         }
+        if (parseInt(json.status) === 323) {
+            jQuery('#list-button').css('display', 'inline');
+            return null;
+        }
         $('#dialog').html('<p></p>');
         $('#dialog p').html(json.text);
         $('#dialog').dialog({
