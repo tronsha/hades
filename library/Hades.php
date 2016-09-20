@@ -157,6 +157,18 @@ class Hades
     }
 
     /**
+     * @return string
+     */
+    public function getChannellist()
+    {
+        $channelList = $this->getDb()->getChannellist();
+        foreach ($channelList as &$value) {
+            $value['topic'] = htmlentities($value['topic']);
+        }
+        return json_encode($channelList);
+    }
+
+    /**
      * @return bool
      */
     public function isLoggedin()

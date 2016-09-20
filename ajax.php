@@ -50,6 +50,8 @@ if ($hades->isLoggedin() === false) {
     echo $hades->getUser();
 } elseif (isset($_POST['action']) && $_POST['action'] === 'getstatus') {
     echo $hades->getStatus();
+} elseif (isset($_POST['action']) && $_POST['action'] === 'getchannellist') {
+    echo $hades->getChannellist();
 } elseif (isset($_POST['action']) && $_POST['action'] === 'isrunning') {
     echo $hades->isRunning();
 } elseif (isset($_POST['action']) && $_POST['action'] === 'logout') {

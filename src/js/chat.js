@@ -28,6 +28,7 @@ jQuery(document).ready(function () {
     var $channelButton = $('#channel-button');
     var $whisperButton = $('#whisper-button');
     var $userButton = $('#user-button');
+    var $listButton = $('#list-button');
     var $optionButton = $('#option-button');
     var $infoButton = $('#info-button');
     var $logoutButton = $('#logout-button');
@@ -173,7 +174,7 @@ jQuery(document).ready(function () {
                             $input.focus();
                         });
                     });
-                })
+                });
             }
         });
         $overlay.fadeIn(500, function () {
@@ -256,7 +257,7 @@ jQuery(document).ready(function () {
                             $input.focus();
                         });
                     });
-                })
+                });
             }
         });
         $overlay.fadeIn(500, function () {
@@ -270,6 +271,21 @@ jQuery(document).ready(function () {
     $optionButton.click(function () {
         $overlay.fadeIn(500, function () {
             $optionbox.fadeIn(500);
+        });
+    });
+
+    $listButton.click(function () {
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'getchannellist'
+            }
+        }).done(function (json) {
+            if (json !== null) {
+                console.log(json);
+            }
         });
     });
 
