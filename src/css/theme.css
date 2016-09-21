@@ -6,6 +6,7 @@
 }
 
 .theme-default .box .whisper,
+.theme-default .box .channel,
 .theme-default .box .join,
 .theme-default .box,
 .theme-default .chat .title,
@@ -28,6 +29,7 @@
 
 .theme-default .box,
 .theme-default .box .whisper-container,
+.theme-default .box .list-container,
 .theme-default .box .join-container,
 .theme-default .box h2,
 .theme-default .chat h1,
@@ -36,6 +38,7 @@
 }
 
 .theme-default .box .whisper-container,
+.theme-default .box .list-container,
 .theme-default .box .join-container {
 }
 
@@ -51,6 +54,7 @@
 }
 
 .theme-dark .box .whisper,
+.theme-dark .box .channel,
 .theme-dark .box .join,
 .theme-dark .box fieldset,
 .theme-dark .chat .title,
@@ -77,6 +81,7 @@
 
 .theme-dark .box,
 .theme-dark .box .whisper-container,
+.theme-dark .box .list-container,
 .theme-dark .box .join-container,
 .theme-dark .box fieldset,
 .theme-dark .box h2,
@@ -92,6 +97,7 @@
 }
 
 .theme-dark .box .whisper-container,
+.theme-dark .box .list-container,
 .theme-dark .box .join-container,
 .theme-dark .box fieldset {
     border: 1px dotted #036052;
@@ -118,6 +124,7 @@
 }
 
 .theme-light .box .whisper,
+.theme-light .box .channel,
 .theme-light .box .join,
 .theme-light .box fieldset,
 .theme-light .chat .title,
@@ -144,6 +151,7 @@
 
 .theme-light .box,
 .theme-light .box .whisper-container,
+.theme-light .box .list-container,
 .theme-light .box .join-container,
 .theme-light .box fieldset,
 .theme-light .box h2,
@@ -159,6 +167,7 @@
 }
 
 .theme-light .box .whisper-container,
+.theme-light .box .list-container,
 .theme-light .box .join-container,
 .theme-light .box fieldset {
     border: 1px dotted #000000;

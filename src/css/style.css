@@ -325,6 +325,7 @@ h1 {
 }
 
 .box .whisper-container,
+.box .list-container,
 .box .join-container {
     background: linear-gradient(#052B2D, #000000) repeat 0% 0% #052B2D;
     border-radius: 10px;
@@ -339,6 +340,7 @@ h1 {
 }
 
 .box .whisper,
+.box .channel,
 .box .join {
     display: block;
     font-size: 24px;

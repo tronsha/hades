@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '#output .channel', function() {
+    $('body').on('click', '#output .channel, .list-container .channel', function() {
         var channelName = $(this).text();
         $('#dialog').html('<p></p>');
         $('#dialog p').text(channelName);
@@ -284,8 +284,15 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (json !== null) {
-                console.log(json);
+                $infobox.find('div').remove();
+                $infobox.append('<div><h2>Channel List</h2></div>');
+                $.each(json, function (index, data) {
+                    $infobox.append('<div class="list-container"><div class="channel">' + data.channel + '</div></div>');
+                });
             }
+        });
+        $overlay.fadeIn(500, function () {
+            $infobox.fadeIn(500);
         });
     });
 
