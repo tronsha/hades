@@ -275,25 +275,37 @@ jQuery(document).ready(function () {
     });
 
     $listButton.click(function () {
-        $.ajax({
-            url: 'ajax.php',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                action: 'getchannellist'
-            }
-        }).done(function (json) {
-            if (json !== null) {
-                $infobox.find('div').remove();
-                $infobox.append('<div><h2>Channel List</h2></div>');
-                $.each(json, function (index, data) {
-                    $infobox.append('<div class="list-container"><div class="channel">' + data.channel + '</div></div>');
-                });
-            }
-        });
-        $overlay.fadeIn(500, function () {
-            $infobox.fadeIn(500);
-        });
+        if ($listButton.hasClass('fa-file-text')) {
+            $.ajax({
+                url: 'ajax.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'getchannellist'
+                }
+            }).done(function (json) {
+                if (json !== null) {
+                    $infobox.find('div').remove();
+                    $infobox.append('<div><h2>Channel List</h2></div>');
+                    $.each(json, function (index, data) {
+                        $infobox.append('<div class="list-container"><div class="channel">' + data.channel + '</div></div>');
+                    });
+                }
+            });
+            $overlay.fadeIn(500, function () {
+                $infobox.fadeIn(500);
+            });
+        } else if ($listButton.hasClass('fa-file')) {
+            $.ajax({
+                url: 'ajax.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'setinput',
+                    text: '/list'
+                }
+            });
+        }
     });
 
     /**
@@ -520,7 +532,8 @@ jQuery(document).ready(function () {
             return false;
         }
         if (parseInt(json.status) === 323) {
-            jQuery('#list-button').css('display', 'inline');
+            $listButton.removeClass('fa-file');
+            $listButton.addClass('fa-file-text');
             return null;
         }
         $('#dialog').html('<p></p>');

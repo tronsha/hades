@@ -72,7 +72,7 @@ $_SESSION['last'] = 0;
         <span id="whisper-button" class="fa fa-comments" title="whisper"></span>
         <span id="user-button" class="fa fa-users" title="user"></span>
         <span id="media-button" class="fa fa-folder-open" title="media"></span>
-        <span id="list-button" class="fa fa-list" title="list"></span>
+        <span id="list-button" class="fa fa-file" title="list"></span>
         <span id="option-button" class="fa fa-cogs" title="options"></span>
         <span id="info-button" class="fa fa-info" title="info"></span>
         <span id="logout-button" class="fa fa-sign-out" title="logout"></span>
