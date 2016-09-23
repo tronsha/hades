@@ -209,6 +209,10 @@ h1 {
     margin-left: 10px;
 }
 
+.chat .buttons .disabled {
+    opacity: 0.5;
+}
+
 #whisper-button,
 #media-button,
 #info-button {

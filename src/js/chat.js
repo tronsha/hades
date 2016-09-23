@@ -275,6 +275,9 @@ jQuery(document).ready(function () {
     });
 
     $listButton.click(function () {
+        if ($listButton.hasClass('disabled')) {
+            return false;
+        }
         if ($listButton.hasClass('fa-file-text')) {
             $.ajax({
                 url: 'ajax.php',
@@ -305,7 +308,9 @@ jQuery(document).ready(function () {
                     text: '/list'
                 }
             });
+            $listButton.addClass('disabled');
         }
+        return true;
     });
 
     /**
@@ -534,6 +539,11 @@ jQuery(document).ready(function () {
         if (parseInt(json.status) === 323) {
             $listButton.removeClass('fa-file');
             $listButton.addClass('fa-file-text');
+            $listButton.removeClass('disabled');
+            setTimeout(function () {
+                $listButton.removeClass('fa-file-text');
+                $listButton.addClass('fa-file');
+            }, 3600000);
             return null;
         }
         $('#dialog').html('<p></p>');
@@ -562,6 +572,7 @@ jQuery(document).ready(function () {
             $title.text(channel + ' - Hades');
             $channel.text(channel);
         }
+        return true;
     }
 
     /**
