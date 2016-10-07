@@ -202,8 +202,20 @@ class Hades
             krsort($data);
             $data = array_values($data);
             $formatter = new Formatter;
-            foreach ($data as &$value) {
-                if (preg_match("/\+(OK|CC) (.+)/i", $value['text'], $matches)) {
+            foreach ($data as $key => &$value) {
+                if (preg_match('/\+LT ([0-9a-f8]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+))?/i', $value['text'], $matches)) {
+                    if ($matches[2] === 'BEGIN') {
+                        $_SESSION['longtext'][$matches[1]] = [];
+                        unset($data[$key]);
+                    } elseif ($matches[2] === 'PART') {
+                        $_SESSION['longtext'][ $matches[1]][$matches[3]] = $matches[4];
+                        unset($data[$key]);
+                    } elseif ($matches[2] === 'END') {
+                        $value['text'] = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]])));
+                        unset($_SESSION['longtext'][$matches[1]]);
+                    }
+                }
+                if (preg_match('/\+(OK|CC) (.+)/i', $value['text'], $matches)) {
                     if (
                         (
                             empty($_SESSION['crypt'][$_SESSION['channel']]['decode']) === false
@@ -273,7 +285,20 @@ class Hades
                     $input = '+CC ' . Ccryption::encode($input, $key);
                 }
             }
-            $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
+            if (strlen($input) > 256) {
+                $i = 0;
+                $crc = hash('crc32b', $input);
+                $inputGz = gzcompress($input, 9);
+                $inputGz64 = base64_encode($inputGz);
+                $array = explode(' ', trim(chunk_split($inputGz64, 256, ' ')));
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' BEGIN');
+                foreach ($array as $part) {
+                    $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' PART ' . ++$i . ' ' . $part);
+                }
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' END');
+            } else {
+                $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
+            }
         } else {
             preg_match_all('/^\/([a-z]+)(\ (.*))?$/i', $input, $matches, PREG_SET_ORDER);
             $return = $this->doAction($matches[0][1], isset($matches[0][3]) ? $matches[0][3] : null);
