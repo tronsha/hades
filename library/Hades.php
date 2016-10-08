@@ -288,6 +288,7 @@ class Hades
             if (strlen($input) > 256) {
                 $i = 0;
                 $crc = hash('crc32b', $input);
+                $crc = hash('crc32b', $crc . time());
                 $inputGz = gzcompress($input, 9);
                 $inputGz64 = base64_encode($inputGz);
                 $array = explode(' ', trim(chunk_split($inputGz64, 256, ' ')));
