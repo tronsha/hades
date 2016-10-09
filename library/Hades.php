@@ -203,7 +203,7 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as $key => &$value) {
-                if (preg_match('/\+LT ([0-9a-f8]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+))?/i', $value['text'], $matches)) {
+                if (preg_match('/\+LT ([0-9A-Z]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+))?/i', $value['text'], $matches)) {
                     if ($matches[2] === 'BEGIN') {
                         $_SESSION['longtext'][$matches[1]] = [];
                         unset($data[$key]);
@@ -287,16 +287,15 @@ class Hades
             }
             if (strlen($input) > 256) {
                 $i = 0;
-                $crc = hash('crc32b', $input);
-                $crc = hash('crc32b', $crc . time());
+                $uniqid = strtoupper(uniqid(hash('crc32b', $input)));
                 $inputGz = gzcompress($input, 9);
                 $inputGz64 = base64_encode($inputGz);
                 $array = explode(' ', trim(chunk_split($inputGz64, 256, ' ')));
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' BEGIN');
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' BEGIN');
                 foreach ($array as $part) {
-                    $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' PART ' . ++$i . ' ' . $part);
+                    $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' PART ' . ++$i . ' ' . $part);
                 }
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $crc . ' END');
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END');
             } else {
                 $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
             }
