@@ -211,7 +211,12 @@ class Hades
                         $_SESSION['longtext'][ $matches[1]][$matches[3]] = $matches[4];
                         unset($data[$key]);
                     } elseif ($matches[2] === 'END') {
-                        $value['text'] = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]])));
+                        $text = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]])));
+                        if (strtoupper(hash('crc32b', $text)) === substr($matches[1], 0, 8)) {
+                            $value['text'] = $text;
+                        } else {
+                            $value['text'] = print_r($_SESSION['longtext'][$matches[1]], true);
+                        }
                         unset($_SESSION['longtext'][$matches[1]]);
                     }
                 }
