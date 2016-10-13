@@ -131,7 +131,6 @@ class Hades
         foreach ($channel as &$value) {
             $value['topic'] = htmlentities($value['topic']);
         }
-
         return json_encode($channel);
     }
 
@@ -267,7 +266,6 @@ class Hades
                 $value['text'] = preg_replace('/(?![^<]+>)#[^,\s]+/i', '<span class="channel">$0</span>', $value['text']);
             }
         }
-
         return json_encode($data);
     }
 
@@ -388,7 +386,6 @@ class Hades
     public function getBotId()
     {
         $bot = $this->getDb()->getLastBot();
-
         return $bot['id'];
     }
 
@@ -404,7 +401,6 @@ class Hades
         if ((time() - strtotime($bot['ping'])) > 600) {
             return json_encode(false);
         }
-
         return json_encode(true);
     }
 
