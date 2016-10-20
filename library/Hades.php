@@ -256,9 +256,10 @@ class Hades
                 $value['text'] = $formatter->irc2html($value['text']);
                 $value['text'] = preg_replace('/https?:\/\/\S+\.(?:png|jpg|jpeg|gif)(\?\S+)?/i', '<img src="$0" alt="$0">', $value['text']);
                 $value['text'] = preg_replace('/data:image\/[a-z]+\;base64\,[a-zA-Z0-9\+\/]+\=*/i', '<img src="$0">', $value['text']);
+                $value['text'] = preg_replace('/https?:\/\/\S+\.(mp3|wav)(\?\S+)?/i', '<audio controls><source src="$0" type="audio/$1"></audio>', $value['text']);
                 $value['text'] = preg_replace('/data:(audio\/[a-z]+)\;base64\,[a-zA-Z0-9\+\/]+\=*/i', '<audio controls><source src="$0" type="$1"></audio>', $value['text']);
-                $value['text'] = preg_replace('/data:(video\/[a-z]+)\;base64\,[a-zA-Z0-9\+\/]+\=*/i', '<video controls><source src="$0" type="$1"></video>', $value['text']);
                 $value['text'] = preg_replace('/https?:\/\/\S+\.(mp4|ogg)(\?\S+)?/i', '<video controls><source src="$0" type="video/$1"></video>', $value['text']);
+                $value['text'] = preg_replace('/data:(video\/[a-z]+)\;base64\,[a-zA-Z0-9\+\/]+\=*/i', '<video controls><source src="$0" type="$1"></video>', $value['text']);
                 $value['text'] = preg_replace('/(?:https:\/\/youtu.be\/)(.+)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https:\/\/www.youtube.com\/watch\?(?:\S*?)?v\=([^\?&=]+)(?:\S*)/i', '<iframe class="youtube" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $value['text']);
                 $value['text'] = preg_replace('/https?:\/\/vimeo.com\/([0-9]+)(?:\S*)/i', '<iframe src="https://player.vimeo.com/video/$1?byline=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', $value['text']);
