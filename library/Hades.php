@@ -297,11 +297,11 @@ class Hades
                 $inputGz = gzcompress($input, 9);
                 $inputGz64 = base64_encode($inputGz);
                 $array = explode(' ', trim(chunk_split($inputGz64, 256, ' ')));
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' BEGIN');
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' BEGIN', 10);
                 foreach ($array as $part) {
-                    $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' PART ' . ++$i . ' ' . $part);
+                    $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' PART ' . ++$i . ' ' . $part, 10);
                 }
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END');
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END', 10);
             } else {
                 $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
             }
