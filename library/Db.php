@@ -165,7 +165,7 @@ class Db extends BaseDb
                 ->setParameter(1, $this->botId)
                 ->setParameter(2, $channel);
             if ($last === 0) {
-                $qb->setMaxResults(100);
+                $qb->setMaxResults(1000);
             }
             $stmt = $qb->execute();
             return $stmt->fetchAll();

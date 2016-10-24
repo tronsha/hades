@@ -202,7 +202,7 @@ class Hades
             $data = array_values($data);
             $formatter = new Formatter;
             foreach ($data as $key => &$value) {
-                if (preg_match('/\+LT ([0-9A-Z]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+))?/i', $value['text'], $matches)) {
+                if (preg_match('/\+LT ([0-9A-Z]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+)| ([0-9A-Z]+))?/i', $value['text'], $matches)) {
                     if ($matches[2] === 'BEGIN') {
                         $_SESSION['longtext'][$matches[1]] = [];
                         unset($data[$key]);
@@ -211,7 +211,7 @@ class Hades
                         unset($data[$key]);
                     } elseif ($matches[2] === 'END') {
                         $text = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]])));
-                        if (strtoupper(hash('crc32b', $text)) === substr($matches[1], 0, 8)) {
+                        if (strtoupper(hash('crc32b', $text)) === $matches[5]) {
                             $value['text'] = $text;
                         } else {
                             $value['text'] = print_r($_SESSION['longtext'][$matches[1]], true);
@@ -293,7 +293,8 @@ class Hades
             }
             if (strlen($input) > 256) {
                 $i = 0;
-                $uniqid = strtoupper(uniqid(hash('crc32b', $input)));
+                $crc = strtoupper(hash('crc32b', $input));
+                $uniqid = strtoupper(base_convert(uniqid(), 16, 36));
                 $inputGz = gzcompress($input, 9);
                 $inputGz64 = base64_encode($inputGz);
                 $array = explode(' ', trim(chunk_split($inputGz64, 256, ' ')));
@@ -301,7 +302,7 @@ class Hades
                 foreach ($array as $part) {
                     $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' PART ' . ++$i . ' ' . $part, 10);
                 }
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END', 10);
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END ' .  $crc, 10);
             } else {
                 $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
             }
