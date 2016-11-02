@@ -270,11 +270,15 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 8px;
-    box-sizing: content-box;
     display: block;
     padding: 16px;
     margin: 8px 0;
     max-width: 100%;
+}
+
+.chat video,
+.chat audio {
+    box-sizing: content-box;
 }
 
 .chat iframe.youtube {
