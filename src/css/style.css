@@ -276,11 +276,6 @@ h1 {
     max-width: 100%;
 }
 
-.chat video,
-.chat audio {
-    box-sizing: content-box;
-}
-
 .chat iframe.youtube {
     height: 315px;
     width: 560px;
