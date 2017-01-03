@@ -2,7 +2,7 @@
 
 /*
  * Cerberus IRCBot
- * Copyright (C) 2008 - 2016 Stefan Hüsges
+ * Copyright (C) 2008 - 2017 Stefan Hüsges
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -210,7 +210,7 @@ class Hades
                         $_SESSION['longtext'][ $matches[1]][$matches[3]] = $matches[4];
                         unset($data[$key]);
                     } elseif ($matches[2] === 'END') {
-                        $text = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]])));
+                        $text = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]]), true));
                         if (strtoupper(hash('crc32b', $text)) === $matches[5]) {
                             $value['text'] = $text;
                         } else {
@@ -302,7 +302,7 @@ class Hades
                 foreach ($array as $part) {
                     $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' PART ' . ++$i . ' ' . $part, 10);
                 }
-                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END ' .  $crc, 10);
+                $this->getActions()->privmsg($_SESSION['channel'], '+LT ' . $uniqid . ' END ' . $crc, 10);
             } else {
                 $return = $this->getActions()->privmsg($_SESSION['channel'], $input);
             }
