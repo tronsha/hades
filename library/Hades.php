@@ -54,7 +54,7 @@ class Hades
         $this->db->connect();
         $this->action = new Action(null, $this->db);
         $this->translate = new Translate();
-        $this->translate->setLanguage('de');
+        $this->translate->setLanguage(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
         $this->translate->loadTranslationFile('frontend');
     }
 
