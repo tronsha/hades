@@ -47,7 +47,7 @@ class Db extends BaseDb
     public function getHash($mail)
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $stmt = $qb
                 ->select('password')
                 ->from('web')
@@ -68,7 +68,7 @@ class Db extends BaseDb
     public function setSession($mail, $sid)
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->update('web')
                 ->set('sid', '?')
                 ->where('email = ?')
@@ -87,12 +87,12 @@ class Db extends BaseDb
     public function getChannel($channel = null)
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('channel', 'topic')
                 ->from('channel')
                 ->where('bot_id = ?')
                 ->addOrderBy('channel', 'ASC')
-                ->setParameter(0, $this->botId);
+                ->setParameter(0, $this->getBotId());
             if ($channel !== null) {
                 $qb ->andWhere('channel = ?')
                     ->setParameter(1, $channel);
@@ -111,13 +111,13 @@ class Db extends BaseDb
     public function getUser($channel)
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('username')
                 ->from('channel_user')
                 ->where('bot_id = ?')
                 ->andWhere('channel = ?')
                 ->addOrderBy('username', 'ASC')
-                ->setParameter(0, $this->botId)
+                ->setParameter(0, $this->getBotId())
                 ->setParameter(1, $channel);
             $stmt = $qb->execute();
             return $stmt->fetchAll();
@@ -132,12 +132,12 @@ class Db extends BaseDb
     public function getWhisperList()
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('IF(direction = "<", nick, channel) AS channel')
                 ->from('log_privmsg')
                 ->where('bot_id = ?')
                 ->andWhere('SUBSTR(channel, 1, 1) NOT IN ("#", "&")')
-                ->setParameter(0, $this->botId)
+                ->setParameter(0, $this->getBotId())
                 ->groupBy('channel');
             $stmt = $qb->execute();
             return $stmt->fetchAll();
@@ -154,7 +154,7 @@ class Db extends BaseDb
     public function getChannelOutput($last, $channel)
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('id', 'nick AS name', 'text', 'time', 'direction')
                 ->from('log_privmsg')
                 ->where('id > ?')
@@ -162,7 +162,7 @@ class Db extends BaseDb
                 ->andWhere('channel = ?')
                 ->addOrderBy('id', 'DESC')
                 ->setParameter(0, $last)
-                ->setParameter(1, $this->botId)
+                ->setParameter(1, $this->getBotId())
                 ->setParameter(2, $channel);
             if ($last === 0) {
                 $qb->setMaxResults(2000);
@@ -180,7 +180,7 @@ class Db extends BaseDb
     public function getLastBot()
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('id')
                 ->from('bot')
                 ->addOrderBy('id', 'DESC');
@@ -199,11 +199,11 @@ class Db extends BaseDb
     public function getBotData()
     {
         try {
-            $qb = $this->conn->createQueryBuilder();
+            $qb = $this->getConnection()->createQueryBuilder();
             $qb ->select('*')
                 ->from('bot')
                 ->where('id = ?')
-                ->setParameter(0, $this->botId);
+                ->setParameter(0, $this->getBotId());
             $stmt = $qb->execute();
             return $stmt->fetch();
         } catch (\Exception $e) {
