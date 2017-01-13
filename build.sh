@@ -2,12 +2,12 @@
 rm ./fonts/*
 cp ./vendor/googlefonts/apache/calligraffitti/*.ttf ./fonts/
 cp ./vendor/googlefonts/ufl/ubuntumono/*.ttf ./fonts/
-cp ./vendor/font-awesome-4.6.*/fonts/* ./fonts/
+cp ./vendor/font-awesome-4.7.*/fonts/* ./fonts/
 rm ./css/images/*
 cp ./vendor/jquery-ui-1.12.*/images/* ./css/images/
 echo "" > ./tmp.css
-cat ./vendor/normalize.css-4.1.*/normalize.css >> ./tmp.css
-cat ./vendor/font-awesome-4.6.*/css/font-awesome.css >> ./tmp.css
+cat ./vendor/normalize.css-5.0.*/normalize.css >> ./tmp.css
+cat ./vendor/font-awesome-4.7.*/css/font-awesome.css >> ./tmp.css
 cat ./vendor/jquery-ui-1.12.*/jquery-ui.css >> ./tmp.css
 cat ./src/css/style.css >> ./tmp.css
 cat ./src/css/theme.css >> ./tmp.css

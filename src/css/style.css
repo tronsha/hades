@@ -62,6 +62,10 @@ h1 {
     width: 100%;
 }
 
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+}
+
 .login {
     border-radius: 16px;
     left: 50%;
