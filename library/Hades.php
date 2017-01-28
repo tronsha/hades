@@ -21,9 +21,9 @@
 namespace Hades;
 
 use Cerberus\Action;
-use Cerberus\Ccryption;
 use Cerberus\Cerberus;
-use Cerberus\Mircryption;
+use Cerberus\Crypt\Ccryption;
+use Cerberus\Crypt\Mircryption;
 use Cerberus\Translate;
 
 /**
