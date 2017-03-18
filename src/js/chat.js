@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
     var historyCount = 0;
     var historyPos = 0;
 
-    $(document).keyup(function (event) {
+    $(document).on('keyup', function (event) {
         if (event.keyCode == 27) {
             $infobox.fadeOut(500, function () {
                 $overlay.fadeOut(500, function () {
@@ -56,7 +56,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '#output .link', function() {
+    $('body').on('click', '#output .link', function () {
         var webLink = $(this).text();
         $('#dialog').html('<p></p>');
         $('#dialog p').text(webLink);
@@ -64,12 +64,12 @@ jQuery(document).ready(function () {
             title: 'URL',
             resizable: false,
             buttons: {
-                'Open': function() {
+                'Open': function () {
                     window.open(webLink);
                     $(this).dialog('close');
                     $input.focus();
                 },
-                'Cancel': function() {
+                'Cancel': function () {
                     $(this).dialog('close');
                     $input.focus();
                 }
@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '#output .channel, .list-container .channel', function() {
+    $('body').on('click', '#output .channel, .list-container .channel', function () {
         var channelName = $(this).text();
         $('#dialog').html('<p></p>');
         $('#dialog p').text(channelName);
@@ -96,12 +96,12 @@ jQuery(document).ready(function () {
             title: 'Channel',
             resizable: false,
             buttons: {
-                'Join': function() {
+                'Join': function () {
                     joinChannel(channelName);
                     $(this).dialog('close');
                     $input.focus();
                 },
-                'Cancel': function() {
+                'Cancel': function () {
                     $(this).dialog('close');
                     $input.focus();
                 }
@@ -120,7 +120,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $input.keyup(function (event) {
+    $input.on('keyup', function (event) {
         if (event.which == 13) { /* enter */
             event.preventDefault();
             read();
@@ -140,14 +140,14 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $sendButton.click(function () {
+    $sendButton.on('click', function () {
         read();
     });
 
     /**
      *
      */
-    $channelButton.click(function () {
+    $channelButton.on('click', function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -185,7 +185,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '.box .close', function() {
+    $('body').on('click', '.box .close', function () {
         event.preventDefault();
         var $this = $(this);
         var $parent = $this.parent('div');
@@ -196,7 +196,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '.box .whois', function() {
+    $('body').on('click', '.box .whois', function () {
         event.preventDefault();
         var $this = $(this);
         var $parent = $this.parent('div');
@@ -206,7 +206,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $userButton.click(function () {
+    $userButton.on('click', function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -231,7 +231,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $whisperButton.click(function () {
+    $whisperButton.on('click', function () {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -268,13 +268,13 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $optionButton.click(function () {
+    $optionButton.on('click', function () {
         $overlay.fadeIn(500, function () {
             $optionbox.fadeIn(500);
         });
     });
 
-    $listButton.click(function () {
+    $listButton.on('click', function () {
         if ($listButton.hasClass('disabled')) {
             return false;
         }
@@ -316,14 +316,14 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $infoButton.click(function () {
+    $infoButton.on('click', function () {
         // TODO
     });
 
     /**
      *
      */
-    $logoutButton.click(function () {
+    $logoutButton.on('click', function () {
         logout();
     });
 
@@ -344,7 +344,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $overlay.click(function () {
+    $overlay.on('click', function () {
         var $box = false;
         if ($infobox.css('display') == 'block') {
             $box = $infobox;
@@ -552,7 +552,7 @@ jQuery(document).ready(function () {
             title: json.status,
             resizable: false,
             buttons: {
-                'Ok': function() {
+                'Ok': function () {
                     $(this).dialog('close');
                     $input.focus();
                 }
@@ -586,12 +586,12 @@ jQuery(document).ready(function () {
             title: json.status,
             resizable: false,
             buttons: {
-                'Join': function() {
+                'Join': function () {
                     joinChannel(json.data.channel);
                     $(this).dialog('close');
                     $input.focus();
                 },
-                'Ignore': function() {
+                'Ignore': function () {
                     $(this).dialog('close');
                     $input.focus();
                 }
@@ -632,7 +632,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('click', '#output .lock', function() {
+    $('body').on('click', '#output .lock', function () {
         var $this = $(this);
         if ($this.hasClass('fa-lock')) {
             $this.removeClass('fa-lock');
@@ -704,7 +704,7 @@ jQuery(document).ready(function () {
                 action: 'isrunning'
             }
         }).done(function (json) {
-            if (json === false ) {
+            if (json === false) {
                 $connection.children('.fa-flash').css('display', 'none');
                 $connection.children('.fa-refresh').css('display', '');
             } else {
@@ -717,7 +717,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $connection.on('click', '.fa-refresh', function() {
+    $connection.on('click', '.fa-refresh', function () {
         location.reload(true);
     });
 
@@ -736,7 +736,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $(window).bind('beforeunload', function () {
+    $(window).on('beforeunload', function () {
         if ($('.fa-refresh').css('display') === 'none') {
             return '';
         }
@@ -745,7 +745,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('change', '#theme-default, #theme-dark, #theme-light', function() {
+    $('body').on('change', '#theme-default, #theme-dark, #theme-light', function () {
         var $this = $(this);
         if ($this.prop('checked') === true) {
             $('body').attr('class', '').addClass('theme-' + $this.attr('value'));
@@ -755,7 +755,7 @@ jQuery(document).ready(function () {
     /**
      *
      */
-    $('body').on('change', '#autoscroll-enable, #autoscroll-disable', function() {
+    $('body').on('change', '#autoscroll-enable, #autoscroll-disable', function () {
         var $this = $(this);
         if ($this.prop('checked') === true) {
             autoscroll = $this.attr('value') === 'true';
@@ -777,7 +777,6 @@ jQuery(document).ready(function () {
             var $menu = $('.input > .menu');
             //$menu.animate({height: 0, padding: '0px 20px'}, 100);
         }
-
     );
 
 });
