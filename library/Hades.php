@@ -381,6 +381,8 @@ class Hades
     public function getStatus()
     {
         $status = $this->getDb()->getStatus();
+        $formatter = new Formatter;
+        $status['text'] = $formatter->irc2html($status['text']);
         return json_encode($status);
     }
 
