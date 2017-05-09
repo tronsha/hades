@@ -45,6 +45,7 @@ class Formatter extends FormatterHtml
         $text = $this->underline($text);
         $text = $this->bold($text);
         $text = $this->color($text);
+        $text = nl2br($text);
         return $text;
     }
 }
