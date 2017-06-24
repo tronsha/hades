@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
     var historyPos = 0;
 
     $(document).on('keyup', function (event) {
-        if (event.keyCode == 27) {
+        if (27 == event.keyCode) {
             $infobox.fadeOut(500, function () {
                 $overlay.fadeOut(500, function () {
                     $input.focus();
@@ -121,15 +121,15 @@ jQuery(document).ready(function () {
      *
      */
     $input.on('keyup', function (event) {
-        if (event.which == 13) { /* enter */
+        if (13 == event.which) { /* enter */
             event.preventDefault();
             read();
-        } else if (event.keyCode == 38) { /* up arrow */
+        } else if (38 == event.keyCode) { /* up arrow */
             if (historyPos < historyCount) {
                 historyPos++;
                 $input.val(history[historyCount - historyPos]);
             }
-        } else if (event.keyCode == 40) { /* down arrow */
+        } else if (40 == event.keyCode) { /* down arrow */
             if (historyPos > 0) {
                 historyPos--;
                 $input.val(history[historyCount - historyPos]);
@@ -156,7 +156,7 @@ jQuery(document).ready(function () {
                 action: 'getchannel'
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>Channel</h2></div>');
                 $.each(json, function (index, data) {
@@ -215,7 +215,7 @@ jQuery(document).ready(function () {
                 action: 'getuser'
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>User at ' + $channel.text() + '</h2></div>');
                 $.each(json, function (index, data) {
@@ -240,7 +240,7 @@ jQuery(document).ready(function () {
                 action: 'getwhisper'
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 $infobox.find('div').remove();
                 $infobox.append('<div><h2>Whisper User</h2></div>');
                 $.each(json, function (index, data) {
@@ -287,7 +287,7 @@ jQuery(document).ready(function () {
                     action: 'getchannellist'
                 }
             }).done(function (json) {
-                if (json !== null) {
+                if (null !== json) {
                     $infobox.find('div').remove();
                     $infobox.append('<div><h2>Channel List</h2></div>');
                     $.each(json, function (index, data) {
@@ -346,10 +346,10 @@ jQuery(document).ready(function () {
      */
     $overlay.on('click', function () {
         var $box = false;
-        if ($infobox.css('display') == 'block') {
+        if ('block' == $infobox.css('display')) {
             $box = $infobox;
         }
-        if ($optionbox.css('display') == 'block') {
+        if ('block' == $optionbox.css('display')) {
             $box = $optionbox;
         }
         $box.fadeOut(500, function () {
@@ -365,7 +365,7 @@ jQuery(document).ready(function () {
      */
     function read() {
         var input = $input.val();
-        if (input == '') {
+        if ('' == input) {
             return false;
         }
         history[historyCount] = input;
@@ -380,7 +380,7 @@ jQuery(document).ready(function () {
                 text: input
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 response(json);
             }
         });
@@ -401,7 +401,7 @@ jQuery(document).ready(function () {
                 text: '/join ' + channel
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 response(json);
             }
         });
@@ -421,7 +421,7 @@ jQuery(document).ready(function () {
                 text: '/part ' + channel
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
             }
         });
     }
@@ -440,7 +440,7 @@ jQuery(document).ready(function () {
                 text: '/whois ' + user
             }
         }).done(function (json) {
-            if (json !== null) {
+            if (null !== json) {
                 response(json);
             }
         });
@@ -488,7 +488,7 @@ jQuery(document).ready(function () {
      * @param channel
      */
     function setTopic(channel) {
-        if (channel !== '') {
+        if ('' !== channel) {
             $.ajax({
                 url: 'ajax.php',
                 type: 'POST',
@@ -498,7 +498,7 @@ jQuery(document).ready(function () {
                     channel: channel
                 }
             }).done(function (json) {
-                if (json !== null && json[0] !== undefined && json[0].topic !== undefined) {
+                if (null !== json && undefined !== json[0] && undefined !== json[0].topic) {
                     $topic.html(json[0].topic);
                 } else {
                     $topic.html('');
@@ -513,17 +513,17 @@ jQuery(document).ready(function () {
      * @param json
      */
     function response(json) {
-        if (json.action === 'join') {
+        if ('join' === json.action) {
             var channel = json.channel[0];
             setChannel(channel);
             $title.text(channel + ' - Hades');
             $channel.text(channel);
             $topic.text('');
         }
-        if (json.action === 'logout') {
+        if ('logout' === json.action) {
             logout();
         }
-        if (json.type === 'status') {
+        if ('status' === json.type) {
             responseStatus(json);
         }
     }
@@ -533,10 +533,10 @@ jQuery(document).ready(function () {
      * @param text
      */
     function responseStatus(json) {
-        if (json.status === undefined) {
+        if (undefined === json.status) {
             return false;
         }
-        if (parseInt(json.status) === 323) {
+        if (323 === parseInt(json.status)) {
             $listButton.removeClass('fa-file');
             $listButton.addClass('fa-file-text');
             $listButton.removeClass('disabled');
@@ -566,7 +566,7 @@ jQuery(document).ready(function () {
                 duration: 500
             }
         });
-        if (json.status === "470") {
+        if (470 === parseInt(json.status)) {
             var channel = json.data.forwarding;
             setChannel(channel);
             $title.text(channel + ' - Hades');
@@ -619,8 +619,8 @@ jQuery(document).ready(function () {
                 action: 'getstatus'
             }
         }).done(function (json) {
-            if (json !== null && json.status !== undefined) {
-                if (json.status == 'INVITE') {
+            if (null !== json && undefined !== json.status) {
+                if ('INVITE' == json.status) {
                     invitedToJoin(json);
                 } else {
                     responseStatus(json);
@@ -659,22 +659,22 @@ jQuery(document).ready(function () {
                 action: 'getoutput'
             }
         }).done(function (json) {
-            if (json !== null) {
-                if (json.loggedin === false) {
+            if (null !== json) {
+                if (false === json.loggedin) {
                     location.href = 'login.php';
                 } else {
                     $.each(json, function (index, data) {
                         var dateObject = new Date(data.time);
                         var output = '[<span class="time" title="' + dateObject.toLocaleTimeString() + ' / ' + dateObject.toLocaleDateString() + '">' + dateObject.toLocaleTimeString() + '</span>] ';
-                        if (data.crypt != undefined) {
+                        if (undefined !== data.crypt) {
                             output += '<i class="lock fa fa-lock"></i> ';
                         }
-                        if (data.action == 1) {
+                        if (1 == data.action) {
                             output += '<span class="action">' + data.name + ' ' + data.text + '</span>';
                         } else {
-                            output += '&lt;<span class="user" title="' + data.name + '">' + data.name + '</span>&gt; <span class="text"' + (data.crypt !== undefined ? ' style="display: none;"' : '') + '>' + data.text + '</span>';
+                            output += '&lt;<span class="user" title="' + data.name + '">' + data.name + '</span>&gt; <span class="text"' + (undefined !== data.crypt ? ' style="display: none;"' : '') + '>' + data.text + '</span>';
                         }
-                        if (data.crypt !== undefined) {
+                        if (undefined !== data.crypt) {
                             output += '<span class="crypt">' + data.crypt + '</span>';
                         }
                         write(output);
@@ -704,7 +704,7 @@ jQuery(document).ready(function () {
                 action: 'isrunning'
             }
         }).done(function (json) {
-            if (json === false) {
+            if (false === json) {
                 $connection.children('.fa-flash').css('display', 'none');
                 $connection.children('.fa-refresh').css('display', '');
             } else {
@@ -737,7 +737,7 @@ jQuery(document).ready(function () {
      *
      */
     $(window).on('beforeunload', function () {
-        if ($('.fa-refresh').css('display') === 'none') {
+        if ('none' === $('.fa-refresh').css('display')) {
             return '';
         }
     });
@@ -747,7 +747,7 @@ jQuery(document).ready(function () {
      */
     $('body').on('change', '#theme-default, #theme-dark, #theme-light', function () {
         var $this = $(this);
-        if ($this.prop('checked') === true) {
+        if (true === $this.prop('checked')) {
             $('body').attr('class', '').addClass('theme-' + $this.attr('value'));
         }
     });
@@ -757,8 +757,8 @@ jQuery(document).ready(function () {
      */
     $('body').on('change', '#autoscroll-enable, #autoscroll-disable', function () {
         var $this = $(this);
-        if ($this.prop('checked') === true) {
-            autoscroll = $this.attr('value') === 'true';
+        if (true === $this.prop('checked')) {
+            autoscroll = 'true' === $this.attr('value');
         }
     });
 
