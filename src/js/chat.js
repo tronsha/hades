@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
     var historyPos = 0;
 
     $(document).on('keyup', function (event) {
-        if (27 == event.keyCode) {
+        if (27 === event.keyCode) {
             $infobox.fadeOut(500, function () {
                 $overlay.fadeOut(500, function () {
                     $input.focus();
@@ -121,15 +121,15 @@ jQuery(document).ready(function () {
      *
      */
     $input.on('keyup', function (event) {
-        if (13 == event.which) { /* enter */
+        if (13 === event.which) { /* enter */
             event.preventDefault();
             read();
-        } else if (38 == event.keyCode) { /* up arrow */
+        } else if (38 === event.keyCode) { /* up arrow */
             if (historyPos < historyCount) {
                 historyPos++;
                 $input.val(history[historyCount - historyPos]);
             }
-        } else if (40 == event.keyCode) { /* down arrow */
+        } else if (40 === event.keyCode) { /* down arrow */
             if (historyPos > 0) {
                 historyPos--;
                 $input.val(history[historyCount - historyPos]);
@@ -346,10 +346,10 @@ jQuery(document).ready(function () {
      */
     $overlay.on('click', function () {
         var $box = false;
-        if ('block' == $infobox.css('display')) {
+        if ('block' === $infobox.css('display')) {
             $box = $infobox;
         }
-        if ('block' == $optionbox.css('display')) {
+        if ('block' === $optionbox.css('display')) {
             $box = $optionbox;
         }
         $box.fadeOut(500, function () {
@@ -365,7 +365,7 @@ jQuery(document).ready(function () {
      */
     function read() {
         var input = $input.val();
-        if ('' == input) {
+        if ('' === input) {
             return false;
         }
         history[historyCount] = input;
@@ -620,7 +620,7 @@ jQuery(document).ready(function () {
             }
         }).done(function (json) {
             if (null !== json && undefined !== json.status) {
-                if ('INVITE' == json.status) {
+                if ('INVITE' === json.status) {
                     invitedToJoin(json);
                 } else {
                     responseStatus(json);
@@ -669,7 +669,7 @@ jQuery(document).ready(function () {
                         if (undefined !== data.crypt) {
                             output += '<i class="lock fa fa-lock"></i> ';
                         }
-                        if (1 == data.action) {
+                        if (1 === parseInt(data.action)) {
                             output += '<span class="action">' + data.name + ' ' + data.text + '</span>';
                         } else {
                             output += '&lt;<span class="user" title="' + data.name + '">' + data.name + '</span>&gt; <span class="text"' + (undefined !== data.crypt ? ' style="display: none;"' : '') + '>' + data.text + '</span>';
