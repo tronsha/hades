@@ -34,27 +34,27 @@ $hades = new Hades;
 
 if ($hades->isLoggedin() === false) {
     echo json_encode(['loggedin' => false]);
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getoutput') {
+} elseif (true === isset($_POST['action']) && 'getoutput' === $_POST['action']) {
     echo $hades->getOutput();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'setinput') {
+} elseif (true === isset($_POST['action']) && 'setinput' === $_POST['action']) {
     echo $hades->useInput($_POST['text']);
-} elseif (isset($_POST['action']) && $_POST['action'] === 'setchannel') {
+} elseif (true === isset($_POST['action']) && 'setchannel' === $_POST['action']) {
     $hades->setChannel($_POST['channel']);
-} elseif (isset($_POST['action']) && $_POST['action'] === 'gettopic' && isset($_POST['channel'])) {
+} elseif (true === isset($_POST['action']) && 'gettopic' === $_POST['action'] && true === isset($_POST['channel'])) {
     echo $hades->getChannel($_POST['channel']);
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getchannel') {
+} elseif (true === isset($_POST['action']) && 'getchannel' === $_POST['action']) {
     echo $hades->getChannel();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getwhisper') {
+} elseif (true === isset($_POST['action']) && 'getwhisper' === $_POST['action']) {
     echo $hades->getWhisper();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getuser') {
+} elseif (true === isset($_POST['action']) && 'getuser' === $_POST['action']) {
     echo $hades->getUser();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getstatus') {
+} elseif (true === isset($_POST['action']) && 'getstatus' === $_POST['action']) {
     echo $hades->getStatus();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'getchannellist') {
+} elseif (true === isset($_POST['action']) && 'getchannellist' === $_POST['action']) {
     echo $hades->getChannellist();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'isrunning') {
+} elseif (true === isset($_POST['action']) && 'isrunning' === $_POST['action']) {
     echo $hades->isRunning();
-} elseif (isset($_POST['action']) && $_POST['action'] === 'logout') {
+} elseif (true === isset($_POST['action']) && 'logout' === $_POST['action']) {
     echo $hades->logout();
 } else {
     echo json_encode(null);
