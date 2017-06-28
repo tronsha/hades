@@ -94,7 +94,7 @@ class Hades
     public function login($username, $password)
     {
         $hash = $this->getDb()->getHash($username);
-        if (password_verify($password, $hash) === true) {
+        if (true === password_verify($password, $hash)) {
             $_SESSION['username'] = $username;
             $this->getDb()->setSession($_SESSION['username'], session_id());
             header('Location: index.php');
@@ -189,10 +189,10 @@ class Hades
      */
     public function getOutput()
     {
-        if (isset($_SESSION['channel']) === false) {
+        if (false === isset($_SESSION['channel'])) {
             return json_encode(null);
         }
-        if (isset($_SESSION['last']) === false) {
+        if (false === isset($_SESSION['last'])) {
             $_SESSION['last'] = 0;
         }
         $data = $this->getDb()->getChannelOutput($_SESSION['last'], $_SESSION['channel']);
@@ -203,13 +203,13 @@ class Hades
             $formatter = new Formatter;
             foreach ($data as $key => &$value) {
                 if (preg_match('/\+LT ([0-9A-Z]+) (BEGIN|END|PART)(?: ([0-9]+) ([a-zA-Z0-9\+\/\=]+)| ([0-9A-Z]+))?/i', $value['text'], $matches)) {
-                    if ($matches[2] === 'BEGIN') {
+                    if ('BEGIN' === $matches[2]) {
                         $_SESSION['longtext'][$matches[1]] = [];
                         unset($data[$key]);
-                    } elseif ($matches[2] === 'PART') {
+                    } elseif ('PART' === $matches[2]) {
                         $_SESSION['longtext'][ $matches[1]][$matches[3]] = $matches[4];
                         unset($data[$key]);
-                    } elseif ($matches[2] === 'END') {
+                    } elseif ('END' === $matches[2]) {
                         $text = gzuncompress(base64_decode(implode('', $_SESSION['longtext'][$matches[1]]), true));
                         if (strtoupper(hash('crc32b', $text)) === $matches[5]) {
                             $value['text'] = $text;
@@ -222,33 +222,33 @@ class Hades
                 if (preg_match('/\+(OK|CC) (.+)/i', $value['text'], $matches)) {
                     if (
                         (
-                            empty($_SESSION['crypt'][$_SESSION['channel']]['decode']) === false
+                            false === empty($_SESSION['crypt'][$_SESSION['channel']]['decode'])
                             &&
-                            $value['direction'] === '<'
+                            '<' === $value['direction']
                         )
                         ||
                         (
-                            empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
+                            false === empty($_SESSION['crypt'][$_SESSION['channel']]['encode'])
                             &&
-                            $value['direction'] === '>'
+                            '>' === $value['direction']
                         )
                     ) {
-                        if ($value['direction'] === '>') {
+                        if ('>' === $value['direction']) {
                             $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
                         } else {
                             $key = $_SESSION['crypt'][$_SESSION['channel']]['decode'];
                         }
-                        if ($matches[1] === 'OK') {
+                        if ('OK' === $matches[1]) {
                             $value['crypt'] = $value['text'];
                             $value['text'] = Mircryption::decode($matches[2], $key);
-                        } elseif ($matches[1] === 'CC') {
+                        } elseif ('CC' === $matches[1]) {
                             $value['crypt'] = $value['text'];
                             $value['text'] = Ccryption::decode($matches[2], $key);
                         }
                     }
                 }
                 if (preg_match("/\x01([A-Z]+)( .+)?\x01/i", $value['text'], $matches)) {
-                    if ($matches[1] === 'ACTION') {
+                    if ('ACTION' === $matches[1]) {
                         $value['text'] = $matches[2];
                         $value['action'] = '1';
                     }
@@ -278,16 +278,16 @@ class Hades
      */
     public function useInput($input)
     {
-        if (substr($input, 0, 1) !== '/') {
+        if ('/' !== substr($input, 0, 1)) {
             if (
-                empty($_SESSION['crypt'][$_SESSION['channel']]['method']) === false
+                false === empty($_SESSION['crypt'][$_SESSION['channel']]['method'])
                 &&
-                empty($_SESSION['crypt'][$_SESSION['channel']]['encode']) === false
+                false === empty($_SESSION['crypt'][$_SESSION['channel']]['encode'])
             ) {
                 $key = $_SESSION['crypt'][$_SESSION['channel']]['encode'];
-                if ($_SESSION['crypt'][$_SESSION['channel']]['method'] === 'mirc') {
+                if ('mirc' === $_SESSION['crypt'][$_SESSION['channel']]['method']) {
                     $input = '+OK ' . Mircryption::encode($input, $key);
-                } elseif ($_SESSION['crypt'][$_SESSION['channel']]['method'] === 'cc') {
+                } elseif ('cc' === $_SESSION['crypt'][$_SESSION['channel']]['method']) {
                     $input = '+CC ' . Ccryption::encode($input, $key);
                 }
             }
@@ -401,7 +401,7 @@ class Hades
     public function isRunning()
     {
         $bot = $this->getDb()->getBotData();
-        if ($bot['stop'] !== null) {
+        if (null !== $bot['stop']) {
             return json_encode(false);
         }
         if ((time() - strtotime($bot['ping'])) > 600) {

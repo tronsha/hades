@@ -35,7 +35,7 @@ class Db extends BaseDb
     public function __construct($config)
     {
         parent::__construct($config);
-        if (isset($_SESSION['bot']) === true) {
+        if (true === isset($_SESSION['bot'])) {
             $this->botId = $_SESSION['bot'];
         }
     }
@@ -93,7 +93,7 @@ class Db extends BaseDb
                 ->where('bot_id = ?')
                 ->addOrderBy('channel', 'ASC')
                 ->setParameter(0, $this->getBotId());
-            if ($channel !== null) {
+            if (null !== $channel) {
                 $qb ->andWhere('channel = ?')
                     ->setParameter(1, $channel);
             }
@@ -164,7 +164,7 @@ class Db extends BaseDb
                 ->setParameter(0, $last)
                 ->setParameter(1, $this->getBotId())
                 ->setParameter(2, $channel);
-            if ($last === 0) {
+            if (0 === $last) {
                 $qb->setMaxResults(2000);
             }
             $stmt = $qb->execute();
@@ -184,7 +184,7 @@ class Db extends BaseDb
             $qb ->select('id')
                 ->from('bot')
                 ->addOrderBy('id', 'DESC');
-            if ($this->config['driver'] === 'pdo_sqlite') {
+            if ('pdo_sqlite' === $this->config['driver']) {
                 $qb->where('stop = \'NULL\'');
             } else {
                 $qb->where('stop IS NULL');

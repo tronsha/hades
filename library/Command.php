@@ -64,7 +64,7 @@ class Command
     public function msg($param)
     {
         $params = explode(' ', $param, 2);
-        if (count($params) === 2) {
+        if (2 === count($params)) {
             return $this->getActions()->privmsg($params[0], $params[1]);
         }
         return false;
@@ -88,7 +88,7 @@ class Command
         $nick = $this->getActions()->nick($param);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([432, 433]);
-        if ($status !== null) {
+        if (null !== $status) {
             return $status;
         }
         return $nick;
@@ -103,7 +103,7 @@ class Command
         $join = $this->getActions()->join($param);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([475, 477]);
-        if ($status !== null) {
+        if (null !== $status) {
             return $status;
         }
         return $join;
@@ -116,13 +116,13 @@ class Command
     public function part($param)
     {
         $param = trim($param);
-        if (empty($param) === true) {
+        if (true === empty($param)) {
             $param = $_SESSION['channel'];
         }
         if ($param === $_SESSION['channel']) {
             $_SESSION['channel'] = null;
         }
-        if ($param !== null) {
+        if (null !== $param) {
             return $this->getActions()->part($param);
         }
     }
@@ -144,19 +144,19 @@ class Command
     public function invite($param)
     {
         $param = trim($param);
-        if (empty($param) === true) {
+        if (true === empty($param)) {
             return false;
         }
         $params = explode(' ', $param);
         $nick = $params[0];
-        if (count($params) === 1) {
+        if (1 === count($params)) {
             $channel = $_SESSION['channel'];
         } else {
             $channel = $params[1];
         }
         $invite = $this->getActions()->invite($channel, $nick);
         $status = $this->getDb()->getStatus([403, 442, 443]);
-        if ($status !== null) {
+        if (null !== $status) {
             return $status;
         }
         return $invite;
@@ -169,14 +169,14 @@ class Command
     public function op($param)
     {
         $param = trim($param);
-        if (empty($param) === true) {
+        if (true === empty($param)) {
             $op = $this->getActions()->op($_SESSION['channel']);
         } else {
             $params = explode(' ', $param);
             $count = count($params);
-            if ($count === 1) {
+            if (1 === $count) {
                 $op = $this->getActions()->op($params[0]);
-            } elseif ($count >= 2) {
+            } elseif (2 <= $count) {
                 for ($i = 1; $i < $count; $i++) {
                     $op[] = $this->getActions()->op($params[0], $params[$i]);
                 }
@@ -193,9 +193,9 @@ class Command
     {
         $params = explode(' ', trim($param));
         $count = count($params);
-        if ($count === 1) {
+        if (1 === $count) {
             return false;
-        } elseif ($count >= 2) {
+        } elseif (2 <= $count) {
             for ($i = 1; $i < $count; $i++) {
                 $deop[] = $this->getActions()->deop($params[0], $params[$i]);
             }
@@ -213,7 +213,7 @@ class Command
         $kick = $this->getActions()->kick($channel, $user, $comment);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([401, 442, 482]);
-        if ($status !== null) {
+        if (null !== $status) {
             return $status;
         }
         return $kick;
@@ -228,7 +228,7 @@ class Command
         $topic = $this->getActions()->topic($_SESSION['channel'], $param);
         Cerberus::msleep(2000);
         $status = $this->getDb()->getStatus([403, 442, 482]);
-        if ($status !== null) {
+        if (null !== $status) {
             return $status;
         }
         return $topic;
@@ -240,12 +240,12 @@ class Command
     public function crypt($param)
     {
         $params = explode(' ', $param);
-        if (strtolower($params[0]) === 'unset') {
+        if ('unset' === strtolower($params[0])) {
             unset($_SESSION['crypt'][$_SESSION['channel']]);
-        } elseif (strtolower($params[0]) === 'set') {
-            if (strtolower($params[1]) === 'encode') {
+        } elseif ('set' === strtolower($params[0])) {
+            if ('encode' === strtolower($params[1])) {
                 $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[2]);
-            } elseif (strtolower($params[1]) === 'decode') {
+            } elseif ('decode' === strtolower($params[1])) {
                 $_SESSION['crypt'][$_SESSION['channel']]['decode'] = trim($params[2]);
             } else {
                 $_SESSION['crypt'][$_SESSION['channel']]['encode'] = trim($params[1]);

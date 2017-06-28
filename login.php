@@ -21,7 +21,7 @@
 chdir(__DIR__);
 
 foreach ([__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../cerberus/vendor/autoload.php'] as $file) {
-    if (file_exists($file)) {
+    if (true === file_exists($file)) {
         require_once $file;
         break;
     }
@@ -31,12 +31,12 @@ use Hades\Hades;
 
 $hades = new Hades;
 
-if ($hades->isLoggedin() === true) {
+if (true === $hades->isLoggedin()) {
     header('Location: index.php');
     exit;
 }
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (true === isset($_POST['username']) && true === isset($_POST['password'])) {
     $hades->login($_POST['username'], $_POST['password']);
 }
 ?><!doctype html>
