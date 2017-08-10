@@ -43,7 +43,7 @@ $_SESSION['last'] = 0;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo isset($_SESSION['channel']) ? $_SESSION['channel'] . ' - Hades' : 'Chat - Hades'; ?></title>
+    <title><?php echo true === isset($_SESSION['channel']) ? $_SESSION['channel'] . ' - Hades' : 'Chat - Hades'; ?></title>
     <meta name="description" content="Hades, master of Cerberus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ $_SESSION['last'] = 0;
 <div class="chat">
     <h1>Hades</h1>
     <div class="title">
-        <span id="channel"><?php echo isset($_SESSION['channel']) ? $_SESSION['channel'] : ''; ?></span>
+        <span id="channel"><?php echo true === isset($_SESSION['channel']) ? $_SESSION['channel'] : ''; ?></span>
         <span id="topic"></span>
     </div>
     <div class="output">
