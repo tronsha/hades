@@ -758,7 +758,7 @@ jQuery(document).ready(function () {
     $('body').on('change', '#autoscroll-enable, #autoscroll-disable', function () {
         var $this = $(this);
         if (true === $this.prop('checked')) {
-            autoscroll = 'true' === $this.attr('value');
+            autoscroll = ('true' === $this.attr('value'));
         }
     });
 
