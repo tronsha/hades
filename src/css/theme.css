@@ -15,6 +15,10 @@
 .theme-default .chat .output > #output > p > .user {
 }
 
+.theme-default .chat .input,
+.theme-default .chat .input > #input {
+}
+
 .theme-default .chat #output .channel,
 .theme-default .chat #output .link {
 }
@@ -61,6 +65,12 @@
 .theme-dark .chat .output > #output > p > .text,
 .theme-dark .chat .output > #output > p > .time,
 .theme-dark .chat .output > #output > p > .user {
+    color: #8BF6BF;
+}
+
+.theme-dark .chat .input,
+.theme-dark .chat .input > #input {
+    background: #000000;
     color: #8BF6BF;
 }
 
@@ -132,6 +142,10 @@
 .theme-light .chat .output > #output > p > .time,
 .theme-light .chat .output > #output > p > .user {
     color: #600001;
+}
+
+.theme-light .chat .input,
+.theme-light .chat .input > #input {
 }
 
 .theme-light .chat #output .channel,
