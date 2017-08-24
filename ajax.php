@@ -32,7 +32,7 @@ use Hades\Hades;
 
 $hades = new Hades;
 
-if ($hades->isLoggedin() === false) {
+if ($hades->isLoggedIn() === false) {
     echo json_encode(['loggedin' => false]);
 } elseif (true === isset($_POST['action']) && 'getoutput' === $_POST['action']) {
     echo $hades->getOutput();

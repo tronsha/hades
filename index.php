@@ -31,7 +31,7 @@ use Hades\Hades;
 
 $hades = new Hades;
 
-if (false === $hades->isLoggedin()) {
+if (false === $hades->isLoggedIn()) {
     header('Location: login.php');
     exit;
 }

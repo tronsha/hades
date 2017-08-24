@@ -170,7 +170,7 @@ class Hades
     /**
      * @return bool
      */
-    public function isLoggedin()
+    public function isLoggedIn()
     {
         return empty($_SESSION['username']) ? false : true;
     }
