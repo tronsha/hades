@@ -8,5 +8,5 @@ function text2bin(text) {
         }
         bin += c0 + c + ' ';
     });
-    return bin;
+    return '<br>' + bin;
 }
