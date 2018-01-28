@@ -3,7 +3,7 @@
   "description": "Hades, the frontend for the Cerberus IRC Bot",
   "version": "1.0.0-dev",
   "homepage": "https://github.com/tronsha/hades",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "require": {
     "php": ">=5.5.0"
   },
